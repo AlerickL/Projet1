@@ -25,7 +25,6 @@ class Parametre:
         or not isinstance(defaut_valeur, float|int):
             raise TypeError("Un des paramètres n'est pas du bon type.")
         self.__info = info
-        self.__nom = nom
         self.__texte_precision: int = 2
         self.__min_valeur = min_valeur
         self.__max_valeur = max_valeur
@@ -37,9 +36,6 @@ class Parametre:
     @property
     def info(self) -> Information:
         return self.__info
-    @property
-    def nom(self) -> str:
-        return self.__nom
     @property
     def texte_precision(self) -> int:
         return self.__texte_precision
@@ -75,8 +71,9 @@ class Parametre:
             raise TypeError("Nouvelle_valeur doit être un float ou un int.")
         if nouvelle_valeur < self.__min_valeur or nouvelle_valeur > self.__max_valeur:
             raise ValueError("La valeur doit être entre le min_valeur et max_valeur.")
+        self.__valeur = nouvelle_valeur
 
-    def reinisialiser(self) -> None:
+    def reinitialiser(self) -> None:
         """Permet de remettre la valeur par défaut du paramètre"""
         self.__valeur = self.__defaut_valeur
 

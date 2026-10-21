@@ -1,0 +1,112 @@
+{
+  "chapter1": {
+    "file": "chapter1.jpg",
+    "original": "chapter1.jpg",
+    "title": "Casse de caractères mobiles et composteur",
+    "author": "Willi Heidelbach",
+    "source": "Wikimedia Commons, CC BY 2.5",
+    "note": "Le typographe place chaque lettre à la main, une à une.",
+    "link": "https://commons.wikimedia.org/wiki/File:Metal_movable_type.jpg",
+    "origin": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Metal_movable_type.jpg"
+  },
+  "chapter1-synthesis": {
+    "file": "chapter1-synthesis.jpg",
+    "original": "chapter1-synthesis.jpg",
+    "title": "Mur de notes autocollantes",
+    "author": "ProjectManhattan",
+    "source": "Wikimedia Commons, CC BY-SA 3.0",
+    "note": "Chaque note est posée à la main, à sa place, par-dessus les autres.",
+    "link": "https://commons.wikimedia.org/wiki/File:Sticky_Notes_2.jpg",
+    "origin": "https://upload.wikimedia.org/wikipedia/commons/7/70/Sticky_Notes_2.jpg"
+  },
+  "chapter2": {
+    "file": "chapter2.jpg",
+    "original": "chapter2.jpg",
+    "title": "<i>Composition</i>, 1921",
+    "author": "Piet Mondrian",
+    "source": "Wikimedia Commons, CC0 (Metropolitan Museum of Art)",
+    "note": "Des rangées et des colonnes de cases, certaines plus larges ou plus hautes que les autres, comme les cellules d'une grille.",
+    "link": "https://commons.wikimedia.org/wiki/File:Composition%2C_1921_-_Piet_Mondrian%2C_MET_DT4479.jpg",
+    "origin": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Composition%2C_1921_-_Piet_Mondrian%2C_MET_DT4479.jpg"
+  },
+  "chapter2-synthesis": {
+    "file": "chapter2-synthesis.jpg",
+    "original": "chapter2-synthesis.jpg",
+    "title": "Kumiko",
+    "author": "Sergei Sarin",
+    "source": "Wikimedia Commons, CC BY-SA 4.0",
+    "note": "Un treillis de bois japonais : des motifs logés dans les cases d'un motif plus grand.",
+    "link": "https://commons.wikimedia.org/wiki/File:Kumiko.jpg",
+    "origin": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Kumiko.jpg"
+  },
+  "chapter3": {
+    "file": "chapter3.jpg",
+    "original": "chapter3.jpg",
+    "title": "Encoches à onglets d'un dictionnaire",
+    "author": "Till Niermann",
+    "source": "Wikimedia Commons, CC BY-SA 3.0",
+    "note": "Une seule page se lit à la fois, et chaque encoche mène directement à sa section, comme un onglet.",
+    "link": "https://commons.wikimedia.org/wiki/File:Dictionary_indents_headon.jpg",
+    "origin": "https://upload.wikimedia.org/wikipedia/commons/7/77/Dictionary_indents_headon.jpg"
+  },
+  "chapter3-synthesis": {
+    "file": "chapter3-synthesis.jpg",
+    "original": "chapter3-synthesis.jpg",
+    "title": "Paravent de Hikone, première moitié du XVIIe siècle",
+    "author": "Auteur inconnu",
+    "source": "Wikimedia Commons, domaine public",
+    "note": "Six panneaux qui se plient et se déplient : chacun se lit seul, ensemble ils forment une scène.",
+    "link": "https://commons.wikimedia.org/wiki/File:Hikone_Screen.jpg",
+    "origin": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Hikone_Screen.jpg"
+  },
+  "chapter4": {
+    "file": "chapter4.jpg",
+    "original": "chapter4.jpg",
+    "title": "Bible de Gutenberg, vers 1455",
+    "author": "NYC Wanderer (Kevin Eng)",
+    "source": "Wikimedia Commons, CC BY-SA 2.0",
+    "note": "Sur chaque page, deux colonnes séparées par un espacement, entourées de marges plus larges en bas.",
+    "link": "https://commons.wikimedia.org/wiki/File:Gutenberg_Bible%2C_Lenox_Copy%2C_New_York_Public_Library%2C_2009._Pic_01.jpg",
+    "origin": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Gutenberg_Bible%2C_Lenox_Copy%2C_New_York_Public_Library%2C_2009._Pic_01.jpg"
+  },
+  "chapter4-synthesis": {
+    "file": "chapter4-synthesis.png",
+    "original": "chapter4-synthesis.png",
+    "title": "Une du journal <i>The Nation</i>, Dublin, 28 mars 1846",
+    "author": "Auteur inconnu",
+    "source": "Wikimedia Commons, domaine public",
+    "note": "Des colonnes, des filets et des marges : chaque article prend sa place, ni plus ni moins.",
+    "link": "https://commons.wikimedia.org/wiki/File:The_Nation_Irish_newspaper_front_page_Sat._March_28_1846.png",
+    "origin": "https://upload.wikimedia.org/wikipedia/commons/2/20/The_Nation_Irish_newspaper_front_page_Sat._March_28_1846.png"
+  },
+  "chapter5": {
+    "file": "chapter5.jpg",
+    "original": "chapter5.jpg",
+    "title": "Poste de pilotage de la navette spatiale, 2000",
+    "author": "NASA",
+    "source": "Wikimedia Commons, domaine public",
+    "note": "Onze écrans et des centaines de commandes, chacun à sa place.",
+    "link": "https://commons.wikimedia.org/wiki/File:STSCPanel.jpg",
+    "origin": "https://upload.wikimedia.org/wikipedia/commons/3/30/STSCPanel.jpg"
+  },
+  "chapter5-synthesis": {
+    "file": "chapter5-synthesis.jpg",
+    "original": "chapter5-synthesis.jpg",
+    "title": "Vue éclatée d'une manette de jeu",
+    "author": "zerforschung.org",
+    "source": "Wikimedia Commons, CC0",
+    "note": "Les couches de la manette, écartées les unes des autres : on voit comment elles s'emboîtent.",
+    "link": "https://commons.wikimedia.org/wiki/File:Exploded-view-drawing_Google_Stadia_Controller.jpg",
+    "origin": "https://upload.wikimedia.org/wikipedia/commons/1/10/Exploded-view-drawing_Google_Stadia_Controller.jpg"
+  },
+  "introduction": {
+    "file": "introduction.jpg",
+    "original": "introduction.jpg",
+    "title": "<i>Composition II en rouge, bleu et jaune</i>, 1930",
+    "author": "Piet Mondrian",
+    "source": "Wikimedia Commons, domaine public",
+    "note": "Un espace partagé en zones, comme une fenêtre l'est par ses layouts.",
+    "link": "https://commons.wikimedia.org/wiki/File:Piet_Mondriaan%2C_1930_-_Mondrian_Composition_II_in_Red%2C_Blue%2C_and_Yellow.jpg",
+    "origin": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Piet_Mondriaan%2C_1930_-_Mondrian_Composition_II_in_Red%2C_Blue%2C_and_Yellow.jpg"
+  }
+}

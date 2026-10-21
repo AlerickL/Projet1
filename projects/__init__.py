@@ -1,0 +1,1 @@
+# Explicit package initialization for projects module

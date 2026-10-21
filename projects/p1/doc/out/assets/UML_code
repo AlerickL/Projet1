@@ -1,0 +1,104 @@
+@startuml
+
+title Uml_projet_1_sf3 version 1
+skinparam linetype ortho
+
+abstract FonctionMath {
++<<property>> info:Information {readOnly}
++<<property>> formule_general:str {readOnly}
++<<property, abstract>> /vrai_formule:str {readOnly}
++<<property>> transformation_canonique:transformation_canonique {readOnly}
++<<property>> parametres:list[Parametre]|None
++__init__()
++calculer(x:float):float
++calculer_np(x:NDArray[1d,float]):NDArray[1d,float]
++calculer_exacte_derive(x:float):float
++calculer_exacte_integral(borne_inferieure:float,borne_superieur:float):float
++redemarrer_parametres()
+}
+
+class Information {
++<<property>> nom:str
++<<property>>resume:str=""
++<<property>>details:str=""
++__init__(nom:str,resume:str,details=str)
+}
+
+class TransformationCanonique{
++<<property>> translation_x:Parametre  {readOnly}
++<<property>> translation_y:Parametre {readOnly}
++<<property>> aggrandissement_x:Parametre {readOnly}
++<<property>> aggrandissement_y:Parametre {readOnly}
++<<property>> /est_identite:bool {readOnly}
++__init__()
+-trouver(transformation:TypeTransformation):Parametre
++modifier(changement:tuple[TypeTransformation,float]):bool
++reinitialiser()
+}
+
+class Parametre {
++<<property>>info:Information {readOnly}
++<<property>> nom:str {readOnly}
++<<property>>texte_precision:int=2 {readOnly}
++<<property>> min_valeur:float {readOnly}
++<<property>> max_valeur:float {readOnly}
++<<property>> defaut_valeur:float {readOnly}
++<<property>> valeur:float = defaut_valeur
++<<property>> /texte_valeur:str {readOnly}
++__init__(info:Information, nom:str,texte_precision:int,min_valeur:float,max_valeur:float,defaut_valeur:float)
+-est_valide(valeur:float):bool
++reinitialiser():None
+}   
+
+class FonctionSin {
++__init__()
++calculer(x:float):float
++calculer_np(x:NDArray[1d,float]):NDArray[1d,float]
++calculer_exacte_derive(x:float):float
++calculer_exacte_integral(borne_inferieure:float,borne_superieur:float):float
+}
+
+
+note left of TransformationCanonique
+  Les aggrandissements ont comme valeurs par défaut 1 
+  et les translations ont comme valeurs par défaut 0
+endnote
+
+
+Enum TypeTransformation{
+  translation_x = 1
+  translation_y = 2
+  aggrandissement_x = 3
+  aggrandissement_y = 4
+}
+
+abstract MethodeNumerique {
++<<property>> fonction:FonctionMath
++<<property>> alpha:float =0
++<<property, abstract>> \ approximation:float
++<<property>> precision:float|int =100
++__init__(fonction:FonctionMath)
+}
+
+class MethodeDerive{
++<<property>> point_interet:float
++__init__(fonction:FonctionMath,point_interet:float)
+}
+
+class MethodeIntegral{
++<<property>> interval:tuple[float,float]
++__init__(fonction:FonctionMath,interval:tuple[float,float])
+}
+
+
+Parametre "4"--* TransformationCanonique
+TransformationCanonique --* FonctionMath
+Information --* Parametre
+Information --* FonctionMath
+TypeTransformation -- TransformationCanonique
+FonctionSin --^ FonctionMath
+MethodeIntegral --^ MethodeNumerique
+MethodeDerive --^ MethodeNumerique
+FonctionMath --* MethodeNumerique
+
+@enduml

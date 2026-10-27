@@ -5,7 +5,8 @@ import TransformationCanonique
 import Parametre  
 import FormeIntegrale
 import FonctionMath
-from annotation import override 
+import MethodeNumerique
+from typing import override 
 
 class MethodeIntegrale(MethodeNumerique):
     @override

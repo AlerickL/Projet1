@@ -12,8 +12,8 @@ class FonctionSecondDegre(FonctionMath):
         info:Information = Information("Fonction polynomial du second degré","C'est la fonction polynomiale du second degré","La fonction a 3 paramètres.")
         formule_general:str = "c_2x^2+c_1x+c_0"
         info_c_0 = Information("c_0","Le coefficient sans x","")
-        info_c_1 =  Information("c_0","Le coefficient de x^1")
-        info_c_2 =  Information("c_0","Le coefficient de x^2")
+        info_c_1 =  Information("c_0","Le coefficient de x^1","")
+        info_c_2 =  Information("c_0","Le coefficient de x^2","")
         c_0 = Parametre(info_c_0,"c_0",1,-10,10,0)
         c_1 = Parametre(info_c_1,"c_1",1,-10,10,0)
         c_2 = Parametre(info_c_2,"c_2",1,-10,10,1)

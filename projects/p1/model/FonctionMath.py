@@ -21,7 +21,7 @@ class FonctionMath(ABC):
         """
         return self.__info
     @property
-    def formule_general(self) -> str:
+    def formule_generale(self) -> str:
         """Formule générale de la fonction
 
         Returns:

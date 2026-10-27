@@ -1,11 +1,7 @@
-from abc import ABC, abstractmethod
-import numpy as np
-import Information
-import TransformationCanonique
-import Parametre  
 import FormeIntegrale
 import FonctionMath
-from annotation import override 
+import MethodeNumerique
+from typing import override 
 
 class MethodeIntegrale(MethodeNumerique):
     @override

@@ -1,25 +1,21 @@
-from __future__ import annotations
 from abc import ABC, abstractmethod
 import numpy as np
 import Information
-from TransformationCanonique import TransformationCanonique
-from Parametre import Parametre
+import TransformationCanonique
+import Parametre
 
 class FonctionMath(ABC):
-    def __init__(self, info:Information, formule_generale:str,parametres:list[Parametre], transformations_canoniques : TransformationCanonique):
-        self.__info = info
-        self.__formule_generale = formule_generale
-        self.__parametres = parametres
-        self.__transformations_canoniques = transformations_canoniques
+    def __init__(self):
+        pass
 
     @property
-    def info(self) ->Information:
+    def info(self) -> Information:
         """L'information de la fonction
 
         Returns:
             Information: L'information
         """
-        return self.__info
+        pass
     @property
     def formule_general(self) -> str:
         """Formule générale de la fonction
@@ -27,8 +23,7 @@ class FonctionMath(ABC):
         Returns:
             str: Représentation en chaine de caractère de la fonction.
         """
-        return self.__formule_generale
-        
+        pass
     @abstractmethod
     @property
     def vrai_formule(self) -> str:
@@ -40,6 +35,14 @@ class FonctionMath(ABC):
         """
         pass
 
+    @property
+    def transformation_canonique(self) -> TransformationCanonique:
+        """Donne la transformation canonique
+
+        Returns:
+            TransformationCanonique: La transformation canonique de la fonction
+        """
+        pass
 
     @property
     def parametres(self) -> list[Parametre]:
@@ -48,7 +51,7 @@ class FonctionMath(ABC):
         Returns:
             list[Parametre]: La liste de paramètres de la fonction
         """
-        return self.__parametres
+        pass
 
     @abstractmethod
     def calculer(x:float) -> float:
@@ -106,3 +109,8 @@ class FonctionMath(ABC):
         for parametre in self.parametres:
             parametre.reinitialiser()
         
+    
+
+
+    
+    

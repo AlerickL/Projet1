@@ -1,8 +1,3 @@
-from abc import ABC, abstractmethod
-import numpy as np
-import Information
-import TransformationCanonique
-import Parametre  
 import FormeIntegrale
 import FonctionMath
 import MethodeNumerique

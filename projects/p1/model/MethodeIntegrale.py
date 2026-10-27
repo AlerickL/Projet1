@@ -1,11 +1,8 @@
 from abc import ABC, abstractmethod
-import numpy as np
-import Information
-import TransformationCanonique
-import Parametre  
+import numpy as np 
 import FormeIntegrale
 import FonctionMath
-from annotation import override 
+from annotatios import override 
 
 class MethodeIntegrale(MethodeNumerique):
     @override
@@ -38,8 +35,11 @@ class MethodeIntegrale(MethodeNumerique):
     @override 
     @property
     def approximation(self) -> float :
-        pass 
-    
+        if self.__forme_integrale == FormeIntegrale.TRAPEZE:
+            return self.__calculer_avec_trapeze()
+        elif self.__forme_integrale == FormeIntegrale.RECTANGLE:
+            return self.__calculer_avec_rectangle()
+
     def __calculer_avec_trapeze(self) -> float: 
         pas_intergration = (self.__intervalle[1] - self.__intervalle[0]) / self.precision
         somme = 0 

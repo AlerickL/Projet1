@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 import numpy as np
-import Information
+import Information 
 import TransformationCanonique
 import Parametre  
 import FonctionMath

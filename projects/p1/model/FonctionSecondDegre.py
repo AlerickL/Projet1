@@ -9,7 +9,7 @@ from typing import override
 class FonctionSecondDegre(FonctionMath):
 
     def __init__(self,transformation_canonique:TransformationCanonique):
-        info:Information = Information("Fonction polynomial du second degré","C'est la fonction polynomiale du second degré")
+        info:Information = Information("Fonction polynomial du second degré","C'est la fonction polynomiale du second degré","La fonction a 3 paramètres.")
         formule_general:str = "c_2x^2+c_1x+c_0"
         info_c_0 = "Le coefficient sans x"
         info_c_1 = "Le coefficient de x^1"

@@ -73,7 +73,7 @@ class MethodeNumerique(ABC):
         return self.__precision
 
     @precision.setter
-    def precision(self,valeur:int|float) -> None:
+    def precision(self,valeur:int|float) -> None :
         if self.precision<0:
             raise ValueError("Precision doit être positif")
         self.__precision = valeur

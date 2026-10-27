@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import override
 import numpy as np
 import Information
 import TransformationCanonique

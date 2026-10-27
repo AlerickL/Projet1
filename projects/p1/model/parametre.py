@@ -1,5 +1,5 @@
 import numpy as np
-import Information # Faire chier Arthur pour qui push sont crisse de truc d'info
+import Information
 
 # Ce fichier sert à gérérer les paramètres des fonctions
 

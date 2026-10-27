@@ -87,7 +87,7 @@ class FonctionMath(ABC):
         pass
 
     @abstractmethod
-    def calculer_exacte_derive(borne_inferieur:float,borne_superieur:float) -> float:
+    def calculer_exacte_integrale(borne_inferieur:float,borne_superieur:float) -> float:
         """Calculer l'intégrale exacte de la fonction (analytiquement) dans un interval.
         L'interval est entre borne_inferieur et borne_superieur.
 

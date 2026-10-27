@@ -7,8 +7,9 @@ import Parametre
 class FonctionMath(ABC):
     def __init__(self):
         pass
+
     @property
-    def info(self) ->Information:
+    def info(self) -> Information:
         """L'information de la fonction
 
         Returns:

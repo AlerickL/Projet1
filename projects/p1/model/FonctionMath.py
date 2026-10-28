@@ -29,8 +29,9 @@ class FonctionMath(ABC):
         """
         return self._formule_generale
         
-    @abstractmethod
+    
     @property
+    @abstractmethod
     def vrai_formule(self) -> str:
         """Vrai formule de la fonction
         Remplace les variables par les vrais valeurs

@@ -1,7 +1,7 @@
 import numpy as np
-from FonctionMath import FonctionMath
+from Projet1.projects.p1.model.fonction_math import FonctionMath
 from Information import Information
-from TransformationCanonique import TransformationCanonique
+from Projet1.projects.p1.model.transformation_canonique import TransformationCanonique
 
 class FonctionSin(FonctionMath):
     """Représente une fonction sinus"""

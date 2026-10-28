@@ -1,19 +1,19 @@
 from abc import ABC, abstractmethod
 import numpy as np
 import Information
-import TransformationCanonique
+import Projet1.projects.p1.model.transformation_canonique as transformation_canonique
 import Parametre
-import FonctionMath
+import Projet1.projects.p1.model.fonction_math as fonction_math
 
 class MethodeNumerique(ABC):
 
-    def __init__(self,fonction_math:FonctionMath):
-        self._fonction_math:FonctionMath = fonction_math
+    def __init__(self,fonction_math:fonction_math):
+        self._fonction_math:fonction_math = fonction_math
         self._alpha:float = 0.0
         self.__precision:int|float = 5.0
 
     @property
-    def fonction_math(self) -> FonctionMath:
+    def fonction_math(self) -> fonction_math:
         """Retourne la fonction mathématique utilisée
 
         Returns:
@@ -21,8 +21,8 @@ class MethodeNumerique(ABC):
         """
         return self._fonction_math
 
-    @FonctionMath.setter
-    def fonction_math(self, fonction:FonctionMath) -> None:
+    @fonction_math.setter
+    def fonction_math(self, fonction:fonction_math) -> None:
         self.fonction_math = fonction
 
     @property

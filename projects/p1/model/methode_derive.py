@@ -2,10 +2,10 @@ from abc import ABC, abstractmethod
 from typing import override
 import numpy as np
 import Information 
-import TransformationCanonique
+import Projet1.projects.p1.model.transformation_canonique as transformation_canonique
 import Parametre  
-from FonctionMath import FonctionMath
-from MethodeNumerique import MethodeNumerique
+from Projet1.projects.p1.model.fonction_math import FonctionMath
+from Projet1.projects.p1.model.methode_numerique import MethodeNumerique
 
 class MethodeDerive(MethodeNumerique):
     @override

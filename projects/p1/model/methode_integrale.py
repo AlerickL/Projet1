@@ -1,12 +1,12 @@
 from abc import ABC, abstractmethod
 import numpy as np
 import Information
-import TransformationCanonique
+import Projet1.projects.p1.model.transformation_canonique as transformation_canonique
 import Parametre  
-import FormeIntegrale
-from FonctionMath import FonctionMath
+import Projet1.projects.p1.model.forme_integrale as forme_integrale
+from Projet1.projects.p1.model.fonction_math import FonctionMath
 from typing import override 
-from MethodeNumerique import MethodeNumerique
+from Projet1.projects.p1.model.methode_numerique import MethodeNumerique
 
 class MethodeIntegrale(MethodeNumerique):
     @override
@@ -18,14 +18,14 @@ class MethodeIntegrale(MethodeNumerique):
         """
         super().__init__(fonction)
         self.__intervalle = intervalle
-        self.__forme_integrale =  FormeIntegrale.RECTANGLE
+        self.__forme_integrale =  forme_integrale.RECTANGLE
     
     @property 
-    def forme_integrale(self) -> FormeIntegrale:
+    def forme_integrale(self) -> forme_integrale:
         return self.__forme_integrale 
     
     @forme_integrale.setter 
-    def forme_integrale(self, valeur: FormeIntegrale):
+    def forme_integrale(self, valeur: forme_integrale):
         self.__forme_integrale = valeur 
         
         
@@ -41,9 +41,9 @@ class MethodeIntegrale(MethodeNumerique):
     @override 
     @property
     def approximation(self) -> float :
-        if self.__forme_integrale == FormeIntegrale.TRAPEZE:
+        if self.__forme_integrale == forme_integrale.TRAPEZE:
             return self.__calculer_avec_trapeze()
-        elif self.__forme_integrale == FormeIntegrale.RECTANGLE:
+        elif self.__forme_integrale == forme_integrale.RECTANGLE:
             return self.__calculer_avec_rectangle()
 
     def __calculer_avec_trapeze(self) -> float: 

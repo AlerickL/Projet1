@@ -1,9 +1,9 @@
 from abc import ABC, abstractmethod
 import numpy as np
 import Information
-import TransformationCanonique
+import Projet1.projects.p1.model.transformation_canonique as transformation_canonique
 import Parametre  
-import FonctionMath
+import Projet1.projects.p1.model.fonction_math as fonction_math
 import enum as Enum
 
 

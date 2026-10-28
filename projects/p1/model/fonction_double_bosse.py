@@ -1,12 +1,12 @@
 import numpy as np
 import Information
-import TransformationCanonique
+import Projet1.projects.p1.model.transformation_canonique as transformation_canonique
 import Parametre
-import FonctionMath
+import Projet1.projects.p1.model.fonction_math as fonction_math
 from typing import override
 
-class FonctionDoubleBosse(FonctionMath):
-    def __init__(self,transformation_canonique:TransformationCanonique):
+class FonctionDoubleBosse(fonction_math):
+    def __init__(self,transformation_canonique:transformation_canonique):
         info = Information("Fonction double bosse","Une fonction avec deux bosse","On peut régler l'écart des deux bosses avec le paramètres p. À |p|<1/3**0.5, les bosses se confondent")
         info_p = Information("p","permet de régler l'écart entre les deux bosses","L'écart au sommet des deux bosses est de 2p ")
         p = Parametre(info_p,"p",2,0,2,1)

@@ -2,7 +2,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 import numpy as np
 import Information
-from TransformationCanonique import TransformationCanonique
+from Projet1.projects.p1.model.transformation_canonique import TransformationCanonique
 from Parametre import Parametre
 
 class FonctionMath(ABC):

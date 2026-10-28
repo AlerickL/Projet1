@@ -1,14 +1,14 @@
 from abc import ABC, abstractmethod
 import numpy as np
 import Information
-import TransformationCanonique
+import Projet1.projects.p1.model.transformation_canonique as transformation_canonique
 import Parametre
-import FonctionMath
+import Projet1.projects.p1.model.fonction_math as fonction_math
 from typing import override
 
-class FonctionSecondDegre(FonctionMath):
+class FonctionSecondDegre(fonction_math):
 
-    def __init__(self,transformation_canonique:TransformationCanonique):
+    def __init__(self,transformation_canonique:transformation_canonique):
         info:Information = Information("Fonction polynomial du second degré","C'est la fonction polynomiale du second degré","La fonction a 3 paramètres.")
         formule_general:str = "c_2x^2+c_1x+c_0"
         info_c_0 = Information("c_0","Le coefficient sans x","")

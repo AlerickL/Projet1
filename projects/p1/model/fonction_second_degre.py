@@ -1,14 +1,15 @@
 from abc import ABC, abstractmethod
 import numpy as np
+from numpy.typing import NDArray
 from information import Information
-import Projet1.projects.p1.model.transformation_canonique as transformation_canonique
+from transformation_canonique import TransformationCanonique
 from parametre import Parametre
-import Projet1.projects.p1.model.fonction_math as fonction_math
+from fonction_math import FonctionMath
 from typing import override
 
-class FonctionSecondDegre(fonction_math):
+class FonctionSecondDegre(FonctionMath):
 
-    def __init__(self,transformation_canonique:transformation_canonique):
+    def __init__(self,transformation_canonique:TransformationCanonique):
         info:Information = Information("Fonction polynomial du second degré","C'est la fonction polynomiale du second degré","La fonction a 3 paramètres.")
         formule_general:str = "c_2x^2+c_1x+c_0"
         info_c_0 = Information("c_0","Le coefficient sans x","")
@@ -26,18 +27,18 @@ class FonctionSecondDegre(fonction_math):
         return f"{self.parametres.valeur[2]}x^2 + {self.parametres.valeur[1]}x + {self.parametres.valeur[0]}"
 
     @override
-    def calculer(self,x:float):
+    def calculer(self,x: float | NDArray):
         fonction = lambda x : self.parametres.valeur[2]*x**2 + self.parametres.valeur[1]*x**1 + self.parametres.valeur[0]
         return super().calculer(x,fonction)
     
     @override
-    def calculer_exacte_derive(self,x:float) -> float:
+    def calculer_exacte_derive(self,x: float | NDArray) -> float | NDArray:
         derive = lambda x : 2*self.parametres[2] * x + self.parametres[1]
         return super().calculer_exacte_derive(x,derive)
     
     @override
-    def calculer_exacte_integrale(self,borne_inferieure:float,borne_superieur:float):
-        primitive = lambda x : self.parametres[0]*x**3/3 + self.parametres[1]*x**2/2 + self.parametres[0]*x
+    def calculer_exacte_integrale(self, borne_inferieure: float, borne_superieur: float):
+        primitive = lambda x : self.parametres[0] * x ** 3 / 3 + self.parametres[1] * x ** 2 / 2 + self.parametres[0]*x
         return super().calculer_exacte_integrale(borne_inferieure,borne_superieur,primitive)
     
 

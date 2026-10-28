@@ -53,9 +53,9 @@ class MethodeIntegrale(MethodeNumerique):
         for i in range(1, self.precision - 1):
             
             x_i = self.__intervalle[0] + i * pas_intergration
-            somme += self.fonction.calculer(x_i) + self.fonction.calculer(self.intervalle[1]) 
+            somme += self._fonction_math.calculer(x_i) + self._fonction_math.calculer(self.intervalle[1]) 
             
-        return (somme * 2 + self.fonction.calculer(self.intervalle[0])) * pas_intergration / 2
+        return (somme * 2 + self._fonction_math.calculer(self.intervalle[0])) * pas_intergration / 2
     
     def __calculer_avec_rectangle (self) -> float : 
         
@@ -64,5 +64,5 @@ class MethodeIntegrale(MethodeNumerique):
         for i in range(self.precision - 1 ):
             x_i = self.__intervalle[0] + i * pas_intergration
             point_evaluation = x_i + self.alpha * pas_intergration
-            somme += self.fonction.calculer(point_evaluation)
+            somme += self._fonction_math.calculer(point_evaluation)
         return somme * pas_intergration 

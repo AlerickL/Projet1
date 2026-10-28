@@ -38,4 +38,3 @@ class MethodeDerive(MethodeNumerique):
         seconde_valeur = self.__point_interet + (1 - self.alpha) * self.precision
         return (self.fonction.calculer(seconde_valeur) - self.fonction.calculer(premiere_valeur)) / (self.precision)
     
-    

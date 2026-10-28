@@ -4,7 +4,7 @@ import numpy as np
 import Information 
 import TransformationCanonique
 import Parametre  
-import FonctionMath
+from FonctionMath import FonctionMath
 from MethodeNumerique import MethodeNumerique
 
 class MethodeDerive(MethodeNumerique):
@@ -18,6 +18,7 @@ class MethodeDerive(MethodeNumerique):
         super().__init__(fonction)
         self.__point_interet = point_interet 
         
+        
     @property 
     def point_interet(self) -> float:
         return self.__point_interet 
@@ -25,6 +26,22 @@ class MethodeDerive(MethodeNumerique):
     @point_interet.setter
     def point_interet(self, valeur: float):
         self.__point_interet = valeur
+
+    def avoir_premiere_valeur(self):
+        """Accéder à p-
+        """
+        return self.__point_interet - self.alpha*self.precision
+
+    def avoir_seconde_valeur(self):
+        """Accéder à p+
+        """
+        return self.__point_interet + (1 - self.alpha )*self.precision
+
+    def avoir_regle_tangente(self):
+        pente = self._fonction_math.calculer_exacte_derive(self.point_interet)
+        hauteur = self._fonction_math.calculer(self.point_interet)-pente * self.point_interet
+        return lambda x : pente*x + hauteur
+
         
     @override 
     @property
@@ -34,7 +51,8 @@ class MethodeDerive(MethodeNumerique):
         Returns:
             float: la  approximation
         """
-        premiere_valeur = self.__point_interet - self.alpha * self.precision
-        seconde_valeur = self.__point_interet + (1 - self.alpha) * self.precision
-        return (self.fonction.calculer(seconde_valeur) - self.fonction.calculer(premiere_valeur)) / (self.precision)
+        premiere_valeur = self.avoir_premiere_valeur()
+        seconde_valeur = self.avoir_seconde_valeur()
+        return ( self.fonction.calculer(seconde_valeur) - self.fonction.calculer(premiere_valeur) )/ (self.precision)
+    
     

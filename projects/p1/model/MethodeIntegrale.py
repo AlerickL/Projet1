@@ -4,8 +4,7 @@ import Information
 import TransformationCanonique
 import Parametre  
 import FormeIntegrale
-import FonctionMath
-from MethodeNumerique import MethodeNumerique 
+from FonctionMath import FonctionMath
 from typing import override 
 from MethodeNumerique import MethodeNumerique
 
@@ -50,19 +49,24 @@ class MethodeIntegrale(MethodeNumerique):
     def __calculer_avec_trapeze(self) -> float: 
         pas_intergration = (self.__intervalle[1] - self.__intervalle[0]) / self.precision
         somme = 0 
-        for i in range(1, self.precision - 1):
+        x_i = self.__intervalle[0]+np.arange(1, self.precision - 1)*pas_intergration # supposément vectorisé
+        liste_somme = self._fonction_math.calculer(x_i) + self._fonction_math.calculer(self.intervalle[1]) 
+        somme = np.sum(liste_somme)
+        # for i in range(1, self.precision - 1):      # Non vectorisé
             
-            x_i = self.__intervalle[0] + i * pas_intergration
-            somme += self._fonction_math.calculer(x_i) + self._fonction_math.calculer(self.intervalle[1]) 
+        #     x_i = self.__intervalle[0] + i * pas_intergration
+        #     somme += self._fonction_math.calculer(x_i) + self._fonction_math.calculer(self.intervalle[1]) 
             
         return (somme * 2 + self._fonction_math.calculer(self.intervalle[0])) * pas_intergration / 2
     
     def __calculer_avec_rectangle (self) -> float : 
-        
         pas_intergration = (self.__intervalle[1] - self.__intervalle[0]) / self.precision
         somme = 0 
-        for i in range(self.precision - 1 ):
-            x_i = self.__intervalle[0] + i * pas_intergration
-            point_evaluation = x_i + self.alpha * pas_intergration
-            somme += self._fonction_math.calculer(point_evaluation)
+        x_i = self.__intervalle[0] + np.arange(self.precision - 1) * pas_intergration # vectorisé si je ne suis pas trop mauvais
+        point_evaluation = x_i + self.alpha * pas_intergration
+        somme = np.sum(self._fonction_math.calculer(point_evaluation))
+        # for i in range(self.precision - 1 ):   # non vectorisé
+        #     x_i = self.__intervalle[0] + i * pas_intergration
+        #     point_evaluation = x_i + self.alpha * pas_intergration
+        #     somme += self._fonction_math.calculer(point_evaluation)
         return somme * pas_intergration 

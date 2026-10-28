@@ -10,6 +10,7 @@ import FonctionDoubleBosse
 from MethodeDerive import MethodeDerive
 from MethodeIntegrale import MethodeIntegrale
 from typing import override
+from FormeIntegrale import FormeIntegrale
 
 class Modele:
     def __init__(self):
@@ -20,6 +21,7 @@ class Modele:
         self.__fonction_math = FonctionSin(self.__transformation_canonique)
         self.__methode_derive = MethodeDerive(self.__fonction_math,0)
         self.__methode_integrale = MethodeIntegrale(self.__fonction_math,(0,1))
+        self.__r_affichage_tangente = 3
 
     @property
     def transformation_canonique(self):
@@ -36,6 +38,10 @@ class Modele:
     @property
     def methode_integrale(self):
         return self.__methode_integrale
+
+    @property
+    def r_afficher_tangente(self):
+        return self.__r_affichage_tangente
     
     def changer_fonction_sin(self):
         self.__fonction_math = FonctionSin(self.__transformation_canonique)
@@ -93,15 +99,25 @@ class Modele:
     def mettre_integrale_a_droite(self):
         self.methode_integrale._alpha = 1
 
-    
-           
-         
+    def avoir_deux_points_derive_approxime(self) -> list[tuple[float,float],tuple[float,float]]:
+        p_moins = self.methode_derive.avoir_premiere_valeur()
+        p_plus = self.methode_derive.avoir_seconde_valeur()
+        return [(p_moins,self.fonction_math.calculer(p_moins)),(p_plus,self.methode_derive.avoir_seconde_valeur())]
+
+    def avoir_deux_points_tangente(self) -> list[tuple[float,float],tuple[float,float]]:
+        point_interet = self.__methode_derive.point_interet
+        droite = self.__methode_derive.avoir_regle_tangente()
+        x_moins = point_interet - self.__r_affichage_tangente
+        x_plus = point_interet + self.__r_affichage_tangente
+        return [(x_moins,droite(x_moins)),(x_plus,droite(x_plus))]
+
+    def mettre_mode_rectangle(self):
+        self.methode_integrale.forme_integrale = FormeIntegrale.RECTANGLE
+
+    def mettre_mode_trapeze(self):
+        self.methode_integrale.forme_integrale = FormeIntegrale.TRAPEZE
 
 
-    
-    
-
-    
 
     
     

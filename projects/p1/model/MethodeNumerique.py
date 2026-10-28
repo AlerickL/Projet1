@@ -19,7 +19,7 @@ class MethodeNumerique(ABC):
         Returns:
             FonctionMath: La fonction mathématique
         """
-        return self.__fonction_math
+        return self._fonction_math
 
     @FonctionMath.setter
     def fonction_math(self, fonction:FonctionMath) -> None:

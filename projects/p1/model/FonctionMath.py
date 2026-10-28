@@ -10,7 +10,7 @@ class FonctionMath(ABC):
         self.__info = info
         self.__formule_generale = formule_generale
         self.__parametres = parametres
-        self.__transformations_canoniques = transformations_canoniques
+        self._transformations_canoniques = transformations_canoniques
 
     @property
     def info(self) ->Information:
@@ -29,8 +29,9 @@ class FonctionMath(ABC):
         """
         return self.__formule_generale
         
-    @abstractmethod
+    
     @property
+    @abstractmethod
     def vrai_formule(self) -> str:
         """Vrai formule de la fonction
         Remplace les variables par les vrais valeurs

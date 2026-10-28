@@ -7,10 +7,10 @@ from Parametre import Parametre
 
 class FonctionMath(ABC):
     def __init__(self, info:Information, formule_generale:str,parametres:list[Parametre], transformations_canoniques : TransformationCanonique):
-        self.__info = info
-        self.__formule_generale = formule_generale
-        self.__parametres = parametres
-        self.__transformations_canoniques = transformations_canoniques
+        self._info = info
+        self._formule_generale = formule_generale
+        self._parametres = parametres
+        self._transformations_canoniques = transformations_canoniques
 
     @property
     def info(self) ->Information:
@@ -19,7 +19,7 @@ class FonctionMath(ABC):
         Returns:
             Information: L'information
         """
-        return self.__info
+        return self._info
     @property
     def formule_generale(self) -> str:
         """Formule générale de la fonction
@@ -27,7 +27,7 @@ class FonctionMath(ABC):
         Returns:
             str: Représentation en chaine de caractère de la fonction.
         """
-        return self.__formule_generale
+        return self._formule_generale
         
     @abstractmethod
     @property
@@ -48,7 +48,16 @@ class FonctionMath(ABC):
         Returns:
             list[Parametre]: La liste de paramètres de la fonction
         """
-        return self.__parametres
+        return self._parametres
+    
+    @property
+    def transformations_canoniques(self) -> TransformationCanonique:
+        """Donne la transformation canonique de la fonction
+
+        Returns:
+            TransformationCanonique: La transformation canonique de la fonction
+        """
+        return self._transformations_canoniques
 
     @abstractmethod
     def calculer(x:float) -> float:

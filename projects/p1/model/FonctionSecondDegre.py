@@ -24,6 +24,18 @@ class FonctionSecondDegre(FonctionMath):
     @property
     def vrai_formule(self):
         return f"{self.parametres.valeur[2]}x^2 + {self.parametres.valeur[1]}x + {self.parametres.valeur[0]}"
+    
+    @property
+    def info(self) -> Information :
+        super().info
+        
+    @property
+    def formule_generale(self) -> str:
+        super().formule_generale 
+        
+    @property
+    def parametres(self) -> list[Parametre]:
+        super().parametres
 
     @override
     def calculer(self,x:float):
@@ -36,10 +48,10 @@ class FonctionSecondDegre(FonctionMath):
         return self.transformation_canonique.zoom_y/self.transformation_canonique.zoom_x*derive((x-self.transformation_canonique.trans_x)/self.transformation.zoom_x)
     
     @override
-    def calculer_exacte_integrale(self,borne_inferieure:float,borne_superieur:float):
+    def calculer_exacte_integrale(self,borne_inferieure:float,borne_superieure:float):
         primitive = lambda x : self.parametres[0]*x**3/3 + self.parametres[1]*x**2/2 + self.parametres[0]*x
-        primitive_canonique = lambda x : self.transformation_canonique.zoom_y*self.transformation_canonique.zoom_x*primitive((x-self.transformation_canonique.trans_x)/self.transformation.zoom_x) + self.transformation.zoom_y*x
-        return primitive_canonique(borne_superieur) - primitive_canonique(borne_inferieure)
+        primitive_canonique = lambda x : self._transformations_canoniques.zoom_y*self._transformations_canoniques.zoom_x*primitive((x-super().transformations_canoniques.trans_x)/super().transformations_canoniques.zoom_x) + super().transformations_canoniques.trans_y*x
+        return primitive_canonique(borne_superieure) - primitive_canonique(borne_inferieure)
 
     
 

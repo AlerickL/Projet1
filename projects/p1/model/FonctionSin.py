@@ -28,11 +28,11 @@ class FonctionSin(FonctionMath):
 
     def calculer_exacte_derive(x:float) -> float:
         if not isinstance(x, int|float):
-                    raise TypeError("x doit être réel")
+            raise TypeError("x doit être réel")
         return np.cos(x)
 
     def calculer_exacte_integrale(borne_inferieur:float,borne_superieur:float) -> float:
-         return -1*np.cos(borne_superieur) + np.cos(borne_inferieur)
+        return -1*np.cos(borne_superieur) + np.cos(borne_inferieur)
     
 
 

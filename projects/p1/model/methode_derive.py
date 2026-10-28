@@ -1,9 +1,4 @@
-from abc import ABC, abstractmethod
 from typing import override
-import numpy as np
-import Information 
-import Projet1.projects.p1.model.transformation_canonique as transformation_canonique
-import Parametre  
 from Projet1.projects.p1.model.fonction_math import FonctionMath
 from Projet1.projects.p1.model.methode_numerique import MethodeNumerique
 
@@ -54,5 +49,4 @@ class MethodeDerive(MethodeNumerique):
         premiere_valeur = self.avoir_premiere_valeur()
         seconde_valeur = self.avoir_seconde_valeur()
         return ( self.fonction.calculer(seconde_valeur) - self.fonction.calculer(premiere_valeur) )/ (self.precision)
-    
     

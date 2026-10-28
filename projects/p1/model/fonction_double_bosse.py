@@ -1,7 +1,7 @@
 import numpy as np
-import Information
+from information import Information
 import Projet1.projects.p1.model.transformation_canonique as transformation_canonique
-import Parametre
+from parametre import Parametre
 import Projet1.projects.p1.model.fonction_math as fonction_math
 from typing import override
 

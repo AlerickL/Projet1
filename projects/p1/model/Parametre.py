@@ -1,7 +1,4 @@
-import numpy as np
-import Information
-
-# Ce fichier sert à gérérer les paramètres des fonctions
+from information import Information
 
 class Parametre:
     """C'est la classe qui représente un paramètre"""
@@ -76,5 +73,3 @@ class Parametre:
     def reinitialiser(self) -> None:
         """Permet de remettre la valeur par défaut du paramètre"""
         self.__valeur = self.__defaut_valeur
-
-        

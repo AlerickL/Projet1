@@ -1,6 +1,6 @@
 import numpy as np
 from Projet1.projects.p1.model.fonction_math import FonctionMath
-from Information import Information
+from information import Information
 from Projet1.projects.p1.model.transformation_canonique import TransformationCanonique
 
 class FonctionSin(FonctionMath):

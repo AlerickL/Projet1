@@ -1,5 +1,5 @@
-from Parametre import Parametre
-from Information import Information
+from parametre import Parametre
+from information import Information
 
 class TransformationCanonique:
     """Classe contenant la gestion des transformation canoniques d'une fonction"""
@@ -72,4 +72,3 @@ class TransformationCanonique:
         self.trans_y = self.__defaut_trans
         self.zoom_x = self.__defaut_zoom
         self.zoom_y = self.__defaut_zoom
-    

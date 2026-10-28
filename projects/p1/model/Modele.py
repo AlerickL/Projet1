@@ -1,8 +1,5 @@
 import numpy as np
-import Information
 from Projet1.projects.p1.model.transformation_canonique import TransformationCanonique
-import Parametre
-import Projet1.projects.p1.model.fonction_math as fonction_math
 from Projet1.projects.p1.model.fonction_sin import FonctionSin
 import Projet1.projects.p1.model.fonction_second_degre as fonction_second_degre
 import Projet1.projects.p1.model.fonction_sin_amortie as fonction_sin_amortie

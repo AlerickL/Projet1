@@ -1,8 +1,4 @@
-from abc import ABC, abstractmethod
 import numpy as np
-import Information
-import Projet1.projects.p1.model.transformation_canonique as transformation_canonique
-import Parametre  
 import Projet1.projects.p1.model.forme_integrale as forme_integrale
 from Projet1.projects.p1.model.fonction_math import FonctionMath
 from typing import override 

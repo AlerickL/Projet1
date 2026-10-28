@@ -1,8 +1,4 @@
 from abc import ABC, abstractmethod
-import numpy as np
-import Information
-import Projet1.projects.p1.model.transformation_canonique as transformation_canonique
-import Parametre
 import Projet1.projects.p1.model.fonction_math as fonction_math
 
 class MethodeNumerique(ABC):
@@ -77,6 +73,3 @@ class MethodeNumerique(ABC):
         if self.precision<0:
             raise ValueError("Precision doit être positif")
         self.__precision = valeur
-
-
-

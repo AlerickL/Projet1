@@ -27,19 +27,15 @@ class FonctionSinAmortie(FonctionMath):
         if not isinstance(x, int|float):
             raise TypeError("x doit être réel")
             fonction = lambda x: np.exp(-1*self.parametres[0].valeur * x) * np.sin(x)
-            return self.transformation_canonique.zoom_y*fonction((x-self.transformation_canonique.trans_x)/self.transformation.zoom_x) + self.transformation_canonique.trans_y
-
+            return super().calculer(x,fonction)
+        
     def calculer_exacte_derive(self, x:float) -> float:
         if not isinstance(x, int|float):
             raise TypeError("x doit être réel")
         fonction = lambda x: np.exp(-1*self.parametres[0].valeur * x) * (np.cos(x) - self.parametres[0].valeur * np.sin(x))
-        return self.transformation_canonique.zoom_y/self.transformation_canonique.zoom_x*fonction((x-self.transformation_canonique.trans_x)/self.transformation.zoom_x)
-
+        return super().calculer_exacte_derive(x,derive)
+    
     def calculer_exacte_integrale(self, borne_inferieure:float,borne_superieure:float) -> float:
         primitive = lambda x: ((np.exp(-1*self.parametres[0].valeur * x) * (self.parametres[0].valeur*np.sin(x) + np.cos(x)))) / (self.parametres[0].valeur**2 + 1)
-        primitive_canonique = lambda x : self._transformations_canoniques.zoom_y*self._transformations_canoniques.zoom_x*primitive((x-self._transformations_canoniques.trans_x)/self._transformations_canoniques.zoom_x) + self._transformations_canoniques  .trans_y*x
-        return primitive_canonique(borne_superieure) - primitive_canonique(borne_inferieure)
-        
-        
-
+        return super().calculer_exacte_integrale(borne_inferieure,borne_superieure,primitive)
 

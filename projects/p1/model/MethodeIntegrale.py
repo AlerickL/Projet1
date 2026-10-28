@@ -7,6 +7,7 @@ import FormeIntegrale
 import FonctionMath
 from MethodeNumerique import MethodeNumerique 
 from typing import override 
+from MethodeNumerique import MethodeNumerique
 
 class MethodeIntegrale(MethodeNumerique):
     @override

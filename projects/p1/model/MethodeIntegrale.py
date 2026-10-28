@@ -5,6 +5,7 @@ import TransformationCanonique
 import Parametre  
 import FormeIntegrale
 import FonctionMath
+from MethodeNumerique import MethodeNumerique 
 from typing import override 
 
 class MethodeIntegrale(MethodeNumerique):
@@ -18,9 +19,11 @@ class MethodeIntegrale(MethodeNumerique):
         super().__init__(fonction)
         self.__intervalle = intervalle
         self.__forme_integrale =  FormeIntegrale.RECTANGLE
+    
     @property 
     def forme_integrale(self) -> FormeIntegrale:
         return self.__forme_integrale 
+    
     @forme_integrale.setter 
     def forme_integrale(self, valeur: FormeIntegrale):
         self.__forme_integrale = valeur 

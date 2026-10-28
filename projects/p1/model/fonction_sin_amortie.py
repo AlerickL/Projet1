@@ -26,14 +26,14 @@ class FonctionSinAmortie(FonctionMath):
     def calculer(self,x:float) -> float:
         if not isinstance(x, int|float):
             raise TypeError("x doit être réel")
-            fonction = lambda x: np.exp(-1*self.parametres[0].valeur * x) * np.sin(x)
-            return super().calculer(x,fonction)
+        fonction = lambda x: np.exp(-1*self.parametres[0].valeur * x) * np.sin(x)
+        return super().calculer(x, fonction)
         
     def calculer_exacte_derive(self, x:float) -> float:
         if not isinstance(x, int|float):
             raise TypeError("x doit être réel")
-        fonction = lambda x: np.exp(-1*self.parametres[0].valeur * x) * (np.cos(x) - self.parametres[0].valeur * np.sin(x))
-        return super().calculer_exacte_derive(x,derive)
+        derive = lambda x: np.exp(-1*self.parametres[0].valeur * x) * (np.cos(x) - self.parametres[0].valeur * np.sin(x))
+        return super().calculer_exacte_derive(x, derive)
     
     def calculer_exacte_integrale(self, borne_inferieure:float,borne_superieure:float) -> float:
         primitive = lambda x: ((np.exp(-1*self.parametres[0].valeur * x) * (self.parametres[0].valeur*np.sin(x) + np.cos(x)))) / (self.parametres[0].valeur**2 + 1)

@@ -60,8 +60,7 @@ class FonctionMath(ABC):
         """
         return self._transformations_canoniques
 
-    @abstractmethod
-    def calculer(x:float) -> float:
+    def calculer(self,x:float,fonction:callable) -> float:
         """Calculer en un point le y de la fonction
 
         Args:
@@ -70,10 +69,9 @@ class FonctionMath(ABC):
         Returns:
             float: la valeur en y
         """
-        pass
-
-    @abstractmethod
-    def calculer_np(x:np.ndarray) -> np.ndarray:
+        return self._transformations_canoniques.zoom_y*fonction((x-self._transformations_canoniques.trans_x)/self._transformations_canoniques.zoom_x) + self._transformations_canoniques.trans_y
+        
+    def calculer_np(self,borne_inf,borne_sup,nombre_div,callable) -> np.ndarray:
         """Calculer avec la fonction les valeurs en y pour une collection de points en x
 
         Args:
@@ -82,10 +80,11 @@ class FonctionMath(ABC):
         Returns:
             np.ndarray: les résultats en y 
         """
-        pass
+        x = np.linspace(borne_inf,borne_sup,nombre_div)
+        return self.calculer(x)
 
     @abstractmethod
-    def calculer_exacte_derive(x:float) -> float:
+    def calculer_exacte_derive(self,x:float,derive:callable) -> float:
         """Calculer la dérivé exacte de la fonction (analytiquement) en un point x
 
         Args:
@@ -94,10 +93,12 @@ class FonctionMath(ABC):
         Returns:
             float: la dérivé au point x de la fonction
         """
-        pass
+        return self._transformations_canoniques.zoom_y/self._transformations_canoniques.zoom_x*derive((x-self._transformations_canoniques.trans_x)/self._transformations_canoniques.zoom_x)
+
+
 
     @abstractmethod
-    def calculer_exacte_integrale(borne_inferieur:float,borne_superieur:float) -> float:
+    def calculer_exacte_integrale(self,borne_inferieur:float,borne_superieur:float,primitive:callable) -> float:
         """Calculer l'intégrale exacte de la fonction (analytiquement) dans un interval.
         L'interval est entre borne_inferieur et borne_superieur.
 
@@ -108,7 +109,8 @@ class FonctionMath(ABC):
         Returns:
             float: La valeur de l'intégrale dans l'interval
         """
-        pass
+        primitive_canonique:callable = lambda x : self._transformations_canoniques.zoom_y*self._transformations_canoniques.zoom_x*primitive((x-self._transformations_canoniques.trans_x)/self._transformations_canoniques.zoom_x) + self._transformation.zoom_y*x
+        return primitive_canonique(borne_superieur) - primitive_canonique(borne_inferieur)
 
     def redemarrer_parametres(self) -> None:
         """Redémarre les paramètres de la fonction

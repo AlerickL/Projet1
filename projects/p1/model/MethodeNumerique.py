@@ -9,7 +9,7 @@ class MethodeNumerique(ABC):
 
     def __init__(self,fonction_math:FonctionMath):
         self.__fonction_math:FonctionMath = fonction_math
-        self.__alpha:float = 0.0
+        self._alpha:float = 0.0
         self.__precision:int|float = 5.0
 
     @property
@@ -32,7 +32,7 @@ class MethodeNumerique(ABC):
         Returns:
             float: la valeur de alpha
         """
-        return self.__alpha
+        return self._alpha
 
     @alpha.setter
     def alpha(self, valeur:float) -> None:
@@ -49,7 +49,7 @@ class MethodeNumerique(ABC):
             raise TypeError("alpha doit être un float")
         if valeur<0 or valeur>1:
             raise ValueError("alpha doit être compris entre 0 et 1 inclus")
-        self.__alpha = valeur
+        self._alpha = valeur
 
     @abstractmethod
     @property

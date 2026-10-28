@@ -5,7 +5,7 @@ import Information
 import TransformationCanonique
 import Parametre  
 import FonctionMath
-import MethodeNumerique
+from MethodeNumerique import MethodeNumerique
 
 class MethodeDerive(MethodeNumerique):
     @override

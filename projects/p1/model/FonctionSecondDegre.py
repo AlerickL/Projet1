@@ -24,35 +24,21 @@ class FonctionSecondDegre(FonctionMath):
     @property
     def vrai_formule(self):
         return f"{self.parametres.valeur[2]}x^2 + {self.parametres.valeur[1]}x + {self.parametres.valeur[0]}"
-    
-    @property
-    def info(self) -> Information :
-        super().info
-        
-    @property
-    def formule_generale(self) -> str:
-        super().formule_generale 
-        
-    @property
-    def parametres(self) -> list[Parametre]:
-        super().parametres
 
     @override
     def calculer(self,x:float):
         fonction = lambda x : self.parametres.valeur[2]*x**2 + self.parametres.valeur[1]*x**1 + self.parametres.valeur[0]
-        return self.transformations_canoniques.zoom_y*fonction((x-self.transformations_canoniques.trans_x)/self.transformations_canoniques.zoom_x) + self.transformations_canoniques.trans_y
+        return super().calculer(x,fonction)
     
     @override
     def calculer_exacte_derive(self,x:float) -> float:
         derive = lambda x : 2*self.parametres[2] * x + self.parametres[1]
-        return self.transformations_canoniques.zoom_y/self.transformations_canoniques.zoom_x*derive((x-self.transformations_canoniques.trans_x)/self.transformations_canoniques.zoom_x)
+        return super().calculer_exacte_derive(x,derive)
     
     @override
-    def calculer_exacte_integrale(self,borne_inferieure:float,borne_superieure:float):
+    def calculer_exacte_integrale(self,borne_inferieure:float,borne_superieur:float):
         primitive = lambda x : self.parametres[0]*x**3/3 + self.parametres[1]*x**2/2 + self.parametres[0]*x
-        primitive_canonique = lambda x : self._transformations_canoniques.zoom_y*self._transformations_canoniques.zoom_x*primitive((x-super().transformations_canoniques.trans_x)/super().transformations_canoniques.zoom_x) + super().transformations_canoniques.trans_y*x
-        return primitive_canonique(borne_superieure) - primitive_canonique(borne_inferieure)
-
+        return super().calculer_exacte_integrale(borne_inferieure,borne_superieur,primitive)
     
 
     

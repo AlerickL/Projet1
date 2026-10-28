@@ -24,18 +24,16 @@ class FonctionSin(FonctionMath):
     def calculer(self,x:float) -> float:
         if not isinstance(x, int|float):
             raise TypeError("x doit être réel")
-        return self._transformations_canoniques.zoom_y*(np.sin((1/self._transformations_canoniques.zoom_x)*(x-self._transformations_canoniques.trans_x))) + self._transformations_canonique.trans_y
-
+        return super().calculer(x,np.sin)
+    
     def calculer_exacte_derive(self,x:float) -> float:
         if not isinstance(x, int|float):
                     raise TypeError("x doit être réel")
-        return self._transformations_canoniques.zoom_y*(np.cos((1/self._transformations_canoniques.zoom_x)*\
-                                                               (x-self._transformations_canoniques.trans_x)))*(1/self._transformations_canoniques.zoom_x)
-
+        return super().calculer_exacte_derive(x,np.cos)                               
+    
     def calculer_exacte_integrale(self, borne_inferieur:float,borne_superieur:float) -> float:
-        primitive : callable = lambda x : np.cos(x)
-        primitive_canonique : callable = lambda x :self._transformations_canoniques.zoom_y*self._transformations_canoniques.zoom_x*primitive((x-self._transformations_canoniques.trans_x)/self._transformations_canoniques.zoom_x) + self._transformations_canoniques.zoom_y*x
-        return primitive_canonique(borne_superieur) - primitive_canonique(borne_inferieur)
+        primitive : callable = lambda x : -np.cos(x)
+        return super().calculer_exacte_integrale(borne_inferieur,borne_superieur,primitive)
 
 
 

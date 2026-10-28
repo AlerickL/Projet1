@@ -8,7 +8,7 @@ import FonctionMath
 class MethodeNumerique(ABC):
 
     def __init__(self,fonction_math:FonctionMath):
-        self.__fonction_math:FonctionMath = fonction_math
+        self._fonction_math:FonctionMath = fonction_math
         self._alpha:float = 0.0
         self.__precision:int|float = 5.0
 
@@ -19,7 +19,7 @@ class MethodeNumerique(ABC):
         Returns:
             FonctionMath: La fonction mathématique
         """
-        return self.__fonction_math
+        return self._fonction_math
 
     @FonctionMath.setter
     def fonction_math(self, fonction:FonctionMath) -> None:

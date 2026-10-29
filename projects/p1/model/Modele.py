@@ -1,13 +1,13 @@
 import numpy as np
-from Projet1.projects.p1.model.transformation_canonique import TransformationCanonique
-from Projet1.projects.p1.model.fonction_sin import FonctionSin
-import Projet1.projects.p1.model.fonction_second_degre as fonction_second_degre
-import Projet1.projects.p1.model.fonction_sin_amortie as fonction_sin_amortie
-import Projet1.projects.p1.model.fonction_double_bosse as fonction_double_bosse
-from Projet1.projects.p1.model.methode_derive import MethodeDerive
-from Projet1.projects.p1.model.methode_integrale import MethodeIntegrale
+from projects.p1.model.transformation_canonique import TransformationCanonique
+from projects.p1.model.fonction_sin import FonctionSin
+import projects.p1.model.fonction_second_degre as fonction_second_degre
+import projects.p1.model.fonction_sin_amortie as fonction_sin_amortie
+import projects.p1.model.fonction_double_bosse as fonction_double_bosse
+from projects.p1.model.methode_derive import MethodeDerive
+from projects.p1.model.methode_integrale import MethodeIntegrale
 from typing import override
-from Projet1.projects.p1.model.forme_integrale import FormeIntegrale
+from projects.p1.model.forme_integrale import FormeIntegrale
 
 class Modele:
     def __init__(self):

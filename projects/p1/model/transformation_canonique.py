@@ -1,5 +1,5 @@
-from parametre import Parametre
-from information import Information
+from projects.p1.model.Parametre import Parametre
+from projects.p1.model.Information import Information
 
 class TransformationCanonique:
     """Classe contenant la gestion des transformation canoniques d'une fonction"""

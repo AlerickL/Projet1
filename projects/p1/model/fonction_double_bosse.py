@@ -1,8 +1,8 @@
 import numpy as np
-from information import Information
-import Projet1.projects.p1.model.transformation_canonique as transformation_canonique
-from parametre import Parametre
-import Projet1.projects.p1.model.fonction_math as fonction_math
+from projects.p1.model.Information import Information
+import projects.p1.model.transformation_canonique as transformation_canonique
+from projects.p1.model.Parametre import Parametre
+import projects.p1.model.fonction_math as fonction_math
 from typing import override
 
 class FonctionDoubleBosse(fonction_math):

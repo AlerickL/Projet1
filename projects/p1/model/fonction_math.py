@@ -1,9 +1,9 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 import numpy as np
-from information import Information
-from Projet1.projects.p1.model.transformation_canonique import TransformationCanonique
-from parametre import Parametre
+from projects.p1.model.Information import Information
+from projects.p1.model.transformation_canonique import TransformationCanonique
+from projects.p1.model.Parametre import Parametre
 
 class FonctionMath(ABC):
     def __init__(self, info:Information, formule_generale:str,parametres:list[Parametre], transformations_canoniques : TransformationCanonique):

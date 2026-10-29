@@ -1,15 +1,15 @@
 from abc import ABC, abstractmethod
-import Projet1.projects.p1.model.fonction_math as fonction_math
+from projects.p1.model.fonction_math import FonctionMath
 
 class MethodeNumerique(ABC):
 
-    def __init__(self,fonction_math:fonction_math):
-        self._fonction_math:fonction_math = fonction_math
+    def __init__(self,fonction_math:FonctionMath):
+        self._fonction_math:FonctionMath = fonction_math
         self._alpha:float = 0.0
         self.__precision:int|float = 5.0
 
     @property
-    def fonction_math(self) -> fonction_math:
+    def fonction_math(self) -> FonctionMath:
         """Retourne la fonction mathématique utilisée
 
         Returns:
@@ -18,8 +18,8 @@ class MethodeNumerique(ABC):
         return self._fonction_math
 
     @fonction_math.setter
-    def fonction_math(self, fonction:fonction_math) -> None:
-        self.fonction_math = fonction
+    def fonction_math(self, fonction:FonctionMath) -> None:
+        self._fonction_math = fonction
 
     @property
     def alpha(self) -> float:
@@ -47,8 +47,8 @@ class MethodeNumerique(ABC):
             raise ValueError("alpha doit être compris entre 0 et 1 inclus")
         self._alpha = valeur
 
-    @abstractmethod
     @property
+    @abstractmethod
     def approximation(self) -> float:
         """Approximation numérique
 

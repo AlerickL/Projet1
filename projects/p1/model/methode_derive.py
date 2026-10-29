@@ -1,6 +1,6 @@
 from typing import override
-from fonction_math import FonctionMath
-from methode_numerique import MethodeNumerique
+from projects.p1.model.fonction_math import FonctionMath
+from projects.p1.model.methode_numerique import MethodeNumerique
 
 class MethodeDerive(MethodeNumerique):
     @override

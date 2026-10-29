@@ -3,10 +3,10 @@ import numpy as np
 from projects.p1.model.Information import Information
 import projects.p1.model.transformation_canonique as transformation_canonique
 from projects.p1.model.Parametre import Parametre
-import projects.p1.model.fonction_math as fonction_math
+from projects.p1.model.fonction_math import FonctionMath
 from typing import override
 
-class FonctionSecondDegre(fonction_math):
+class FonctionSecondDegre(FonctionMath):
 
     def __init__(self,transformation_canonique:transformation_canonique):
         info:Information = Information("Fonction polynomial du second degré","C'est la fonction polynomiale du second degré","La fonction a 3 paramètres.")

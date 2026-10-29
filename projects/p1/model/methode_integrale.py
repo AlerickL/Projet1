@@ -1,8 +1,8 @@
 import numpy as np
-import Projet1.projects.p1.model.forme_integrale as forme_integrale
-from Projet1.projects.p1.model.fonction_math import FonctionMath
+from projects.p1.model.forme_integrale import FormeIntegrale
+from projects.p1.model.fonction_math import FonctionMath
 from typing import override 
-from Projet1.projects.p1.model.methode_numerique import MethodeNumerique
+from projects.p1.model.methode_numerique import MethodeNumerique
 from numpy.typing import NDArray
 
 class MethodeIntegrale(MethodeNumerique):
@@ -15,14 +15,14 @@ class MethodeIntegrale(MethodeNumerique):
         """
         super().__init__(fonction)
         self.__intervalle = intervalle
-        self.__forme_integrale =  forme_integrale.RECTANGLE
+        self.__forme_integrale =  FormeIntegrale.RECTANGLE
     
     @property 
-    def forme_integrale(self) -> forme_integrale:
+    def forme_integrale(self) -> FormeIntegrale:
         return self.__forme_integrale 
     
     @forme_integrale.setter 
-    def forme_integrale(self, valeur: forme_integrale):
+    def forme_integrale(self, valeur: FormeIntegrale):
         self.__forme_integrale = valeur 
         
         
@@ -38,9 +38,9 @@ class MethodeIntegrale(MethodeNumerique):
     @override 
     @property
     def approximation(self) -> float :
-        if self.__forme_integrale == forme_integrale.TRAPEZE:
+        if self.__forme_integrale == FormeIntegrale.TRAPEZE:
             return self.__calculer_avec_trapeze()
-        elif self.__forme_integrale == forme_integrale.RECTANGLE:
+        elif self.__forme_integrale == FormeIntegrale.RECTANGLE:
             return self.__calculer_avec_rectangle()
 
     def __avoir_pas_integration(self) -> float:

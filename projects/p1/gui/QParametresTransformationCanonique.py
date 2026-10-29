@@ -13,5 +13,5 @@ class QParametresTransformationCanonique(QMultipleRealSliderSpinBox):
     def __init__(self,modele:Modele,parent:QWidget|None=None)-> None:
         reel_trans_x = QRealSliderSpinBox()
         reel_trans_x.setPrefix(modele.transformation_canonique.trans_x.info.nom+ " ")
-        reel_trans_x.setMin(modele.transformation_canonique.trans_x.min_valeur)
+        reel_trans_x.setRange(modele.transformation_canonique.trans_x.min_valeur,modele.transformation_canonique.trans_x.max_valeur)
         self.__init__("Transformations canoniques",[reel_trans_x],parent)

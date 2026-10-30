@@ -1,15 +1,15 @@
 from __future__ import annotations
 import sys
 #from QMultipleRealSliderSpinBox import QMultipleRealSliderSpinBox
-from typing import override
+from typing import override, cast
 from PySide6.QtCore import Qt, Signal, Slot
 from PySide6.QtGui import QPixmap, QColor, QShowEvent
 from PySide6.QtWidgets import QApplication, QWidget, QLabel, QSlider, QHBoxLayout, QVBoxLayout
 from edustem.pyside6.widgets.q_slider_spin_box import QRealSliderSpinBox
 from projects.p1.model.Modele import Modele
-from projects.p1.gui.QMultipleRealSliderSpinBox import QMultipleRealSliderSpinBox
+from projects.p1.gui.QBoutonMultipleRealSliderSpinBox import QBoutonMultipleRealSliderSpinBox
 
-class QParametresTransformationCanonique(QMultipleRealSliderSpinBox):
+class QParametresTransformationCanonique(QBoutonMultipleRealSliderSpinBox):
     def __init__(self,modele:Modele,parent:QWidget|None=None)-> None:
 
         reelTransX = QRealSliderSpinBox()
@@ -32,7 +32,8 @@ class QParametresTransformationCanonique(QMultipleRealSliderSpinBox):
         reelZoomY.setRange(modele.transformation_canonique.zoom_y.min_valeur,modele.transformation_canonique.zoom_y.max_valeur)
         reelZoomY.setValue(modele.transformation_canonique.zoom_y.defaut_valeur)
 
-        
-        #self.layout().addWidget(self.)
+        self.__boutonLayout = QVBoxLayout()
 
-        super().__init__("Transformations canoniques",[reelTransX,reelTransY,reelZoomX,reelZoomY],parent)
+        # cast(QHBoxLayout, self.layout()).addWidget(self.__boutonLayout)
+
+        super().__init__("Transformations canoniques",[reelTransX,reelTransY,reelZoomX,reelZoomY],[],parent)

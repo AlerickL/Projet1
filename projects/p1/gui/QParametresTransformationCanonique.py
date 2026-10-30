@@ -11,7 +11,27 @@ from projects.p1.gui.QMultipleRealSliderSpinBox import QMultipleRealSliderSpinBo
 
 class QParametresTransformationCanonique(QMultipleRealSliderSpinBox):
     def __init__(self,modele:Modele,parent:QWidget|None=None)-> None:
-        reel_trans_x = QRealSliderSpinBox()
-        reel_trans_x.setPrefix(modele.transformation_canonique.trans_x.info.nom+ " ")
-        reel_trans_x.setRange(modele.transformation_canonique.trans_x.min_valeur,modele.transformation_canonique.trans_x.max_valeur)
-        self.__init__("Transformations canoniques",[reel_trans_x],parent)
+        reelTransX = QRealSliderSpinBox()
+        reelTransX.setPrefix(modele.transformation_canonique.trans_x.info.nom+ " ")
+        reelTransX.setRange(modele.transformation_canonique.trans_x.min_valeur,modele.transformation_canonique.trans_x.max_valeur)
+
+        reelTransY = QRealSliderSpinBox()
+        reelTransY.setPrefix(modele.transformation_canonique.trans_y.info.nom+ " ")
+        reelTransY.setRange(modele.transformation_canonique.trans_y.min_valeur,modele.transformation_canonique.trans_y.max_valeur)
+
+        #print(type(modele.transformation_canonique.zoom_y))
+        print(type(modele.transformation_canonique.zoom_x))
+        print(type(modele.transformation_canonique.trans_x))
+
+        reelZoomX = QRealSliderSpinBox()
+        reelZoomX.setPrefix(modele.transformation_canonique.zoom_x.info.nom+ " ")
+        reelZoomX.setRange(modele.transformation_canonique.zoom_x.min_valeur,modele.transformation_canonique.zoom_x.max_valeur)
+
+        reelZoomY = QRealSliderSpinBox()
+        reelZoomY.setPrefix(modele.transformation_canonique.zoom_y.info.nom+ " ")
+        reelZoomY.setRange(modele.transformation_canonique.zoom_y.min_valeur,modele.transformation_canonique.zoom_y.max_valeur)
+
+        
+        #self.layout().addWidget(self.)
+
+        super().__init__("Transformations canoniques",[reelTransX,reelTransY,reelZoomX,reelZoomY],parent)

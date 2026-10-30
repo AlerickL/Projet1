@@ -41,12 +41,14 @@ class TransformationCanonique:
         return self.__trans_y
 
     @property
+    def zoom_y(self) -> Parametre:
+        return self.__zoom_y
+
+    @property
     def zoom_x(self) -> Parametre:
         return self.__zoom_x
 
-    @property
-    def zoom_y(self) -> Parametre:
-        return self.__zoom_y
+
 
 
     # Setter
@@ -64,8 +66,8 @@ class TransformationCanonique:
         self.__zoom_x.valeur = valeur
     
     @zoom_y.setter
-    def zoom_x(self, valeur: float|int) -> None:
-        self.__zoom_x.valeur = valeur
+    def zoom_y(self, valeur: float|int) -> None:
+        self.__zoom_y.valeur = valeur
 
     def reinitialiser(self) -> None:
         self.trans_x = self.__defaut_trans

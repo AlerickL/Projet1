@@ -1,9 +1,9 @@
 import numpy as np
 from projects.p1.model.transformation_canonique import TransformationCanonique
 from projects.p1.model.fonction_sin import FonctionSin
-import projects.p1.model.fonction_second_degre as fonction_second_degre
-import projects.p1.model.fonction_sin_amortie as fonction_sin_amortie
-import projects.p1.model.fonction_double_bosse as fonction_double_bosse
+from projects.p1.model.fonction_second_degre import FonctionSecondDegre
+from projects.p1.model.fonction_sin_amortie import FonctionSinAmortie
+from projects.p1.model.fonction_double_bosse import FonctionDoubleBosse
 from projects.p1.model.methode_derive import MethodeDerive
 from projects.p1.model.methode_integrale import MethodeIntegrale
 from typing import override
@@ -44,13 +44,13 @@ class Modele:
         self.__fonction_math = FonctionSin(self.__transformation_canonique)
 
     def changer_fonction_second_degre(self):
-            self.__fonction_math = fonction_second_degre(self.__transformation_canonique)
+            self.__fonction_math = FonctionSecondDegre(self.__transformation_canonique)
 
     def changer_fonction_sin_amortie(self):
-            self.__fonction_math = fonction_sin_amortie(self.__transformation_canonique)
+            self.__fonction_math = FonctionSinAmortie(self.__transformation_canonique)
 
     def changer_fonction_double_bosse(self):
-            self.__fonction_math = fonction_double_bosse(self.__transformation_canonique)
+            self.__fonction_math = FonctionDoubleBosse(self.__transformation_canonique)
 
     def changer_valeur_parametre(self,index:int,valeur:float):
         self.__fonction_math.parametres[index] = valeur
@@ -58,7 +58,7 @@ class Modele:
     def avoir_info_parametre(self,index:int):
         return self.__fonction_math.parametres[index].info
 
-    def avoir_info_fonction(self,index:int):
+    def avoir_info_fonction(self):
         return self.__fonction_math.info
 
     def avoir_vraie_formule(self):

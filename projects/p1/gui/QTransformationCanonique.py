@@ -9,7 +9,7 @@ from edustem.pyside6.widgets.q_slider_spin_box import QRealSliderSpinBox
 from projects.p1.model.Modele import Modele
 from projects.p1.gui.QBoutonMultipleRealSliderSpinBox import QBoutonMultipleRealSliderSpinBox
 
-class QParametresTransformationCanonique(QBoutonMultipleRealSliderSpinBox):
+class QTransformationCanonique(QBoutonMultipleRealSliderSpinBox):
     def __init__(self,modele:Modele,parent:QWidget|None=None)-> None:
         self.__modele = modele
 
@@ -47,17 +47,21 @@ class QParametresTransformationCanonique(QBoutonMultipleRealSliderSpinBox):
 
         super().__init__("Transformations canoniques",[self.__reelTransX,self.__reelTransY,self.__reelZoomX,self.__reelZoomY],[boutonInformation,boutonIdentite,boutonSymetrieX,boutonSymetrieY],parent)
 
+    @Slot()
     def __donnerInformation(self):
         QMessageBox.information(self,"Transformations canoniqes","Les transformations canoniques sont les déplacements de la fonction dans le plan.\nLe bouton identité réinitialise les paramètres. Les deux autres applique une symétrie à la fonction selon l'axe mentionné.\nElles appliquent la symétrie sur la fonction actuelle et non celle de l'identité.")
-    
+
+    @Slot()
     def __mettreIdentite(self) -> None:
         self.__modele.mettre_identite()
         self.__appliquerModele()
 
+    @Slot()
     def __mettreSymetrieX(self) -> None:
         self.__modele.mettre_symetrie_x()
         self.__appliquerModele()
 
+    @Slot()
     def __mettreSymetrieY(self) -> None:
             self.__modele.mettre_symetrie_y()
             self.__appliquerModele()

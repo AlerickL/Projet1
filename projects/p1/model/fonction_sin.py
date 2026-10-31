@@ -16,7 +16,7 @@ class FonctionSin(FonctionMath):
 
     @property
     def vrai_formule(self):
-        return self.__formule_generale
+        return "sin(x)"
 
     # Méthode
 

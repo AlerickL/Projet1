@@ -9,7 +9,7 @@ from projects.p1.model.Modele import Modele
 from projects.p1.gui.QMenuDeroulant import QMenuDeroulant
 
 class QMenuFormule(QWidget):
-
+    formuleChange = Signal()
     def __init__(self,modele:Modele):
         super().__init__()
         self.__modele = modele
@@ -17,14 +17,18 @@ class QMenuFormule(QWidget):
         self.__vrai_formule = QLabel(self.__modele.avoir_vraie_formule())
         
       
-        principalLayout = QVBoxLayout()
+        principalLayout = QHBoxLayout()
+        secondLayout = QVBoxLayout()
 
-        principalLayout.addWidget(self.__menu)
-        principalLayout.addWidget(self.__vrai_formule)
+        secondLayout.addWidget(QLabel("Sélection de la fonction"))
+        secondLayout.addWidget(self.__menu)
+        secondLayout.addWidget(self.__vrai_formule)
 
+        principalLayout.addLayout(secondLayout)
         self.setLayout(principalLayout)
 
         self.__menu.currentTextChanged.connect(self.__changementFonctionModele)
+        self.__menu.currentTextChanged.connect(self.formuleChange)
 
     @Slot()
     def __changementFonctionModele(self):

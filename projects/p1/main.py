@@ -8,6 +8,7 @@ from edustem.pyside6.widgets.q_real_slider import QRealDial
 from projects.p1.gui.QMultipleRealSliderSpinBox import QMultipleRealSliderSpinBox
 from projects.p1.gui.QTransformationCanonique import QTransformationCanonique
 from projects.p1.gui.QMenuFormule import QMenuFormule
+from projects.p1.gui.QParametres import QParametres
 from projects.p1.model.Modele import Modele
 
 def main() -> None:
@@ -20,7 +21,7 @@ def main() -> None:
     reel.setPrefix("allo")
     #window = QMultipleRealSliderSpinBox("titre",[reel,reel2])
     #window = QTransformationCanonique(modele)
-    window = QMenuFormule(modele)
+    window = QParametres(modele)
     window.setWindowTitle("420-SF3 Projet 1")
     window.show()
 

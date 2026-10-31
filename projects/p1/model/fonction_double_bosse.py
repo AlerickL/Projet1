@@ -17,11 +17,11 @@ class FonctionDoubleBosse(FonctionMath):
     @override
     @property
     def vrai_formule(self):
-        return  f"1/(1+(x-{self._parametres[0]})^2) + 1/(1+(x+{self._parametres[0]})^2)"
+        return  f"1/(1+(x-{self._parametres[0].valeur})^2) + 1/(1+(x+{self._parametres[0].valeur})^2)"
 
     @override
     def calculer(self,x:float):
-        fonction:callable = lambda x : 1/(1+(x-self.parametres[0])**2) + 1/(1+(x+self.parametres[0])**2)
+        fonction:callable = lambda x : 1/(1+(x-self.parametres[0].valeur)**2) + 1/(1+(x+self.parametres[0].valeur)**2)
         return super().calculer(x,fonction)
 
     @override

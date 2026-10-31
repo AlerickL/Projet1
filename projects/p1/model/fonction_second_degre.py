@@ -23,11 +23,11 @@ class FonctionSecondDegre(FonctionMath):
     @override
     @property
     def vrai_formule(self):
-        return f"{self.parametres.valeur[2]}x^2 + {self.parametres.valeur[1]}x + {self.parametres.valeur[0]}"
+        return f"{self.parametres[2].valeur}x^2 + {self.parametres[1].valeur}x + {self.parametres[0].valeur}"
 
     @override
     def calculer(self,x:float):
-        fonction = lambda x : self.parametres.valeur[2]*x**2 + self.parametres.valeur[1]*x**1 + self.parametres.valeur[0]
+        fonction = lambda x : self.parametres[2].valeur*x**2 + self.parametres[1].valeur*x**1 + self.parametres[0].valeur
         return super().calculer(x,fonction)
     
     @override

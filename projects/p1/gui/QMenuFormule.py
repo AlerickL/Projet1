@@ -24,3 +24,22 @@ class QMenuFormule(QWidget):
 
         self.setLayout(principalLayout)
 
+        self.__menu.currentTextChanged.connect(self.__changementFonctionModele)
+
+    @Slot()
+    def __changementFonctionModele(self):
+        if self.__menu.currentText() == "Fonction sinus":
+            self.__modele.changer_fonction_sin()
+        elif self.__menu.currentText() == "Fonction polynomial du second degré":
+            self.__modele.changer_fonction_second_degre()
+        elif self.__menu.currentText() == "Fonction sinus amortie":
+            self.__modele.changer_fonction_sin_amortie()
+        elif self.__menu.currentText() == "Fonction double bosse":
+            self.__modele.changer_fonction_double_bosse()
+        self.__changerVraiFormule()
+
+
+    @Slot()
+    def __changerVraiFormule(self):
+        self.__vrai_formule.setText(self.__modele.avoir_vraie_formule())
+

@@ -67,16 +67,16 @@ class Modele:
     def reinitialiser_parametres_fonction(self):
         self.__fonction_math.redemarrer_parametres()
 
-    def identite(self):
+    def mettre_identite(self):
         self.transformation_canonique.reinitialiser()
 
     def mettre_symetrie_y(self):
-        self.__transformation_canonique.trans_x = -1 * self.__transformation_canonique.trans_x
-        self.__transformation_canonique.zoom_x = -self.__transformation_canonique.zoom_x 
+        self.__transformation_canonique.trans_x.valeur = -1 * self.__transformation_canonique.trans_x.valeur
+        self.__transformation_canonique.zoom_x.valeur = -self.__transformation_canonique.zoom_x.valeur
         
     def mettre_symetrie_x(self):
-        self.__transformation_canonique.trans_y = -1 * self.__transformation_canonique.trans_y
-        self.__transformation_canonique.zoom_y = -1* self.__transformation_canonique.zoom_y
+        self.__transformation_canonique.trans_y.valeur = -1 * self.__transformation_canonique.trans_y.valeur
+        self.__transformation_canonique.zoom_y.valeur = -1* self.__transformation_canonique.zoom_y.valeur
 
     def mettre_derive_a_gauche(self):
         self.methode_derive._alpha = 0.0

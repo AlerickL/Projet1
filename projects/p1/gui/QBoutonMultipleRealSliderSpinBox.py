@@ -11,10 +11,14 @@ class QBoutonMultipleRealSliderSpinBox(QMultipleRealSliderSpinBox):
 
     def __init__(self,label:str,reels:list[QRealSliderSpinBox],boutons:list[QPushButton],parent:QWidget|None = None):
         super().__init__(label,reels,parent)
+        self.__bouton = boutons
 
-        boutonLayout = QVBoxLayout()
+        boutonLayout = QHBoxLayout()
 
         for bouton in boutons:
             boutonLayout.addWidget(bouton)
 
         self.layout().addLayout(boutonLayout)
+
+    def avoirBoutons(self) -> list[QPushButton]:
+        return self.__bouton

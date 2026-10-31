@@ -37,6 +37,7 @@ class QMultipleRealSliderSpinBox(QWidget):
 
     def __print(self): # À enlever un jour !
         print(self.valeurs())
+        
     
 
 

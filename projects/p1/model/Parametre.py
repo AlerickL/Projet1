@@ -46,7 +46,7 @@ class Parametre:
         return self.__defaut_valeur 
     @property
     def valeur(self) -> float:
-        return self.__value
+        return self.__valeur
     @property
     def texte_valeur(self) -> str:
         return str(self.__valeur)

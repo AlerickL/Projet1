@@ -4,7 +4,7 @@ import sys
 from typing import override, cast
 from PySide6.QtCore import Qt, Signal, Slot
 from PySide6.QtGui import QPixmap, QColor, QShowEvent
-from PySide6.QtWidgets import QApplication, QWidget, QLabel, QSlider, QHBoxLayout, QVBoxLayout, QPushButton
+from PySide6.QtWidgets import QApplication, QWidget, QLabel, QSlider, QHBoxLayout, QVBoxLayout, QPushButton, QMessageBox
 from edustem.pyside6.widgets.q_slider_spin_box import QRealSliderSpinBox
 from projects.p1.model.Modele import Modele
 from projects.p1.gui.QBoutonMultipleRealSliderSpinBox import QBoutonMultipleRealSliderSpinBox
@@ -38,6 +38,7 @@ class QParametresTransformationCanonique(QBoutonMultipleRealSliderSpinBox):
         boutonSymetrieX = QPushButton("Symétrie en X")
         boutonSymetrieY = QPushButton("Symétrie en Y")
 
+        boutonInformation.pressed.connect(self.__donnerInformation)
         boutonIdentite.pressed.connect(self.__mettreIdentite)
         boutonSymetrieX.pressed.connect(self.__mettreSymetrieX)
         boutonSymetrieY.pressed.connect(self.__mettreSymetrieY)
@@ -46,6 +47,9 @@ class QParametresTransformationCanonique(QBoutonMultipleRealSliderSpinBox):
 
         super().__init__("Transformations canoniques",[self.__reelTransX,self.__reelTransY,self.__reelZoomX,self.__reelZoomY],[boutonInformation,boutonIdentite,boutonSymetrieX,boutonSymetrieY],parent)
 
+    def __donnerInformation(self):
+        QMessageBox.information(self,"Transformations canoniqes","Les transformations canoniques sont les déplacements de la fonction dans le plan.\nLe bouton identité réinitialise les paramètres. Les deux autres applique une symétrie à la fonction selon l'axe mentionné.\nElles appliquent la symétrie sur la fonction actuelle et non celle de l'identité.")
+    
     def __mettreIdentite(self) -> None:
         self.__modele.mettre_identite()
         self.__appliquerModele()

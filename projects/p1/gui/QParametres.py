@@ -7,49 +7,63 @@ from PySide6.QtGui import QPixmap, QColor, QShowEvent
 from PySide6.QtWidgets import QApplication, QWidget, QLabel, QSlider, QHBoxLayout, QVBoxLayout, QPushButton, QMessageBox
 from edustem.pyside6.widgets.q_slider_spin_box import QRealSliderSpinBox
 from projects.p1.model.Modele import Modele
+from projects.p1.model.fonction_math import FonctionMath
 from projects.p1.gui.QBoutonMultipleRealSliderSpinBox import QBoutonMultipleRealSliderSpinBox
 
 class QParametres(QBoutonMultipleRealSliderSpinBox):
-
-    def __init__(self,modele:Modele,parent:QWidget|None=None):
+    modifierModele = Signal()
+    def __init__(self,modele:Modele,fonction_math:FonctionMath,parent:QWidget|None=None):
         self.__modele:Modele = modele
-        self.__modele.changer_fonction_sin_amortie()
+        self.__fonction_math:FonctionMath = fonction_math
         self.__reels:list[QRealSliderSpinBox] = []
 
-        self.__actualiserParametres()
+        self.actualiserParametres()
 
-        boutonInformation = QPushButton("Information")
-        boutonReinitialiser = QPushButton("Réinitialiser")
+        self.__boutonInformation = QPushButton("Information")
+        self.__boutonReinitialiser = QPushButton("Réinitialiser")
 
-        boutonInformation.pressed.connect(self.__donnerInformation)
-        boutonReinitialiser.pressed.connect(self.__reinitialiser)
-    
-        super().__init__("Paramètres de la fonction",self.__reels,[boutonInformation,boutonReinitialiser],parent)
+        self.__boutonInformation.pressed.connect(self.__donnerInformation)
+        self.__boutonReinitialiser.pressed.connect(self.__reinitialiser)
 
-    def __actualiserParametres(self):
+        super().__init__("Paramètres de la fonction",self.__reels,[self.__boutonInformation,self.__boutonReinitialiser],parent)
+        self.valeurChanger.connect(self.__modifierModele)
 
-        for parametre in self.__modele.fonction_math.parametres:
+    def actualiserParametres(self):
+        self.__reels = []
+        for parametre in self.__fonction_math.parametres:
             reel:QRealSliderSpinBox = QRealSliderSpinBox()
             reel.setPrefix(parametre.info.nom)
             reel.setRange(parametre.min_valeur,parametre.max_valeur)
             reel.setValue(parametre.valeur)
             self.__reels.append(reel)
+        
 
     @Slot()
     def __donnerInformation(self) -> None:
-        texte = f"Résumé de la fonction : {self.__modele.fonction_math.info.resume}\nDétails de la fonction : {self.__modele.fonction_math.info.details}\n"
-        for parametre in self.__modele.fonction_math.parametres:
+        texte = f"Résumé de la fonction : {self.__fonction_math.info.resume}\nDétails de la fonction : {self.__fonction_math.info.details}\n"
+        for parametre in self.__fonction_math.parametres:
             texte += f"{parametre.info.nom} :\n    résumé : {parametre.info.resume}\n\n" 
-        QMessageBox.information(self,f"{self.__modele.fonction_math.info.nom} : les paramètres",texte)
+        QMessageBox.information(self,f"{self.__fonction_math.info.nom} : les paramètres",texte)
 
     @Slot()
     def __reinitialiser(self) -> None:
-        self.__modele.fonction_math.redemarrer_parametres()
+        self.__fonction_math.redemarrer_parametres()
+        self.blockSignals(True)
         self.__appliquerModele()
+        self.blockSignals(False)
+        self.modifierModele.emit()
 
     def __appliquerModele(self):
         for i in range(len(self.__reels)):
-            self.__reels[i].setValue(self.__modele.fonction_math.parametres[i].valeur)
+            print(self.__reels[i].value())
+            self.__reels[i].setValue(self.__fonction_math.parametres[i].valeur)
+
+    @Slot()
+    def __modifierModele(self):
+        for i in range(len(self.__reels)):
+            self.__modele.changer_valeur_parametre(i,self.__reels[i].value())
+        self.modifierModele.emit()
+
 
 
 

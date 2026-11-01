@@ -13,7 +13,7 @@ class QMenuFormule(QWidget):
     def __init__(self,modele:Modele):
         super().__init__()
         self.__modele = modele
-        self.__menu = QMenuDeroulant(modele)
+        self._menu = QMenuDeroulant(modele)
         self.__vrai_formule = QLabel(self.__modele.avoir_vraie_formule())
         
       
@@ -21,29 +21,32 @@ class QMenuFormule(QWidget):
         secondLayout = QVBoxLayout()
 
         secondLayout.addWidget(QLabel("Sélection de la fonction"))
-        secondLayout.addWidget(self.__menu)
+        secondLayout.addWidget(self._menu)
         secondLayout.addWidget(self.__vrai_formule)
 
         principalLayout.addLayout(secondLayout)
         self.setLayout(principalLayout)
 
-        self.__menu.currentTextChanged.connect(self.__changementFonctionModele)
-        self.__menu.currentTextChanged.connect(self.formuleChange)
+        self._menu.currentTextChanged.connect(self.__changementFonctionModele)
+        self._menu.currentTextChanged.connect(self.formuleChange)
+
+    def menu(self):
+        return self._menu
 
     @Slot()
     def __changementFonctionModele(self):
-        if self.__menu.currentText() == "Fonction sinus":
+        if self._menu.currentText() == "Fonction sinus":
             self.__modele.changer_fonction_sin()
-        elif self.__menu.currentText() == "Fonction polynomial du second degré":
+        elif self._menu.currentText() == "Fonction polynomial du second degré":
             self.__modele.changer_fonction_second_degre()
-        elif self.__menu.currentText() == "Fonction sinus amortie":
+        elif self._menu.currentText() == "Fonction sinus amortie":
             self.__modele.changer_fonction_sin_amortie()
-        elif self.__menu.currentText() == "Fonction double bosse":
+        elif self._menu.currentText() == "Fonction double bosse":
             self.__modele.changer_fonction_double_bosse()
-        self.__changerVraiFormule()
+        self.changerVraiFormule()
 
 
     @Slot()
-    def __changerVraiFormule(self):
+    def changerVraiFormule(self):
         self.__vrai_formule.setText(self.__modele.avoir_vraie_formule())
 

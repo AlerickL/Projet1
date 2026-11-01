@@ -1,6 +1,7 @@
 import numpy as np
 from projects.p1.model.transformation_canonique import TransformationCanonique
 from projects.p1.model.fonction_sin import FonctionSin
+from projects.p1.model.fonction_math import FonctionMath
 from projects.p1.model.fonction_second_degre import FonctionSecondDegre
 from projects.p1.model.fonction_sin_amortie import FonctionSinAmortie
 from projects.p1.model.fonction_double_bosse import FonctionDoubleBosse
@@ -16,6 +17,10 @@ class Modele:
         maximum = 5
         self.__transformation_canonique:TransformationCanonique = TransformationCanonique(precision,minimum,maximum)
         self.__fonction_math = FonctionSin(self.__transformation_canonique)
+        self.__fonction_sin = FonctionSin(self.__transformation_canonique)
+        self.__fonction_second_degre = FonctionSecondDegre(self.__transformation_canonique)
+        self.__fonction_sin_amortie = FonctionSinAmortie(self.__transformation_canonique)
+        self.__fonction_double_bosse = FonctionDoubleBosse(self.__transformation_canonique)
         self.__methode_derive = MethodeDerive(self.__fonction_math,0)
         self.__methode_integrale = MethodeIntegrale(self.__fonction_math,(0,1))
         self.__r_affichage_tangente = 3
@@ -25,8 +30,24 @@ class Modele:
         return self.__transformation_canonique
 
     @property
-    def fonction_math(self):
+    def fonction_math(self) -> FonctionMath:
         return self.__fonction_math
+
+    @property
+    def fonction_sin(self) -> FonctionSin:
+        return self.__fonction_sin
+
+    @property
+    def fonction_second_degre(self) -> FonctionSecondDegre:
+        return self.__fonction_second_degre
+
+    @property
+    def fonction_sin_amortie(self) -> FonctionSinAmortie:
+        return self.__fonction_sin_amortie
+
+    @property
+    def fonction_double_bosse(self) -> FonctionDoubleBosse:
+        return self.__fonction_double_bosse
 
     @property
     def methode_derive(self):
@@ -41,19 +62,16 @@ class Modele:
         return self.__r_affichage_tangente
     
     def changer_fonction_sin(self):
-        self.__fonction_math = FonctionSin(self.__transformation_canonique)
-
+        self.__fonction_math = self.__fonction_sin
     def changer_fonction_second_degre(self):
-            self.__fonction_math = FonctionSecondDegre(self.__transformation_canonique)
-
+            self.__fonction_math = self.__fonction_second_degre
     def changer_fonction_sin_amortie(self):
-            self.__fonction_math = FonctionSinAmortie(self.__transformation_canonique)
+            self.__fonction_math = self.__fonction_sin_amortie
 
     def changer_fonction_double_bosse(self):
-            self.__fonction_math = FonctionDoubleBosse(self.__transformation_canonique)
-
+            self.__fonction_math = self.__fonction_double_bosse
     def changer_valeur_parametre(self,index:int,valeur:float):
-        self.__fonction_math.parametres[index] = valeur
+        self.__fonction_math.parametres[index].valeur = valeur
 
     def avoir_info_parametre(self,index:int):
         return self.__fonction_math.parametres[index].info

@@ -22,3 +22,4 @@ class QBoutonMultipleRealSliderSpinBox(QMultipleRealSliderSpinBox):
 
     def avoirBoutons(self) -> list[QPushButton]:
         return self.__bouton
+

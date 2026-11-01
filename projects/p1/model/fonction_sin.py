@@ -12,7 +12,7 @@ class FonctionSin(FonctionMath):
                                     "Fonction trigonométrique périodique définie par l'ordonné du cercle trigonométrique", "ce n'est pas une sinusite")
         formule_generale: str = "sin(x)"
         
-        super().__init__(info,formule_generale,None,transformations_canoniques)
+        super().__init__(info,formule_generale,[],transformations_canoniques)
 
     @property
     def vrai_formule(self):

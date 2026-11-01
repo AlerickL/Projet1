@@ -12,13 +12,61 @@ from projects.p1.gui.QParametres import QParametres
 
 class QSelectionFonction(QMenuFormule):
 
-    def __init__(self,modele):
+    def __init__(self,modele:Modele):
+        modele.changer_fonction_sin()
         self.__modele = modele
 
         super().__init__(self.__modele)
 
-        parametres = QParametres(self.__modele)
+        self.__parametres_sin = QParametres(self.__modele,self.__modele.fonction_sin)
+        self.__parametres_second_degre = QParametres(self.__modele,self.__modele.fonction_second_degre)
+        self.__parametres_sin_amortie = QParametres(self.__modele,self.__modele.fonction_sin_amortie)
+        self.__parametres_double_bosse = QParametres(self.__modele,self.__modele.fonction_double_bosse)
+        
+        # self.__parametres_sin_amortie.setVisible(False)
+        # self.__parametres_double_bosse.setVisible(False)
 
-        self.layout().addWidget(parametres)
 
-        #self.setLayout(principalLayout)
+        self.__parametres_sin.modifierModele.connect(self.changerVraiFormule)
+        self.__parametres_second_degre.modifierModele.connect(self.changerVraiFormule)
+        self.__parametres_sin_amortie.modifierModele.connect(self.changerVraiFormule)
+        self.__parametres_double_bosse.modifierModele.connect(self.changerVraiFormule)
+        
+
+
+        
+        self.layout().addWidget(self.__parametres_second_degre)
+        self.layout().addWidget(self.__parametres_sin_amortie)
+        self.layout().addWidget(self.__parametres_double_bosse)
+        self.layout().addWidget(self.__parametres_sin)
+
+        self.__changerParametres()
+        
+        self.formuleChange.connect(self.__changerParametres)
+        
+    def __changerParametres(self):
+        if self.menu().currentText() == "Fonction double bosse":
+            self.__parametres_sin_amortie.setVisible(False)
+            self.__parametres_second_degre.setVisible(False)
+            self.__parametres_double_bosse.setVisible(True)
+            self.__parametres_sin.setVisible(False)
+            
+            self.__modele.changer_fonction_double_bosse()
+        elif self.menu().currentText() == "Fonction polynomial du second degré":
+            self.__parametres_sin_amortie.setVisible(False)
+            self.__parametres_double_bosse.setVisible(False)
+            self.__parametres_second_degre.setVisible(True)
+            self.__parametres_sin.setVisible(False)
+            self.__modele.changer_fonction_second_degre()
+        elif self.menu().currentText() == "Fonction sinus amortie":
+            self.__parametres_double_bosse.setVisible(False)
+            self.__parametres_second_degre.setVisible(False)
+            self.__parametres_sin.setVisible(False)
+            self.__parametres_sin_amortie.setVisible(True)
+            self.__modele.changer_fonction_sin_amortie()
+        elif self.menu().currentText() == "Fonction sinus":
+            self.__parametres_sin_amortie.setVisible(False)
+            self.__parametres_double_bosse.setVisible(False)
+            self.__parametres_second_degre.setVisible(False)
+            self.__parametres_sin.setVisible(True)
+            self.__modele.changer_fonction_sin()

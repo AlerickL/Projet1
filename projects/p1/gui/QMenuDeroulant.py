@@ -11,11 +11,8 @@ class QMenuDeroulant(QComboBox):
     def __init__(self,modele:Modele):
         super().__init__()
         self.__modele = modele
-        self.addItem(self.__modele.avoir_info_fonction().nom)
-        self.__modele.changer_fonction_second_degre()
-        self.addItem(self.__modele.avoir_info_fonction().nom)
-        self.__modele.changer_fonction_sin_amortie()
-        self.addItem(self.__modele.avoir_info_fonction().nom)
-        self.__modele.changer_fonction_double_bosse()
-        self.addItem(self.__modele.avoir_info_fonction().nom)
-        self.__modele.changer_fonction_sin()
+        self.addItem(self.__modele.fonction_sin.info.nom)
+        self.addItem(self.__modele.fonction_second_degre.info.nom)
+        self.addItem(self.__modele.fonction_sin_amortie.info.nom)
+        self.addItem(self.__modele.fonction_double_bosse.info.nom)
+

@@ -22,18 +22,11 @@ class QSelectionFonction(QMenuFormule):
         self.__parametres_second_degre = QParametres(self.__modele,self.__modele.fonction_second_degre)
         self.__parametres_sin_amortie = QParametres(self.__modele,self.__modele.fonction_sin_amortie)
         self.__parametres_double_bosse = QParametres(self.__modele,self.__modele.fonction_double_bosse)
-        
-        # self.__parametres_sin_amortie.setVisible(False)
-        # self.__parametres_double_bosse.setVisible(False)
-
 
         self.__parametres_sin.modifierModele.connect(self.changerVraiFormule)
         self.__parametres_second_degre.modifierModele.connect(self.changerVraiFormule)
         self.__parametres_sin_amortie.modifierModele.connect(self.changerVraiFormule)
         self.__parametres_double_bosse.modifierModele.connect(self.changerVraiFormule)
-        
-
-
         
         self.layout().addWidget(self.__parametres_second_degre)
         self.layout().addWidget(self.__parametres_sin_amortie)
@@ -43,6 +36,7 @@ class QSelectionFonction(QMenuFormule):
         self.__changerParametres()
         
         self.formuleChange.connect(self.__changerParametres)
+        
         
     def __changerParametres(self):
         if self.menu().currentText() == "Fonction double bosse":

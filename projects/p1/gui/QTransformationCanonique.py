@@ -10,6 +10,7 @@ from projects.p1.model.Modele import Modele
 from projects.p1.gui.QBoutonMultipleRealSliderSpinBox import QBoutonMultipleRealSliderSpinBox
 
 class QTransformationCanonique(QBoutonMultipleRealSliderSpinBox):
+    modeleChanger = Signal()
     def __init__(self,modele:Modele,parent:QWidget|None=None)-> None:
         self.__modele = modele
 
@@ -17,21 +18,25 @@ class QTransformationCanonique(QBoutonMultipleRealSliderSpinBox):
         self.__reelTransX.setPrefix(modele.transformation_canonique.trans_x.info.nom+ " ")
         self.__reelTransX.setRange(modele.transformation_canonique.trans_x.min_valeur,modele.transformation_canonique.trans_x.max_valeur)
         self.__reelTransX.setValue(modele.transformation_canonique.trans_x.defaut_valeur)
+        self.__reelTransX.valueChanged.connect(self.__modifierModele)
 
         self.__reelTransY = QRealSliderSpinBox()
         self.__reelTransY.setPrefix(modele.transformation_canonique.trans_y.info.nom+ " ")
         self.__reelTransY.setRange(modele.transformation_canonique.trans_y.min_valeur,modele.transformation_canonique.trans_y.max_valeur)
         self.__reelTransY.setValue(modele.transformation_canonique.trans_y.defaut_valeur)
+        self.__reelTransY.valueChanged.connect(self.__modifierModele)
 
         self.__reelZoomX = QRealSliderSpinBox()
         self.__reelZoomX.setPrefix(modele.transformation_canonique.zoom_x.info.nom+ " ")
         self.__reelZoomX.setRange(modele.transformation_canonique.zoom_x.min_valeur,modele.transformation_canonique.zoom_x.max_valeur)
         self.__reelZoomX.setValue(modele.transformation_canonique.zoom_x.defaut_valeur)
+        self.__reelZoomX.valueChanged.connect(self.__modifierModele)
 
         self.__reelZoomY = QRealSliderSpinBox()
         self.__reelZoomY.setPrefix(modele.transformation_canonique.zoom_y.info.nom+ " ")
         self.__reelZoomY.setRange(modele.transformation_canonique.zoom_y.min_valeur,modele.transformation_canonique.zoom_y.max_valeur)
         self.__reelZoomY.setValue(modele.transformation_canonique.zoom_y.defaut_valeur)
+        self.__reelZoomY.valueChanged.connect(self.__modifierModele)
 
         boutonInformation = QPushButton("Information")
         boutonIdentite = QPushButton("Identité")
@@ -66,8 +71,14 @@ class QTransformationCanonique(QBoutonMultipleRealSliderSpinBox):
             self.__modele.mettre_symetrie_y()
             self.__appliquerModele()
 
-    def __appliquerModele(self):
+    def __appliquerModele(self) -> None:
+        self.modeleChanger.emit()
         self.__reelTransX.setValue(self.__modele.transformation_canonique.trans_x.valeur)
         self.__reelTransY.setValue(self.__modele.transformation_canonique.trans_y.valeur)
         self.__reelZoomX.setValue(self.__modele.transformation_canonique.zoom_x.valeur)
         self.__reelZoomY.setValue(self.__modele.transformation_canonique.zoom_y.valeur)
+
+    def __modifierModele(self) -> None:
+        for i in range(4):
+            self.__modele.transformation_canonique.trans_x.valeur = self.valeurs()[i]
+        self.modeleChanger.emit()

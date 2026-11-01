@@ -10,6 +10,7 @@ from projects.p1.gui.QMenuDeroulant import QMenuDeroulant
 
 class QMenuFormule(QWidget):
     formuleChange = Signal()
+    modeleChanger = Signal()
     def __init__(self,modele:Modele):
         super().__init__()
         self.__modele = modele
@@ -49,4 +50,5 @@ class QMenuFormule(QWidget):
     @Slot()
     def changerVraiFormule(self):
         self.__vrai_formule.setText(self.__modele.avoir_vraie_formule())
+        self.modeleChanger.emit()
 

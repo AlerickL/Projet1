@@ -18,6 +18,7 @@ class QApp(QWidget):
         self.__modele = modele
         self.__graphe = QGraphTest(self.__modele)
         self.__selection = QSelectionFonction(self.__modele)
+        self.__
 
         principalLayout = QHBoxLayout()
 

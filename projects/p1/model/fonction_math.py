@@ -1,9 +1,9 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 import numpy as np
-from information import Information
-from Projet1.projects.p1.model.transformation_canonique import TransformationCanonique
-from parametre import Parametre
+from projects.p1.model.Information import Information
+from projects.p1.model.transformation_canonique import TransformationCanonique
+from projects.p1.model.Parametre import Parametre
 
 class FonctionMath(ABC):
     def __init__(self, info:Information, formule_generale:str,parametres:list[Parametre], transformations_canoniques : TransformationCanonique):
@@ -69,9 +69,9 @@ class FonctionMath(ABC):
         Returns:
             float: la valeur en y
         """
-        return self._transformations_canoniques.zoom_y*fonction((x-self._transformations_canoniques.trans_x)/self._transformations_canoniques.zoom_x) + self._transformations_canoniques.trans_y
+        return self._transformations_canoniques.zoom_y.valeur*fonction((x-self._transformations_canoniques.trans_x.valeur)/self._transformations_canoniques.zoom_x.valeur) + self._transformations_canoniques.trans_y.valeur
         
-    def calculer_np(self,borne_inf,borne_sup,nombre_div,callable) -> np.ndarray:
+    def calculer_np(self,borne_inf,borne_sup,nombre_div) -> np.ndarray:
         """Calculer avec la fonction les valeurs en y pour une collection de points en x
 
         Args:
@@ -81,7 +81,7 @@ class FonctionMath(ABC):
             np.ndarray: les résultats en y 
         """
         x = np.linspace(borne_inf,borne_sup,nombre_div)
-        return self.calculer(x)
+        return x, self.calculer(x)
 
     @abstractmethod
     def calculer_exacte_derive(self,x:float,derive:callable) -> float:

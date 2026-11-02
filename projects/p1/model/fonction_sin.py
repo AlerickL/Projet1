@@ -1,7 +1,7 @@
 import numpy as np
-from Projet1.projects.p1.model.fonction_math import FonctionMath
-from information import Information
-from Projet1.projects.p1.model.transformation_canonique import TransformationCanonique
+from projects.p1.model.fonction_math import FonctionMath
+from projects.p1.model.Information import Information
+from projects.p1.model.transformation_canonique import TransformationCanonique
 
 class FonctionSin(FonctionMath):
     """Représente une fonction sinus"""
@@ -12,18 +12,16 @@ class FonctionSin(FonctionMath):
                                     "Fonction trigonométrique périodique définie par l'ordonné du cercle trigonométrique", "ce n'est pas une sinusite")
         formule_generale: str = "sin(x)"
         
-        super().__init__(info,formule_generale,None,transformations_canoniques)
+        super().__init__(info,formule_generale,[],transformations_canoniques)
 
     @property
     def vrai_formule(self):
-        return self.__formule_generale
+        return "sin(x)"
 
     # Méthode
 
     def calculer(self,x:float) -> float:
-        if not isinstance(x, int|float):
-            raise TypeError("x doit être réel")
-        
+
         return super().calculer(x,np.sin)
     
     def calculer_exacte_derive(self,x:float) -> float:

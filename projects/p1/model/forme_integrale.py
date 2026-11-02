@@ -1,4 +1,4 @@
-import enum as Enum
+from enum import Enum
 
 class FormeIntegrale(Enum):
     RECTANGLE = 1 

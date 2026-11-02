@@ -1,14 +1,30 @@
 
 import sys
 
-from PySide6.QtWidgets import QApplication, QWidget
+from PySide6.QtWidgets import QApplication, QWidget, QComboBox
 from edustem.pyside6.widgets.q_range_slider import QRealRangeSlider
-
+from edustem.pyside6.widgets.q_slider_spin_box import QRealSliderSpinBox
+from edustem.pyside6.widgets.q_real_slider import QRealDial
+from projects.p1.gui.QMultipleRealSliderSpinBox import QMultipleRealSliderSpinBox
+from projects.p1.gui.QTransformationCanonique import QTransformationCanonique
+from projects.p1.gui.QSelectionFonction import QSelectionFonction
+from projects.p1.gui.QParametres import QParametres
+from projects.p1.gui.QFonctionTransformartionCanonique import QFonctionTransformationCanonique
+from projects.p1.model.Modele import Modele
+from projects.p1.gui.QGraphTest import QGraphTest
+from projects.p1.gui.QApp import QApp
 
 def main() -> None:
     app = QApplication(sys.argv)
 
-    window = QRealRangeSlider()
+    modele = Modele()
+
+    reel = QRealSliderSpinBox()
+    reel2 = QRealSliderSpinBox()
+    reel.setPrefix("allo")
+    #window = QMultipleRealSliderSpinBox("titre",[reel,reel2])
+    #window = QTransformationCanonique(modele)
+    window = QApp(modele)
     window.setWindowTitle("420-SF3 Projet 1")
     window.show()
 

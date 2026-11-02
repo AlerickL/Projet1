@@ -1,8 +1,8 @@
 import numpy as np
-from Projet1.projects.p1.model.fonction_math import FonctionMath
-from information import Information
-from Projet1.projects.p1.model.transformation_canonique import TransformationCanonique
-from parametre import Parametre 
+from projects.p1.model.fonction_math import FonctionMath
+from projects.p1.model.Information import Information
+from projects.p1.model.transformation_canonique import TransformationCanonique
+from projects.p1.model.Parametre import Parametre 
 
 class FonctionSinAmortie(FonctionMath):
     """Représente une fonction sinus amortie"""
@@ -24,8 +24,6 @@ class FonctionSinAmortie(FonctionMath):
     # Méthode
 
     def calculer(self,x:float) -> float:
-        if not isinstance(x, int|float):
-            raise TypeError("x doit être réel")
         fonction = lambda x: np.exp(-1*self.parametres[0].valeur * x) * np.sin(x)
         return super().calculer(x, fonction)
         

@@ -1,13 +1,14 @@
 import numpy as np
-from Projet1.projects.p1.model.transformation_canonique import TransformationCanonique
-from Projet1.projects.p1.model.fonction_sin import FonctionSin
-import Projet1.projects.p1.model.fonction_second_degre as fonction_second_degre
-import Projet1.projects.p1.model.fonction_sin_amortie as fonction_sin_amortie
-import Projet1.projects.p1.model.fonction_double_bosse as fonction_double_bosse
-from Projet1.projects.p1.model.methode_derive import MethodeDerive
-from Projet1.projects.p1.model.methode_integrale import MethodeIntegrale
+from projects.p1.model.transformation_canonique import TransformationCanonique
+from projects.p1.model.fonction_sin import FonctionSin
+from projects.p1.model.fonction_math import FonctionMath
+from projects.p1.model.fonction_second_degre import FonctionSecondDegre
+from projects.p1.model.fonction_sin_amortie import FonctionSinAmortie
+from projects.p1.model.fonction_double_bosse import FonctionDoubleBosse
+from projects.p1.model.methode_derive import MethodeDerive
+from projects.p1.model.methode_integrale import MethodeIntegrale
 from typing import override
-from Projet1.projects.p1.model.forme_integrale import FormeIntegrale
+from projects.p1.model.forme_integrale import FormeIntegrale
 
 class Modele:
     def __init__(self):
@@ -16,6 +17,10 @@ class Modele:
         maximum = 5
         self.__transformation_canonique:TransformationCanonique = TransformationCanonique(precision,minimum,maximum)
         self.__fonction_math = FonctionSin(self.__transformation_canonique)
+        self.__fonction_sin = FonctionSin(self.__transformation_canonique)
+        self.__fonction_second_degre = FonctionSecondDegre(self.__transformation_canonique)
+        self.__fonction_sin_amortie = FonctionSinAmortie(self.__transformation_canonique)
+        self.__fonction_double_bosse = FonctionDoubleBosse(self.__transformation_canonique)
         self.__methode_derive = MethodeDerive(self.__fonction_math,0)
         self.__methode_integrale = MethodeIntegrale(self.__fonction_math,(0,1))
         self.__r_affichage_tangente = 3
@@ -25,8 +30,24 @@ class Modele:
         return self.__transformation_canonique
 
     @property
-    def fonction_math(self):
+    def fonction_math(self) -> FonctionMath:
         return self.__fonction_math
+
+    @property
+    def fonction_sin(self) -> FonctionSin:
+        return self.__fonction_sin
+
+    @property
+    def fonction_second_degre(self) -> FonctionSecondDegre:
+        return self.__fonction_second_degre
+
+    @property
+    def fonction_sin_amortie(self) -> FonctionSinAmortie:
+        return self.__fonction_sin_amortie
+
+    @property
+    def fonction_double_bosse(self) -> FonctionDoubleBosse:
+        return self.__fonction_double_bosse
 
     @property
     def methode_derive(self):
@@ -41,24 +62,21 @@ class Modele:
         return self.__r_affichage_tangente
     
     def changer_fonction_sin(self):
-        self.__fonction_math = FonctionSin(self.__transformation_canonique)
-
+        self.__fonction_math = self.__fonction_sin
     def changer_fonction_second_degre(self):
-            self.__fonction_math = fonction_second_degre(self.__transformation_canonique)
-
+            self.__fonction_math = self.__fonction_second_degre
     def changer_fonction_sin_amortie(self):
-            self.__fonction_math = fonction_sin_amortie(self.__transformation_canonique)
+            self.__fonction_math = self.__fonction_sin_amortie
 
     def changer_fonction_double_bosse(self):
-            self.__fonction_math = fonction_double_bosse(self.__transformation_canonique)
-
+            self.__fonction_math = self.__fonction_double_bosse
     def changer_valeur_parametre(self,index:int,valeur:float):
-        self.__fonction_math.parametres[index] = valeur
+        self.__fonction_math.parametres[index].valeur = valeur
 
     def avoir_info_parametre(self,index:int):
         return self.__fonction_math.parametres[index].info
 
-    def avoir_info_fonction(self,index:int):
+    def avoir_info_fonction(self):
         return self.__fonction_math.info
 
     def avoir_vraie_formule(self):
@@ -67,16 +85,16 @@ class Modele:
     def reinitialiser_parametres_fonction(self):
         self.__fonction_math.redemarrer_parametres()
 
-    def identite(self):
+    def mettre_identite(self):
         self.transformation_canonique.reinitialiser()
 
     def mettre_symetrie_y(self):
-        self.__transformation_canonique.trans_x = -1 * self.__transformation_canonique.trans_x
-        self.__transformation_canonique.zoom_x = -self.__transformation_canonique.zoom_x 
+        self.__transformation_canonique.trans_x.valeur = -1 * self.__transformation_canonique.trans_x.valeur
+        self.__transformation_canonique.zoom_x.valeur = -self.__transformation_canonique.zoom_x.valeur
         
     def mettre_symetrie_x(self):
-        self.__transformation_canonique.trans_y = -1 * self.__transformation_canonique.trans_y
-        self.__transformation_canonique.zoom_y = -1* self.__transformation_canonique.zoom_y
+        self.__transformation_canonique.trans_y.valeur = -1 * self.__transformation_canonique.trans_y.valeur
+        self.__transformation_canonique.zoom_y.valeur = -1* self.__transformation_canonique.zoom_y.valeur
 
     def mettre_derive_a_gauche(self):
         self.methode_derive._alpha = 0.0

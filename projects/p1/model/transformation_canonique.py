@@ -1,5 +1,5 @@
-from parametre import Parametre
-from information import Information
+from projects.p1.model.Parametre import Parametre
+from projects.p1.model.Information import Information
 
 class TransformationCanonique:
     """Classe contenant la gestion des transformation canoniques d'une fonction"""
@@ -24,10 +24,10 @@ class TransformationCanonique:
         # Aggrandissements
         self.__defaut_zoom = 1
         info_zoom_x: Information = Information("Aggrandissement en x",  "Aggrandir horizontalement la fonction")
-        self.__zoom_x: Parametre = Parametre(info_zoom_x, precision, min, max, self.__defaut_trans)
+        self.__zoom_x: Parametre = Parametre(info_zoom_x, precision, min, max, self.__defaut_zoom)
 
         info_zoom_y: Information = Information("Aggrandissement en y",  "Aggrandir horizontalement la fonction")
-        self.__zoom_y: Parametre = Parametre(info_zoom_y, precision, min, max, self.__defaut_trans)
+        self.__zoom_y: Parametre = Parametre(info_zoom_y, precision, min, max, self.__defaut_zoom)
 
 
     # Getter
@@ -41,12 +41,14 @@ class TransformationCanonique:
         return self.__trans_y
 
     @property
+    def zoom_y(self) -> Parametre:
+        return self.__zoom_y
+
+    @property
     def zoom_x(self) -> Parametre:
         return self.__zoom_x
 
-    @property
-    def zoom_y(self) -> Parametre:
-        return self.__zoom_y
+
 
 
     # Setter
@@ -64,8 +66,8 @@ class TransformationCanonique:
         self.__zoom_x.valeur = valeur
     
     @zoom_y.setter
-    def zoom_x(self, valeur: float|int) -> None:
-        self.__zoom_x.valeur = valeur
+    def zoom_y(self, valeur: float|int) -> None:
+        self.__zoom_y.valeur = valeur
 
     def reinitialiser(self) -> None:
         self.trans_x = self.__defaut_trans

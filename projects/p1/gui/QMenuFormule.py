@@ -9,6 +9,10 @@ from projects.p1.model.Modele import Modele
 from projects.p1.gui.QMenuDeroulant import QMenuDeroulant
 
 class QMenuFormule(QWidget):
+    """menu déroulant et véritable formule de la fonction.
+    formuleChange est émit quand la formule véritable est modifié.
+    modeleChanger est émit quand la classe modifie le modèle.
+    """
     formuleChange = Signal()
     modeleChanger = Signal()
     def __init__(self,modele:Modele):

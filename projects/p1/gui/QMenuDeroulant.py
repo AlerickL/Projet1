@@ -8,6 +8,8 @@ from edustem.pyside6.widgets.q_slider_spin_box import QRealSliderSpinBox
 from projects.p1.model.Modele import Modele
 
 class QMenuDeroulant(QComboBox):
+    """Menu déroulant avec le nom des fonctions.
+    """
     def __init__(self,modele:Modele):
         super().__init__()
         self.__modele = modele

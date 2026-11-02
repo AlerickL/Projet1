@@ -24,8 +24,6 @@ class FonctionSinAmortie(FonctionMath):
     # Méthode
 
     def calculer(self,x:float) -> float:
-        if not isinstance(x, int|float):
-            raise TypeError("x doit être réel")
         fonction = lambda x: np.exp(-1*self.parametres[0].valeur * x) * np.sin(x)
         return super().calculer(x, fonction)
         

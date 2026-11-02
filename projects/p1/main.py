@@ -11,6 +11,8 @@ from projects.p1.gui.QSelectionFonction import QSelectionFonction
 from projects.p1.gui.QParametres import QParametres
 from projects.p1.gui.QFonctionTransformartionCanonique import QFonctionTransformationCanonique
 from projects.p1.model.Modele import Modele
+from projects.p1.gui.QGraphTest import QGraphTest
+from projects.p1.gui.QApp import QApp
 
 def main() -> None:
     app = QApplication(sys.argv)
@@ -22,7 +24,7 @@ def main() -> None:
     reel.setPrefix("allo")
     #window = QMultipleRealSliderSpinBox("titre",[reel,reel2])
     #window = QTransformationCanonique(modele)
-    window = QFonctionTransformationCanonique(modele)
+    window = QApp(modele)
     window.setWindowTitle("420-SF3 Projet 1")
     window.show()
 

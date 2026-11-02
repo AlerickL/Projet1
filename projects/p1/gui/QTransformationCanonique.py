@@ -10,6 +10,9 @@ from projects.p1.model.Modele import Modele
 from projects.p1.gui.QBoutonMultipleRealSliderSpinBox import QBoutonMultipleRealSliderSpinBox
 
 class QTransformationCanonique(QBoutonMultipleRealSliderSpinBox):
+    """Widget affichant les transformations canoniques de la fonction.
+    modeleChanger est un signal envoyé quand le modèle est modifié par la classe
+    """
     modeleChanger = Signal()
     def __init__(self,modele:Modele,parent:QWidget|None=None)-> None:
         self.__modele = modele

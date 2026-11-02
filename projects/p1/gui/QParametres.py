@@ -11,6 +11,9 @@ from projects.p1.model.fonction_math import FonctionMath
 from projects.p1.gui.QBoutonMultipleRealSliderSpinBox import QBoutonMultipleRealSliderSpinBox
 
 class QParametres(QBoutonMultipleRealSliderSpinBox):
+    """La liste des paramètres de la fonction du modèle. 
+    modifierModele est envoyé quand cette classe modifi le modele qu'il contient.
+    """
     modifierModele = Signal()
     def __init__(self,modele:Modele,fonction_math:FonctionMath,parent:QWidget|None=None):
         self.__modele:Modele = modele

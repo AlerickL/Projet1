@@ -13,7 +13,8 @@ from projects.p1.gui.QSelectionFonction import QSelectionFonction
 from projects.p1.gui.QTransformationCanonique import QTransformationCanonique
 
 class QFonctionTransformationCanonique(QWidget):
-
+    """Widget combinant QSelectionFormule et QTransformationCanonique.
+    """
     def __init__(self,modele:Modele):
         super().__init__()
         self.__selectionFonction = QSelectionFonction(modele)

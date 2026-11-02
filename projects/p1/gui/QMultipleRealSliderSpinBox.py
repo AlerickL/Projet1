@@ -7,6 +7,9 @@ from PySide6.QtWidgets import QApplication, QWidget, QLabel, QSlider, QHBoxLayou
 from edustem.pyside6.widgets.q_slider_spin_box import QRealSliderSpinBox
 
 class QMultipleRealSliderSpinBox(QWidget):
+    """QMultipleRealSliderSpinBox est une collection de RealSliderSpinBox (fournit dans le cours)
+    ValeurChanger est un signal envoyé quand un RealSliderSpinBox est modifié.
+    """
     valeurChanger = Signal(int|float)
     def __init__(self,label:str,reels:list[QRealSliderSpinBox],parent:QWidget|None = None) -> None:
         super().__init__(parent)

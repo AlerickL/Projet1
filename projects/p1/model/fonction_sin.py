@@ -21,9 +21,7 @@ class FonctionSin(FonctionMath):
     # Méthode
 
     def calculer(self,x:float) -> float:
-        if not isinstance(x, int|float):
-            raise TypeError("x doit être réel")
-        
+
         return super().calculer(x,np.sin)
     
     def calculer_exacte_derive(self,x:float) -> float:

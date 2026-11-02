@@ -69,9 +69,9 @@ class FonctionMath(ABC):
         Returns:
             float: la valeur en y
         """
-        return self._transformations_canoniques.zoom_y*fonction((x-self._transformations_canoniques.trans_x)/self._transformations_canoniques.zoom_x) + self._transformations_canoniques.trans_y
+        return self._transformations_canoniques.zoom_y.valeur*fonction((x-self._transformations_canoniques.trans_x.valeur)/self._transformations_canoniques.zoom_x.valeur) + self._transformations_canoniques.trans_y.valeur
         
-    def calculer_np(self,borne_inf,borne_sup,nombre_div,callable) -> np.ndarray:
+    def calculer_np(self,borne_inf,borne_sup,nombre_div) -> np.ndarray:
         """Calculer avec la fonction les valeurs en y pour une collection de points en x
 
         Args:
@@ -81,7 +81,7 @@ class FonctionMath(ABC):
             np.ndarray: les résultats en y 
         """
         x = np.linspace(borne_inf,borne_sup,nombre_div)
-        return self.calculer(x)
+        return x, self.calculer(x)
 
     @abstractmethod
     def calculer_exacte_derive(self,x:float,derive:callable) -> float:

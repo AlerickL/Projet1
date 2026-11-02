@@ -11,7 +11,9 @@ from projects.p1.gui.QMenuFormule import QMenuFormule
 from projects.p1.gui.QParametres import QParametres
 
 class QSelectionFonction(QMenuFormule):
-
+    """Collection de QMenuFormule (dont il hérite) et d'un ensemble de QParametres
+    Il n'affiche qu'un QParametre à la fois, celui de la fonction qu'utilise actuellement le modèle. les autres sont storé en mémoire et caché.
+    """
     def __init__(self,modele:Modele):
         modele.changer_fonction_sin()
         self.__modele = modele

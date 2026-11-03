@@ -7,7 +7,7 @@ from PySide6.QtWidgets import QApplication, QWidget, QLabel, QSlider, QHBoxLayou
 from edustem.pyside6.widgets.q_slider_spin_box import QRealSliderSpinBox
 from projects.p1.gui.QParametres import QParametres
 from projects.p1.gui.QTransformationCanonique import QTransformationCanonique
-from projects.p1.model.Modele import Modele
+from projects.p1.model.modele import Modele
 from projects.p1.gui.QMenuDeroulant import QMenuDeroulant
 from projects.p1.gui.QMenuFormule import QMenuFormule
 from projects.p1.gui.QSelectionFonction import QSelectionFonction

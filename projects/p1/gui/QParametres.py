@@ -6,7 +6,7 @@ from PySide6.QtCore import Qt, Signal, Slot
 from PySide6.QtGui import QPixmap, QColor, QShowEvent
 from PySide6.QtWidgets import QApplication, QWidget, QLabel, QSlider, QHBoxLayout, QVBoxLayout, QPushButton, QMessageBox
 from edustem.pyside6.widgets.q_slider_spin_box import QRealSliderSpinBox
-from projects.p1.model.Modele import Modele
+from projects.p1.model.modele import Modele
 from projects.p1.model.fonction_math import FonctionMath
 from projects.p1.gui.QBoutonMultipleRealSliderSpinBox import QBoutonMultipleRealSliderSpinBox
 

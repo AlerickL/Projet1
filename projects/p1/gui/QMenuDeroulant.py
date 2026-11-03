@@ -5,7 +5,7 @@ from PySide6.QtCore import Qt, Signal, Slot
 from PySide6.QtGui import QPixmap, QColor, QShowEvent
 from PySide6.QtWidgets import QApplication, QWidget, QLabel, QSlider, QHBoxLayout, QVBoxLayout, QComboBox
 from edustem.pyside6.widgets.q_slider_spin_box import QRealSliderSpinBox
-from projects.p1.model.Modele import Modele
+from projects.p1.model.modele import Modele
 
 class QMenuDeroulant(QComboBox):
     """Menu déroulant avec le nom des fonctions.

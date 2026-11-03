@@ -10,7 +10,7 @@ from projects.p1.gui.QTransformationCanonique import QTransformationCanonique
 from projects.p1.gui.QSelectionFonction import QSelectionFonction
 from projects.p1.gui.QParametres import QParametres
 from projects.p1.gui.QFonctionTransformartionCanonique import QFonctionTransformationCanonique
-from projects.p1.model.Modele import Modele
+from projects.p1.model.modele import Modele
 from projects.p1.gui.QGraphTest import QGraphTest
 from projects.p1.gui.QApp import QApp
 

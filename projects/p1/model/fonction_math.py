@@ -93,7 +93,7 @@ class FonctionMath(ABC):
         Returns:
             float: la dérivé au point x de la fonction
         """
-        return self._transformations_canoniques.zoom_y/self._transformations_canoniques.zoom_x*derive((x-self._transformations_canoniques.trans_x)/self._transformations_canoniques.zoom_x)
+        return self._transformations_canoniques.zoom_y.valeur/self._transformations_canoniques.zoom_x.valeur*derive((x-self._transformations_canoniques.trans_x.valeur)/self._transformations_canoniques.zoom_x.valeur)
 
 
 

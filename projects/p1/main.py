@@ -13,6 +13,7 @@ from projects.p1.gui.QFonctionTransformartionCanonique import QFonctionTransform
 from projects.p1.model.modele import Modele
 from projects.p1.gui.QGraphTest import QGraphTest
 from projects.p1.gui.QApp import QApp
+from projects.p1.gui.QMethodeDerive import QMethodeDerive
 
 def main() -> None:
     app = QApplication(sys.argv)
@@ -24,7 +25,7 @@ def main() -> None:
     reel.setPrefix("allo")
     #window = QMultipleRealSliderSpinBox("titre",[reel,reel2])
     #window = QTransformationCanonique(modele)
-    window = QApp(modele)
+    window = QMethodeDerive(modele)
     window.setWindowTitle("420-SF3 Projet 1")
     window.show()
 

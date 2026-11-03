@@ -109,7 +109,9 @@ class FonctionMath(ABC):
         Returns:
             float: La valeur de l'intégrale dans l'interval
         """
-        primitive_canonique:callable = lambda x : self._transformations_canoniques.zoom_y*self._transformations_canoniques.zoom_x*primitive((x-self._transformations_canoniques.trans_x)/self._transformations_canoniques.zoom_x) + self._transformation.zoom_y*x
+        primitive_canonique:callable = lambda x : self._transformations_canoniques.zoom_y.valeur*self._transformations_canoniques.zoom_x.valeur*primitive((x-self._transformations_canoniques.trans_x.valeur)/self._transformations_canoniques.zoom_x.valeur) + self._transformations_canoniques.trans_y.valeur*x
+        print("primitive inf ", primitive_canonique(borne_inferieur))
+        print("primitive inf ", primitive_canonique(borne_superieur))
         return primitive_canonique(borne_superieur) - primitive_canonique(borne_inferieur)
 
     def redemarrer_parametres(self) -> None:

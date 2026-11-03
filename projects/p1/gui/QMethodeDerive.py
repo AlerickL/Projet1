@@ -31,7 +31,7 @@ class QMethodeDerive(QBoutonMultipleRealSliderSpinBox):
 
         positionPas:QRealSliderSpinBox = QRealSliderSpinBox()
         positionPas.setValue(self.__modele.methode_derive.alpha)
-        positionPas.setPrefix("Position Pas (alpha) ")
+        positionPas.setPrefix("Position pas (alpha) ")
 
         etendueVisible:QRealSliderSpinBox = QRealSliderSpinBox()
         etendueVisible.setRange(0,5)
@@ -45,13 +45,13 @@ class QMethodeDerive(QBoutonMultipleRealSliderSpinBox):
         self.__boutonCentre = QPushButton("Centre")
         self.__boutonDroite = QPushButton("Droite")
 
-        self.__boutonGauche.pressed.connect(self.__mettre_derive_a_gauche)
-        self.__boutonCentre.pressed.connect(self.__mettre_derive_au_milieu)
-        self.__boutonDroite.pressed.connect(self.__mettre_derive_a_droite)
+        self.__boutonGauche.pressed.connect(self.__mettreDeriveAGauche)
+        self.__boutonCentre.pressed.connect(self.__mettreDeriveAuMilieu)
+        self.__boutonDroite.pressed.connect(self.__mettreDeriveADroite)
 
         self.__boutons = [self.__boutonGauche,self.__boutonCentre,self.__boutonDroite]
         
-        super().__init__(self,self.__reels,self.__boutons)
+        super().__init__("Méthode dérivé",self.__reels,self.__boutons)
 
         self.valeurChanger.connect(self.__modifierModele)
 
@@ -66,24 +66,24 @@ class QMethodeDerive(QBoutonMultipleRealSliderSpinBox):
         boutonSecante = QPushButton("Sécante")
         boutonTotal = QPushButton("Les deux")
 
-        boutonTangente.pressed.connect(self.__mettre_tangente)
-        boutonSecante.pressed.connect(self.__mettre_secante)
-        boutonTotal.pressed.connect(self.__mettre_tangente_et_secante)
+        boutonTangente.pressed.connect(self.__mettreTangente)
+        boutonSecante.pressed.connect(self.__mettreSecante)
+        boutonTotal.pressed.connect(self.__mettreTangenteEtSecante)
 
         self.modeleChanger.connect(self.recalculer)
 
     @Slot()
-    def __mettre_derive_a_gauche(self):
+    def __mettreDeriveAGauche(self):
         self.__modele.mettre_derive_a_gauche()
         self.__reels[3].setValue(0)
         self.modeleChanger.emit()
     @Slot()
-    def __mettre_derive_au_milieu(self):
+    def __mettreDeriveAuMilieu(self):
         self.__modele.mettre_derive_au_milieu()
         self.__reels[3].setValue(0.5)
         self.modeleChanger.emit()
     @Slot()
-    def __mettre_derive_a_droite(self):
+    def __mettreDeriveADroite(self):
         self.__modele.mettre_derive_a_droite()
         self.__reels[3].setValue(1)
         self.modeleChanger.emit()
@@ -102,16 +102,16 @@ class QMethodeDerive(QBoutonMultipleRealSliderSpinBox):
         self.__penteExacte.setText(f"Pente exacte : {self.__modele.methode_derive.fonction_math.calculer_exacte_derive(self.__reels[0].value())}")
 
     @Slot()
-    def __mettre_tangente(self):
+    def __mettreTangente(self):
         self.__modele.mettre_mode_tangente()
         self.modeleChanger.emit()
 
     @Slot()
-    def __mettre_secante(self):
+    def __mettreSecante(self):
         self.__modele.mettre_mode_secante()
         self.modeleChanger.emit()
 
     @Slot()
-    def __mettre_tangente_et_secante(self):
+    def __mettreTangenteEtSecante(self):
         self.__modele.mettre_mode_tangente_et_secante()
         self.modeleChanger.emit()

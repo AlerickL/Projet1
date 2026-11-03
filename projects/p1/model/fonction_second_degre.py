@@ -1,10 +1,11 @@
 from abc import ABC, abstractmethod
 import numpy as np
-from projects.p1.model.Information import Information
-import projects.p1.model.transformation_canonique as transformation_canonique
-from projects.p1.model.Parametre import Parametre
+from projects.p1.model.information import Information
+import projects.p1.model.transformation_canonique as TransformationCanonique
+from projects.p1.model.parametre import Parametre
 from projects.p1.model.fonction_math import FonctionMath
 from typing import override
+from numpy.typing import NDArray
 
 class FonctionSecondDegre(FonctionMath):
 

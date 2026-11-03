@@ -90,7 +90,7 @@ class Modele:
 
     def mettre_symetrie_y(self):
         self.__transformation_canonique.trans_x.valeur = -1 * self.__transformation_canonique.trans_x.valeur
-        self.__transformation_canonique.zoom_x.valeur = -self.__transformation_canonique.zoom_x.valeur
+        self.__transformation_canonique.zoom_x.valeur = -1 * self.__transformation_canonique.zoom_x.valeur
         
     def mettre_symetrie_x(self):
         self.__transformation_canonique.trans_y.valeur = -1 * self.__transformation_canonique.trans_y.valeur

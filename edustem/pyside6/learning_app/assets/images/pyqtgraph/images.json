@@ -1,0 +1,92 @@
+{
+  "chapter1": {
+    "file": "chapter1.gif",
+    "original": "chapter1.gif",
+    "title": "Figure de Lissajous",
+    "author": "Averse et Jonathan Haas",
+    "source": "Wikimedia Commons, domaine public",
+    "note": "L'abscisse et l'ordonnée d'un point oscillent chacune à sa fréquence, et le point trace sa courbe peu à peu, comme un graphique en temps réel.",
+    "link": "https://commons.wikimedia.org/wiki/File:Lissajous.gif",
+    "origin": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Lissajous.gif"
+  },
+  "chapter1-synthesis": {
+    "file": "chapter1-synthesis.png",
+    "original": "chapter1-synthesis.png",
+    "title": "Exportations et importations du Danemark et de la Norvège, 1700 à 1780",
+    "author": "William Playfair",
+    "source": "Wikimedia Commons, domaine public",
+    "note": "L'un des premiers graphiques de séries temporelles, publié en 1786 : deux courbes, et l'écart entre elles coloré.",
+    "link": "https://commons.wikimedia.org/wiki/File:Playfair_TimeSeries.png",
+    "origin": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Playfair_TimeSeries.png"
+  },
+  "chapter2": {
+    "file": "chapter2.gif",
+    "original": "chapter2.gif",
+    "title": "Champ électrique d'un dipôle",
+    "author": "Geek3",
+    "source": "Wikimedia Commons, CC BY-SA 3.0",
+    "note": "Deux charges de signes opposés, et les lignes de champ qui vont de l'une à l'autre. Le chapitre représente de tels champs par des couleurs et par des flèches.",
+    "link": "https://commons.wikimedia.org/wiki/File:VFPt_dipole_animation_electric.gif",
+    "origin": "https://upload.wikimedia.org/wikipedia/commons/a/aa/VFPt_dipole_animation_electric.gif"
+  },
+  "chapter2-synthesis": {
+    "file": "chapter2-synthesis.jpg",
+    "original": "chapter2-synthesis.jpg",
+    "title": "Carte des vents alizés, 1686",
+    "author": "Edmond Halley",
+    "source": "Wikimedia Commons, domaine public",
+    "note": "Un trait orienté par lieu : l'une des premières cartes d'un champ de vecteurs.",
+    "link": "https://commons.wikimedia.org/wiki/File:Edmond_Halley%27s_map_of_the_trade_winds%2C_1686.jpg",
+    "origin": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Edmond_Halley%27s_map_of_the_trade_winds%2C_1686.jpg"
+  },
+  "chapter3": {
+    "file": "chapter3.gif",
+    "original": "chapter3.gif",
+    "title": "Hyperboloïde de révolution",
+    "author": "Lemondoge",
+    "source": "Wikimedia Commons, CC0",
+    "note": "Une droite inclinée tourne autour d'un axe, et engendre une surface courbe faite de droites, vue en 3D.",
+    "link": "https://commons.wikimedia.org/wiki/File:Hyperboloid_ruled_surface_animation_%28short%29.gif",
+    "origin": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Hyperboloid_ruled_surface_animation_%28short%29.gif"
+  },
+  "chapter3-synthesis": {
+    "file": "chapter3-synthesis.png",
+    "original": "",
+    "title": "Surface de Kummer",
+    "author": "Christopher Hillenbrand",
+    "source": "Wikimedia Commons, CC BY 3.0",
+    "note": "Une surface définie par une équation, rendue en 3D avec un éclairage : sa forme ne se lit bien qu'en la tournant.",
+    "link": "https://commons.wikimedia.org/wiki/File:3D_model_of_a_Kummer_surface.stl",
+    "origin": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/3D_model_of_a_Kummer_surface.stl/960px-3D_model_of_a_Kummer_surface.stl.png"
+  },
+  "chapter4": {
+    "file": "chapter4.jpg",
+    "original": "chapter4.jpg",
+    "title": "Centre de contrôle de mission, Houston, pendant Apollo 14, 1971",
+    "author": "NASA",
+    "source": "Wikimedia Commons, domaine public",
+    "note": "Des écrans et des consoles qui suivent ensemble un même vol, chacun répondant à sa question.",
+    "link": "https://commons.wikimedia.org/wiki/File:Overall_view_of_Mission_Control_Center_during_Apollo_14_%28S71-16879%29.jpg",
+    "origin": "https://upload.wikimedia.org/wikipedia/commons/d/df/Overall_view_of_Mission_Control_Center_during_Apollo_14_%28S71-16879%29.jpg"
+  },
+  "chapter4-synthesis": {
+    "file": "chapter4-synthesis.png",
+    "original": "chapter4-synthesis.png",
+    "title": "Carte figurative de la campagne de Russie, 1812-1813",
+    "author": "Charles Joseph Minard",
+    "source": "Wikimedia Commons, domaine public",
+    "note": "Publiée en 1869 : la taille de l'armée, son chemin, sa direction et la température, sur une seule image.",
+    "link": "https://commons.wikimedia.org/wiki/File:Minard.png",
+    "origin": "https://upload.wikimedia.org/wikipedia/commons/2/29/Minard.png"
+  },
+  "introduction": {
+    "file": "introduction.png",
+    "original": "introduction.svg",
+    "title": "Attracteur de Lorenz",
+    "author": "Wikimol et Dschwen",
+    "source": "Wikimedia Commons, CC BY-SA 3.0",
+    "note": "La trajectoire d'un point dans l'espace, qui tourne sans fin autour de deux centres. Le chapitre 3 trace de telles trajectoires en 3D.",
+    "link": "https://commons.wikimedia.org/wiki/File:Lorenz_attractor_yb.svg",
+    "origin": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Lorenz_attractor_yb.svg"
+  }
+}

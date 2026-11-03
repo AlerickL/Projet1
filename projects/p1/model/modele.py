@@ -9,6 +9,7 @@ from projects.p1.model.methode_derive import MethodeDerive
 from projects.p1.model.methode_integrale import MethodeIntegrale
 from typing import override
 from projects.p1.model.forme_integrale import FormeIntegrale
+from projects.p1.model.affichage_derive import AffichageDerive
 
 class Modele:
     def __init__(self):
@@ -23,7 +24,6 @@ class Modele:
         self.__fonction_double_bosse = FonctionDoubleBosse(self.__transformation_canonique)
         self.__methode_derive = MethodeDerive(self.__fonction_math,0)
         self.__methode_integrale = MethodeIntegrale(self.__fonction_math,(0,1))
-        self.__r_affichage_tangente = 3
 
     @property
     def transformation_canonique(self):
@@ -56,10 +56,6 @@ class Modele:
     @property
     def methode_integrale(self):
         return self.__methode_integrale
-
-    @property
-    def r_afficher_tangente(self):
-        return self.__r_affichage_tangente
     
     def changer_fonction_sin(self):
         self.__fonction_math = self.__fonction_sin
@@ -122,8 +118,8 @@ class Modele:
     def avoir_deux_points_tangente(self) -> list[tuple[float,float],tuple[float,float]]:
         point_interet = self.__methode_derive.point_interet
         droite = self.__methode_derive.avoir_regle_tangente()
-        x_moins = point_interet - self.__r_affichage_tangente
-        x_plus = point_interet + self.__r_affichage_tangente
+        x_moins = point_interet - self.methode_derive.etendue_visible
+        x_plus = point_interet + self.methode_derive.etendue_visible
         return [(x_moins,droite(x_moins)),(x_plus,droite(x_plus))]
 
     def mettre_mode_rectangle(self):
@@ -131,6 +127,15 @@ class Modele:
 
     def mettre_mode_trapeze(self):
         self.methode_integrale.forme_integrale = FormeIntegrale.TRAPEZE
+
+    def mettre_mode_tangente(self):
+        self.methode_derive.representation = AffichageDerive.TANGENTE
+
+    def mettre_mode_secante(self):
+        self.methode_derive.representation = AffichageDerive.SECANTE
+
+    def mettre_mode_tangente_et_secante(self):
+        self.methode_derive.representation = AffichageDerive.TOUT
 
 
 

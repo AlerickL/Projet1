@@ -1,4 +1,4 @@
-from projects.p1.model.Information import Information
+from projects.p1.model.information import Information
 
 class Parametre:
     """C'est la classe qui représente un paramètre"""

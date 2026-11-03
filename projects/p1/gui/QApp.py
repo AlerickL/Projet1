@@ -12,6 +12,7 @@ from projects.p1.model.modele import Modele
 from projects.p1.gui.QMenuDeroulant import QMenuDeroulant
 from projects.p1.gui.QMenuFormule import QMenuFormule
 from projects.p1.gui.QSelectionFonction import QSelectionFonction
+from projects.p1.gui.QFonctionTransformartionCanonique import QFonctionTransformationCanonique
 from projects.p1.gui.QGraphTest import QGraphTest
 
 class QApp(QWidget):
@@ -20,17 +21,17 @@ class QApp(QWidget):
         super().__init__()
         self.__modele = modele
         self.__graphe = QGraphTest(self.__modele)
-        self.__fonctionTransformationCanonique = QFonctionTransformationCanonique(self.__modele)   
+        self.__fonctionSelectionTransformationCanonique = QFonctionTransformationCanonique(modele)
 
 
         principalLayout = QHBoxLayout()
         droiteLayout = QVBoxLayout()
 
         principalLayout.addWidget(self.__graphe)
-        droiteLayout.addWidget(self.__fonctionTransformationCanonique)
+        droiteLayout.addWidget(self.__fonctionSelectionTransformationCanonique)
         
         principalLayout.addLayout(droiteLayout)
 
         self.setLayout(principalLayout)
 
-        self.__fonctionTransformationCanonique.modeleChanger.connect(self.__graphe.actualiser)
+        self.__fonctionSelectionTransformationCanonique.modeleChanger.connect(self.__graphe.actualiser)

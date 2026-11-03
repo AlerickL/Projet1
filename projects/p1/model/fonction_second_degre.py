@@ -5,6 +5,7 @@ import projects.p1.model.transformation_canonique as TransformationCanonique
 from projects.p1.model.Parametre import Parametre
 from projects.p1.model.fonction_math import FonctionMath
 from typing import override
+from numpy.typing import NDArray
 
 class FonctionSecondDegre(FonctionMath):
 

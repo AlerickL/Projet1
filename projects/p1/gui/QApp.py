@@ -7,18 +7,18 @@ from PySide6.QtWidgets import QApplication, QWidget, QLabel, QSlider, QHBoxLayou
 from edustem.pyside6.widgets.q_slider_spin_box import QRealSliderSpinBox
 from projects.p1.gui.QParametres import QParametres
 from projects.p1.gui.QTransformationCanonique import QTransformationCanonique
-from projects.p1.model.modele import Modele
+from projects.p1.model.Modele import Modele
 from projects.p1.gui.QMenuDeroulant import QMenuDeroulant
 from projects.p1.gui.QMenuFormule import QMenuFormule
 from projects.p1.gui.QSelectionFonction import QSelectionFonction
-from projects.p1.gui.QGraphTest import QGraphTest
+from projects.p1.gui.QGraphique import QGraphTest
 
 class QApp(QWidget):
 
     def __init__(self,modele):
         super().__init__()
-        self.__modele = modele
-        self.__graphe = QGraphTest(self.__modele)
+        self.__modele: Modele = modele
+        self.__graphe = QGraphique(self.__modele)
         self.__selection = QSelectionFonction(self.__modele)
         self.__transformation_canonique = QTransformationCanonique(self.__modele)   
 

@@ -1,11 +1,8 @@
-import numpy as np
-import Information
-
-# Ce fichier sert à gérérer les paramètres des fonctions
+from projects.p1.model.Information import Information
 
 class Parametre:
     """C'est la classe qui représente un paramètre"""
-    def __init__(self, info:Information, nom:str, texte_precision:int, min_valeur:float|int, max_valeur:float|int, defaut_valeur:float|int) -> None:
+    def __init__(self, info:Information, texte_precision:int, min_valeur:float|int, max_valeur:float|int, defaut_valeur:float|int) -> None:
         """Initialise un Paramètre
         Args:
             info (Information): l'information générale de ce que représente un paramètre
@@ -18,7 +15,6 @@ class Parametre:
             TypeError: un des paramètres n'est pas du bon type
         """
         if not isinstance(info, Information)\
-        or not isinstance(nom, str)\
         or not isinstance(texte_precision, float|int)\
         or not isinstance(min_valeur, float|int)\
         or not isinstance(max_valeur, float|int)\
@@ -50,7 +46,7 @@ class Parametre:
         return self.__defaut_valeur 
     @property
     def valeur(self) -> float:
-        return self.__value
+        return self.__valeur
     @property
     def texte_valeur(self) -> str:
         return str(self.__valeur)
@@ -76,5 +72,3 @@ class Parametre:
     def reinitialiser(self) -> None:
         """Permet de remettre la valeur par défaut du paramètre"""
         self.__valeur = self.__defaut_valeur
-
-        

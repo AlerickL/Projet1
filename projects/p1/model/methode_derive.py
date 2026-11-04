@@ -1,6 +1,7 @@
 from typing import override
 from projects.p1.model.fonction_math import FonctionMath
 from projects.p1.model.methode_numerique import MethodeNumerique
+from projects.p1.model.affichage_derive import AffichageDerive
 
 class MethodeDerive(MethodeNumerique):
     @override
@@ -12,8 +13,17 @@ class MethodeDerive(MethodeNumerique):
         """
         super().__init__(fonction)
         self.__point_interet = point_interet 
+        self.__etendue_visible:float = 3
+        self.__representation = AffichageDerive.TANGENTE
         
-        
+    @property
+    def representation(self):
+        return self.__representation
+
+    @representation.setter
+    def representation(self, valeur):
+        self.__representation = valeur
+
     @property 
     def point_interet(self) -> float:
         return self.__point_interet 
@@ -21,6 +31,14 @@ class MethodeDerive(MethodeNumerique):
     @point_interet.setter
     def point_interet(self, valeur: float):
         self.__point_interet = valeur
+
+    @property
+    def etendue_visible(self):
+        return self.__etendue_visible
+
+    @etendue_visible.setter
+    def etendue_visible(self,valeur):
+        self.__etendue_visible = valeur
 
     def avoir_premiere_valeur(self):
         """Accéder à p-
@@ -48,5 +66,5 @@ class MethodeDerive(MethodeNumerique):
         """
         premiere_valeur = self.avoir_premiere_valeur()
         seconde_valeur = self.avoir_seconde_valeur()
-        return ( self.fonction.calculer(seconde_valeur) - self.fonction.calculer(premiere_valeur) )/ (self.precision)
+        return ( self.fonction_math.calculer(seconde_valeur) - self.fonction_math.calculer(premiere_valeur) )/ (self.precision)
     

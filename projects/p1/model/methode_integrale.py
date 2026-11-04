@@ -90,7 +90,7 @@ class MethodeIntegrale(MethodeNumerique):
         return points
 
     def avoir_coordonnees_trapezes(self) -> NDArray:
-        """Envoi le tableau 2d des points des trapèzes. Prende des tranches de l'axe y pour avoir le trapèze (genre [0,:])
+        """Envoi le tableau 2d des points des trapèzes. Prend des tranches de l'axe y pour avoir le trapèze (genre [0,:])
 
         Returns:
             NDArray: Le tableau

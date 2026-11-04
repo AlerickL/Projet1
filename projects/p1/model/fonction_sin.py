@@ -1,4 +1,5 @@
 import numpy as np
+from typing import override
 from projects.p1.model.fonction_math import FonctionMath
 from projects.p1.model.information import Information
 from projects.p1.model.transformation_canonique import TransformationCanonique
@@ -14,26 +15,23 @@ class FonctionSin(FonctionMath):
         
         super().__init__(info,formule_generale,[],transformations_canoniques)
 
+    @override
     @property
     def vrai_formule(self):
         return "sin(x)"
 
     # Méthode
 
+    @override
     def calculer(self,x:float) -> float:
-
         return super().calculer(x,np.sin)
     
+    @override
     def calculer_exacte_derive(self,x:float) -> float:
-        if not isinstance(x, int|float):
-            raise TypeError("x doit être réel")
-        
         return super().calculer_exacte_derive(x,np.cos)                               
-    
+
+    @override
     def calculer_exacte_integrale(self, borne_inferieur:float,borne_superieur:float) -> float:
-        if not isinstance(borne_inferieur, int|float)\
-        or not isinstance(borne_superieur, int|float):
-            raise TypeError("x doit être réel")
         
         primitive : callable = lambda x : -np.cos(x)
         return super().calculer_exacte_integrale(borne_inferieur,borne_superieur,primitive)

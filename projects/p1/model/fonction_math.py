@@ -7,10 +7,10 @@ from projects.p1.model.parametre import Parametre
 
 class FonctionMath(ABC):
     def __init__(self, info:Information, formule_generale:str,parametres:list[Parametre], transformations_canoniques : TransformationCanonique):
-        self._info = info
-        self._formule_generale = formule_generale
-        self._parametres = parametres
-        self._transformations_canoniques = transformations_canoniques
+        self._info: Information = info
+        self._formule_generale: str = formule_generale
+        self._parametres: list[Parametre] = parametres
+        self._transformations_canoniques: TransformationCanonique = transformations_canoniques
 
     @property
     def info(self) ->Information:
@@ -20,6 +20,7 @@ class FonctionMath(ABC):
             Information: L'information
         """
         return self._info
+    
     @property
     def formule_generale(self) -> str:
         """Formule générale de la fonction
@@ -65,17 +66,21 @@ class FonctionMath(ABC):
 
         Args:
             x (float): le point en x du calcul
+            fonction (callable): un fonction qui est utilisé pour le calcul
 
         Returns:
             float: la valeur en y
         """
         return self._transformations_canoniques.zoom_y.valeur*fonction((x-self._transformations_canoniques.trans_x.valeur)/self._transformations_canoniques.zoom_x.valeur) + self._transformations_canoniques.trans_y.valeur
         
-    def calculer_np(self,borne_inf,borne_sup,nombre_div) -> np.ndarray:
+    def calculer_np(self,borne_inf:float, borne_sup:float ,nombre_div:int) -> np.ndarray:
         """Calculer avec la fonction les valeurs en y pour une collection de points en x
 
         Args:
             x (np.ndarray): La collection de valeurs en x
+            borne_inf (float): la première valeur du vecteur 
+            borne_sup (float): la dernière valeur du vecteur
+            nombre_div (float): le nombre de valeur du vecteur
 
         Returns:
             np.ndarray: les résultats en y 
@@ -89,6 +94,7 @@ class FonctionMath(ABC):
 
         Args:
             x (float): le point d'intérêt du calcul de dérivé
+            derive (callable): la fonction que l'on obtient quand on dérive. Ex: cos est la dérivé de sin
 
         Returns:
             float: la dérivé au point x de la fonction
@@ -105,6 +111,7 @@ class FonctionMath(ABC):
         Args:
             borne_inferieur (float): La borne inférieur de l'interval
             borne_superieur (float): La borne supérieur de l'interval
+            primitive (callable): la fonction primitive de celle qu'on évalue. Ex: sin est la primitive de cos
 
         Returns:
             float: La valeur de l'intégrale dans l'interval

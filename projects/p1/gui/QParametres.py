@@ -30,6 +30,9 @@ class QParametres(QBoutonMultipleRealSliderSpinBox):
         super().__init__("Paramètres de la fonction",self.__reels,[self.__boutonInformation,self.__boutonReinitialiser],parent)
         self.valeurChanger.connect(self.__modifierModele)
 
+        for i in range(len(self.__reels)):
+            self.__reels[i].setToolTip(self.__fonction_math.parametres[i].info.resume)
+
     def actualiserParametres(self):
         self.__reels = []
         for parametre in self.__fonction_math.parametres:

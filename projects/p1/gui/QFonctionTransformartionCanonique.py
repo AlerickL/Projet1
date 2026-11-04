@@ -9,6 +9,7 @@ from projects.p1.model.modele import Modele
 from projects.p1.gui.QMenuDeroulant import QMenuDeroulant
 from projects.p1.gui.QMenuFormule import QMenuFormule
 from projects.p1.gui.QParametres import QParametres
+from projects.p1.gui.QMethode import QMethode
 from projects.p1.gui.QSelectionFonction import QSelectionFonction
 from projects.p1.gui.QTransformationCanonique import QTransformationCanonique
 
@@ -17,21 +18,25 @@ class QFonctionTransformationCanonique(QWidget):
     """
     modeleChanger = Signal()
     def __init__(self,modele:Modele):
+        self.__modele:Modele = modele
         super().__init__()
-        self.__selectionFonction = QSelectionFonction(modele)
-        self.__transformationCanonique = QTransformationCanonique(modele)
-        self.__selectionFonction.modeleChanger.connect(self.__test)
-        self.__transformationCanonique.modeleChanger.connect(self.__test)
+        self.__selectionFonction = QSelectionFonction(self.__modele)
+        self.__transformationCanonique = QTransformationCanonique(self.__modele)
+        self.__methode = QMethode(self.__modele)
+
+        self.modeleChanger.connect(self.__test)
 
         principalLayout = QVBoxLayout()
 
         principalLayout.addWidget(self.__selectionFonction)
         principalLayout.addWidget(self.__transformationCanonique)
+        principalLayout.addWidget(self.__methode)
 
         self.setLayout(principalLayout)
         
         self.__selectionFonction.modeleChanger.connect(self.modeleChanger)
         self.__transformationCanonique.modeleChanger.connect(self.modeleChanger) 
+        self.__methode.modeleChanger.connect(self.modeleChanger)
 
 
     def __test(self):

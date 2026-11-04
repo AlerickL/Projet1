@@ -13,14 +13,14 @@ from projects.p1.gui.QMenuDeroulant import QMenuDeroulant
 from projects.p1.gui.QMenuFormule import QMenuFormule
 from projects.p1.gui.QSelectionFonction import QSelectionFonction
 from projects.p1.gui.QFonctionTransformartionCanonique import QFonctionTransformationCanonique
-from projects.p1.gui.QGraphTest import QGraphTest
+from projects.p1.gui.QGraphique import QGraphique
 
 class QApp(QWidget):
 
     def __init__(self,modele):
         super().__init__()
         self.__modele = modele
-        self.__graphe = QGraphTest(self.__modele)
+        self.__graphe = QGraphique(self.__modele)
         self.__fonctionSelectionTransformationCanonique = QFonctionTransformationCanonique(modele)
 
 

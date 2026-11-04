@@ -22,28 +22,24 @@ class QTransformationCanonique(QBoutonMultipleRealSliderSpinBox):
         self.__reelTransX.setRange(modele.transformation_canonique.trans_x.min_valeur,modele.transformation_canonique.trans_x.max_valeur)
         self.__reelTransX.setValue(modele.transformation_canonique.trans_x.defaut_valeur)
         self.__reelTransX.setToolTip(self.__modele.transformation_canonique.trans_x.info.resume)
-        self.__reelTransX.valueChanged.connect(self.__modifierModele)
 
         self.__reelTransY:QRealSliderSpinBox = QRealSliderSpinBox()
         self.__reelTransY.setPrefix(modele.transformation_canonique.trans_y.info.nom+ " ")
         self.__reelTransY.setRange(modele.transformation_canonique.trans_y.min_valeur,modele.transformation_canonique.trans_y.max_valeur)
         self.__reelTransY.setValue(modele.transformation_canonique.trans_y.defaut_valeur)
         self.__reelTransY.setToolTip(self.__modele.transformation_canonique.trans_y.info.resume)
-        self.__reelTransY.valueChanged.connect(self.__modifierModele)
 
         self.__reelZoomX:QRealSliderSpinBox = QRealSliderSpinBox()
         self.__reelZoomX.setPrefix(modele.transformation_canonique.zoom_x.info.nom+ " ")
         self.__reelZoomX.setRange(modele.transformation_canonique.zoom_x.min_valeur,modele.transformation_canonique.zoom_x.max_valeur)
         self.__reelZoomX.setValue(modele.transformation_canonique.zoom_x.defaut_valeur)
         self.__reelZoomX.setToolTip(self.__modele.transformation_canonique.zoom_x.info.resume)
-        self.__reelZoomX.valueChanged.connect(self.__modifierModele)
 
         self.__reelZoomY:QRealSliderSpinBox = QRealSliderSpinBox()
         self.__reelZoomY.setPrefix(modele.transformation_canonique.zoom_y.info.nom+ " ")
         self.__reelZoomY.setRange(modele.transformation_canonique.zoom_y.min_valeur,modele.transformation_canonique.zoom_y.max_valeur)
         self.__reelZoomY.setValue(modele.transformation_canonique.zoom_y.defaut_valeur)
         self.__reelZoomY.setToolTip(self.__modele.transformation_canonique.zoom_y.info.resume)
-        self.__reelZoomY.valueChanged.connect(self.__modifierModele)
 
         boutonInformation = QPushButton("Information")
         boutonIdentite = QPushButton("Identité")
@@ -57,19 +53,25 @@ class QTransformationCanonique(QBoutonMultipleRealSliderSpinBox):
 
         super().__init__("Transformations canoniques",[self.__reelTransX,self.__reelTransY,self.__reelZoomX,self.__reelZoomY],[boutonInformation,boutonIdentite,boutonSymetrieX,boutonSymetrieY],parent)
 
+        self.valeurChanger.connect(self.__modifierModele)
+
     @Slot()
     def __donnerInformation(self):
         QMessageBox.information(self,"Transformations canoniqes","Les transformations canoniques sont les déplacements de la fonction dans le plan.\nLe bouton identité réinitialise les paramètres. Les deux autres applique une symétrie à la fonction selon l'axe mentionné.\nElles appliquent la symétrie sur la fonction actuelle et non celle de l'identité.")
 
     @Slot()
     def __mettreIdentite(self) -> None:
+        self.blockSignals(True)
         self.__modele.mettre_identite()
         self.__appliquerModele()
+        self.blockSignals(False)
+        self.modeleChanger.emit()
 
     @Slot()
     def __mettreSymetrieX(self) -> None:
         self.__modele.mettre_symetrie_x()
         self.__appliquerModele()
+        
 
     @Slot()
     def __mettreSymetrieY(self) -> None:
@@ -77,11 +79,11 @@ class QTransformationCanonique(QBoutonMultipleRealSliderSpinBox):
             self.__appliquerModele()
 
     def __appliquerModele(self) -> None:
-        self.modeleChanger.emit()
         self.__reelTransX.setValue(self.__modele.transformation_canonique.trans_x.valeur)
         self.__reelTransY.setValue(self.__modele.transformation_canonique.trans_y.valeur)
         self.__reelZoomX.setValue(self.__modele.transformation_canonique.zoom_x.valeur)
         self.__reelZoomY.setValue(self.__modele.transformation_canonique.zoom_y.valeur)
+        self.modeleChanger.emit()
 
     def __modifierModele(self) -> None:
         print("HHHHHHHHHHHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")

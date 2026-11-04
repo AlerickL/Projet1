@@ -12,7 +12,7 @@ class FonctionSinAmortie(FonctionMath):
         info:Information = Information("Fonction sinus amortie",\
                                     "Fonction combinant l'exponentiel et la sinus", "Elle est utilisée en physique.")
         formule_generale: str = "e^(-px)*sin(x)"
-        amplitude: Parametre = Parametre(Information("amplitude","Amplitude de la fonction sinus amortie",""),2,-10,10,0)
+        amplitude: Parametre = Parametre(Information("amplitude","Amplitude de la fonction sinus amortie",""),2,-0.5,0.5,0)
         super().__init__(info,formule_generale,[amplitude],transformations_canoniques)
 
     @property

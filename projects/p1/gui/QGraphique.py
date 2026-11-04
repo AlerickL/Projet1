@@ -20,7 +20,7 @@ class QGraphique(pg.PlotWidget):
         
         self.plotItem.enableAutoRange()
         __xValeurs, __yValeurs = self.__modele.fonction_math.calculer_np(-10, 10, 500)
-        self.__line : pg.PlotDataItem = pg.PlotDataItem(__xValeurs, __yValeurs, pen="purple", width=2)
+        self.__line : pg.PlotDataItem = pg.PlotDataItem(__xValeurs, __yValeurs, pen="yellow", width=4)
         self.__viewBox : pg.ViewBox = self.getViewBox()
     
 

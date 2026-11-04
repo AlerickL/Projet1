@@ -11,7 +11,7 @@ from projects.p1.gui.QMenuFormule import QMenuFormule
 from projects.p1.gui.QParametres import QParametres
 import pyqtgraph as pg
 
-class QGraphTest(pg.PlotWidget):
+class QGraphique(pg.PlotWidget):
     def __init__(self,modele:Modele):
         super().__init__()
         self.__modele = modele
@@ -21,6 +21,7 @@ class QGraphTest(pg.PlotWidget):
 # fix renitialiser puisque le graphique ne se met pas à jour quand on change de fonction
 
     def actualiser(self):
+        self.plotItem.clear()
         self.plotItem.setTitle(self.__modele.fonction_math.info.nom)
         xValeurs, yValeurs = self.__modele.fonction_math.calculer_np(0.0,1.0,100)
         self.plotItem.plot(xValeurs, yValeurs)

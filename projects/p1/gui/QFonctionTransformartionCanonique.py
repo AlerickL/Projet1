@@ -20,19 +20,20 @@ class QFonctionTransformationCanonique(QWidget):
     def __init__(self,modele:Modele):
         super().__init__()
         self.__selectionFonction = QSelectionFonction(modele)
-        self.__TransformationCanonique = QTransformationCanonique(modele)
+        self.__transformationCanonique = QTransformationCanonique(modele)
         self.__selectionFonction.modeleChanger.connect(self.__test)
-        self.__TransformationCanonique.modeleChanger.connect(self.__test)
+        self.__transformationCanonique.modeleChanger.connect(self.__test)
 
         principalLayout = QVBoxLayout()
 
         principalLayout.addWidget(self.__selectionFonction)
-        principalLayout.addWidget(self.__TransformationCanonique)
+        principalLayout.addWidget(self.__transformationCanonique)
 
         self.setLayout(principalLayout)
         
         self.selectionFonction.modeleChanger.connect(self.modeleChanger)
         self.__TransformationCanonique.modeleChanger.connect(self.modeleChanger) 
+
 
     def __test(self):
         print("TTTesTTT")

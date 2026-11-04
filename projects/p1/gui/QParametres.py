@@ -24,7 +24,6 @@ class QParametres(QBoutonMultipleRealSliderSpinBox):
 
         self.__boutonInformation = QPushButton("Information")
         self.__boutonReinitialiser = QPushButton("Réinitialiser")
-
         self.__boutonInformation.pressed.connect(self.__donnerInformation)
         self.__boutonReinitialiser.pressed.connect(self.__reinitialiser)
 

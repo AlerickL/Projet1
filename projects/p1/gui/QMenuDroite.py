@@ -17,9 +17,6 @@ class QMenuDroite(QWidget):
     """Widget combinant QSelectionFormule et QTransformationCanonique.
     """
     modeleChanger = Signal()
-    tangente = Signal()
-    secante = Signal()
-    tangenteEtSecante = Signal()
     def __init__(self,modele:Modele):
         self.__modele:Modele = modele
         super().__init__()
@@ -39,7 +36,3 @@ class QMenuDroite(QWidget):
         self.__selectionFonction.modeleChanger.connect(self.modeleChanger)
         self.__transformationCanonique.modeleChanger.connect(self.modeleChanger) 
         self.__methode.modeleChanger.connect(self.modeleChanger)
-
-        self.__methode.tangente.connect(self.tangente.emit)
-        self.__methode.secante.connect(self.secante.emit)
-        self.__methode.tangenteEtSecante.connect(self.tangenteEtSecante.emit)

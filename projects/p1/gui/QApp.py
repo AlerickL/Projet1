@@ -35,7 +35,3 @@ class QApp(QWidget):
         self.setLayout(principalLayout)
 
         self.__menuDroite.modeleChanger.connect(self.__graphe.actualiser)
-
-        self.__menuDroite.tangente.connect(self.__graphe.afficher_tangente)
-        self.__menuDroite.secante.connect(self.__graphe.afficher_secante)
-        self.__menuDroite.tangenteEtSecante.connect(self.__graphe.afficher_tangente_et_secante)

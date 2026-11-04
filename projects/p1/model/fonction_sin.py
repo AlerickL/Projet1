@@ -28,7 +28,8 @@ class FonctionSin(FonctionMath):
     
     @override
     def calculer_exacte_derive(self,x:float) -> float:
-        return super().calculer_exacte_derive(x,np.cos)                               
+        derive = lambda x : np.cos(x)
+        return super().calculer_exacte_derive(x, derive)                               
 
     @override
     def calculer_exacte_integrale(self, borne_inferieur:float,borne_superieur:float) -> float:

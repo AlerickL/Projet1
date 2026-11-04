@@ -3,7 +3,7 @@ import sys
 from typing import override, cast
 from PySide6.QtCore import Qt, Signal, Slot
 from PySide6.QtGui import QPixmap, QColor, QShowEvent
-from PySide6.QtWidgets import QApplication, QWidget, QLabel, QSlider, QHBoxLayout, QVBoxLayout, QComboBox
+from PySide6.QtWidgets import QApplication, QWidget, QLabel, QSlider, QHBoxLayout, QVBoxLayout, QComboBox, QSizePolicy
 from edustem.pyside6.widgets.q_slider_spin_box import QRealSliderSpinBox
 from projects.p1.gui.QFonctionTransformartionCanonique import QFonctionTransformationCanonique
 from projects.p1.gui.QParametres import QParametres
@@ -22,7 +22,7 @@ class QApp(QWidget):
         self.__modele = modele
         self.__graphe = QGraphique(modele)
         self.__fonctionSelectionTransformationCanonique = QFonctionTransformationCanonique(self.__modele)
-
+        self.__fonctionSelectionTransformationCanonique.setSizePolicy(QSizePolicy.Policy.Maximum,QSizePolicy.Policy.Maximum)
 
         principalLayout = QHBoxLayout()
         droiteLayout = QVBoxLayout()

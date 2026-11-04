@@ -55,8 +55,6 @@ class QTransformationCanonique(QBoutonMultipleRealSliderSpinBox):
         boutonSymetrieX.pressed.connect(self.__mettreSymetrieX)
         boutonSymetrieY.pressed.connect(self.__mettreSymetrieY)
 
-        # cast(QHBoxLayout, self.layout()).addWidget(self.__boutonLayout)
-
         super().__init__("Transformations canoniques",[self.__reelTransX,self.__reelTransY,self.__reelZoomX,self.__reelZoomY],[boutonInformation,boutonIdentite,boutonSymetrieX,boutonSymetrieY],parent)
 
     @Slot()
@@ -86,6 +84,9 @@ class QTransformationCanonique(QBoutonMultipleRealSliderSpinBox):
         self.__reelZoomY.setValue(self.__modele.transformation_canonique.zoom_y.valeur)
 
     def __modifierModele(self) -> None:
-        for i in range(4):
-            self.__modele.transformation_canonique.trans_x.valeur = self.valeurs()[i]
+        print("HHHHHHHHHHHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+        self.__modele.transformation_canonique.trans_x.valeur = self.valeurs()[0]
+        self.__modele.transformation_canonique.trans_y.valeur = self.valeurs()[1]
+        self.__modele.transformation_canonique.zoom_x.valeur = self.valeurs()[2]
+        self.__modele.transformation_canonique.zoom_y.valeur = self.valeurs()[3]
         self.modeleChanger.emit()

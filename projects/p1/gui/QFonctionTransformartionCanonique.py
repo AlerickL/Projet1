@@ -31,8 +31,8 @@ class QFonctionTransformationCanonique(QWidget):
 
         self.setLayout(principalLayout)
         
-        self.selectionFonction.modeleChanger.connect(self.modeleChanger)
-        self.__TransformationCanonique.modeleChanger.connect(self.modeleChanger) 
+        self.__selectionFonction.modeleCharger.connect(self.modeleChanger)
+        self.__transformationCanonique.modeleCharger.connect(self.modeleChanger) 
 
 
     def __test(self):

@@ -45,7 +45,7 @@ class QMethode(QBoutonMultipleRealSliderSpinBox):
         boutonDerive.pressed.connect(self.__mettreMethodeDerive)
         boutonIntegrale.pressed.connect(self.__mettreMethodeIntegrale)
 
-        self.__methode = "sansMethode"
+
 
     @property
     def methode(self):
@@ -55,16 +55,13 @@ class QMethode(QBoutonMultipleRealSliderSpinBox):
         self.__methodeDerive.setVisible(False)
         self.__methodeIntegrale.setVisible(False)
         self.__sansMethode.setVisible(True)
-        self.__methode = "sansMethode"
 
     def __mettreMethodeDerive(self):
         self.__methodeDerive.setVisible(True)
         self.__methodeIntegrale.setVisible(False)
         self.__sansMethode.setVisible(False)
-        self.__methode = "methodeDerive"
 
     def __mettreMethodeIntegrale(self):
         self.__methodeDerive.setVisible(False)
         self.__methodeIntegrale.setVisible(True)
         self.__sansMethode.setVisible(False)
-        self.__methode = "methodeIntegrale"

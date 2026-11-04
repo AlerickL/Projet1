@@ -54,7 +54,7 @@ class MethodeIntegrale(MethodeNumerique):
 
     def __calculer_avec_trapeze(self) -> float: 
         pas_intergration = self.__avoir_pas_integration()
-        somme = 0 
+        # somme = 0 
         x_i = self.__intervalle[0]+np.arange(1, self.precision - 1)*pas_intergration # supposément vectorisé
         liste_somme = self._fonction_math.calculer(x_i) + self._fonction_math.calculer(self.intervalle[1]) 
         somme = np.sum(liste_somme)

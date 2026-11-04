@@ -4,7 +4,7 @@ from projects.p1.model.methode_numerique import MethodeNumerique
 from projects.p1.model.affichage_derive import AffichageDerive
 
 class MethodeDerive(MethodeNumerique):
-    @override
+    """Permet de gérer les dérivé"""
     def __init__(self, fonction: FonctionMath, point_interet:float):
         """initialise 
         Args:

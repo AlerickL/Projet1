@@ -21,7 +21,7 @@ class QApp(QWidget):
         super().__init__()
         self.__modele = modele
         self.__graphe = QGraphique(self.__modele)
-        self.__fonctionSelectionTransformationCanonique = QFonctionTransformationCanonique(modele)
+        self.__fonctionSelectionTransformationCanonique = QFonctionTransformationCanonique(self.__modele)
 
 
         principalLayout = QHBoxLayout()

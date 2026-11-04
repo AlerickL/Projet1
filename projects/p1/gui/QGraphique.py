@@ -16,11 +16,11 @@ class QGraphique(pg.PlotWidget):
         super().__init__()
         self.__modele = modele
         self.plotItem.setTitle(self.__modele.fonction_math.info.nom)
-        xValeurs, yValeurs = self.__modele.fonction_math.calculer_np(0.0,1.0,100)
+        xValeurs, yValeurs = self.__modele.fonction_math.calculer_np(-10,10,100)
         self.plotItem.plot(xValeurs, yValeurs)
 
     def actualiser(self):
         self.plotItem.clear()
         self.plotItem.setTitle(self.__modele.fonction_math.info.nom)
-        xValeurs, yValeurs = self.__modele.fonction_math.calculer_np(0.0,1.0,100)
+        xValeurs, yValeurs = self.__modele.fonction_math.calculer_np(-10.0,10.0,100)
         self.plotItem.plot(xValeurs, yValeurs)

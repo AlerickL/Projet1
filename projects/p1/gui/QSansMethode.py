@@ -12,6 +12,7 @@ from projects.p1.gui.QMenuDeroulant import QMenuDeroulant
 from projects.p1.gui.QMenuFormule import QMenuFormule
 from projects.p1.gui.QSelectionFonction import QSelectionFonction
 from projects.p1.gui.QFonctionTransformartionCanonique import QFonctionTransformationCanonique
+from projects.p1.gui.QGraphique import QGraphique
 
 
 class QSansMethode(QWidget):
@@ -21,6 +22,6 @@ class QSansMethode(QWidget):
 
         principalLayout = QHBoxLayout()
 
-        principalLayout.addLayout(self.__label)
+        principalLayout.addWidget(self.__label)
 
         self.setLayout(principalLayout)

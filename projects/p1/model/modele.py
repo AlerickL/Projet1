@@ -10,6 +10,7 @@ from projects.p1.model.methode_integrale import MethodeIntegrale
 from typing import override
 from projects.p1.model.forme_integrale import FormeIntegrale
 from projects.p1.model.affichage_derive import AffichageDerive
+from projects.p1.model.affichage_methode import affichageMethode
 
 class Modele:
     def __init__(self):
@@ -24,6 +25,15 @@ class Modele:
         self.__fonction_double_bosse = FonctionDoubleBosse(self.__transformation_canonique)
         self.__methode_derive = MethodeDerive(self.__fonction_math,0)
         self.__methode_integrale = MethodeIntegrale(self.__fonction_math,(0,1))
+        self.__methode_affiche = affichageMethode.AUCUNE
+
+    @property
+    def methode_derive_a_afficher(self):
+        return self.__methode_affiche == affichageMethode.DERIVE
+
+    @property
+    def methode_integrale_a_afficher(self):
+        return self.__methode_affiche == affichageMethode.INTEGRALE
 
     @property
     def transformation_canonique(self):

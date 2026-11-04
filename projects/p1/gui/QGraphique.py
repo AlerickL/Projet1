@@ -11,7 +11,7 @@ from projects.p1.gui.QMenuFormule import QMenuFormule
 from projects.p1.gui.QParametres import QParametres
 import pyqtgraph as pg
 
-class QGraphTest(pg.PlotWidget):
+class QGraphique(pg.PlotWidget):
     def __init__(self,modele:Modele):
         super().__init__()
         self.__modele = modele

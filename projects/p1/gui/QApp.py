@@ -20,7 +20,7 @@ class QApp(QWidget):
     def __init__(self,modele):
         super().__init__()
         self.__modele = modele
-        self.__graphe = QGraphique(self.__modele)
+        self.__graphe = QGraphique(modele)
         self.__fonctionSelectionTransformationCanonique = QFonctionTransformationCanonique(self.__modele)
 
 

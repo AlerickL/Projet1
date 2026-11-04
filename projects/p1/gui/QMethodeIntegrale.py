@@ -12,7 +12,6 @@ from projects.p1.model.modele import Modele
 from projects.p1.gui.QMenuDeroulant import QMenuDeroulant
 from projects.p1.gui.QMenuFormule import QMenuFormule
 from projects.p1.gui.QSelectionFonction import QSelectionFonction
-from projects.p1.gui.QFonctionTransformartionCanonique import QFonctionTransformationCanonique
 
 class QMethodeIntegrale(QBoutonMultipleRealSliderSpinBox):
     modeleChanger = Signal()

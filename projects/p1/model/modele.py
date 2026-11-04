@@ -28,12 +28,21 @@ class Modele:
         self.__methode_affiche = affichageMethode.AUCUNE
 
     @property
-    def methode_derive_a_afficher(self):
+    def methode_derive_a_afficher(self) -> bool:
         return self.__methode_affiche == affichageMethode.DERIVE
 
     @property
-    def methode_integrale_a_afficher(self):
+    def methode_integrale_a_afficher(self) -> bool:
         return self.__methode_affiche == affichageMethode.INTEGRALE
+
+    def mettre_affichage_derive(self) -> None:
+        self.__methode_affiche = affichageMethode.DERIVE
+
+    def mettre_affichage_integrale(self) -> None:
+        self.__methode_affiche = affichageMethode.INTEGRALE
+
+    def mettre_affichage_aucun(self) -> None:
+        self.__methode_affiche = affichageMethode.AUCUNE
 
     @property
     def transformation_canonique(self):

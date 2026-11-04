@@ -26,7 +26,7 @@ class TransformationCanonique:
         info_zoom_x: Information = Information("Aggrandissement en x",  "Aggrandir horizontalement la fonction")
         self.__zoom_x: Parametre = Parametre(info_zoom_x, precision, min, max, self.__defaut_zoom)
 
-        info_zoom_y: Information = Information("Aggrandissement en y",  "Aggrandir horizontalement la fonction")
+        info_zoom_y: Information = Information("Aggrandissement en y",  "Aggrandir verticalement la fonction")
         self.__zoom_y: Parametre = Parametre(info_zoom_y, precision, min, max, self.__defaut_zoom)
 
 

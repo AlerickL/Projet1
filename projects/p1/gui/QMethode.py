@@ -5,23 +5,21 @@ from PySide6.QtCore import Qt, Signal, Slot
 from PySide6.QtGui import QPixmap, QColor, QShowEvent
 from PySide6.QtWidgets import QApplication, QWidget, QLabel, QSlider, QHBoxLayout, QVBoxLayout, QComboBox, QPushButton
 from edustem.pyside6.widgets.q_slider_spin_box import QRealSliderSpinBox
-from projects.p1.gui.QFonctionTransformartionCanonique import QFonctionTransformationCanonique
 from projects.p1.gui.QParametres import QParametres
 from projects.p1.gui.QTransformationCanonique import QTransformationCanonique
 from projects.p1.model.modele import Modele
 from projects.p1.gui.QMenuDeroulant import QMenuDeroulant
 from projects.p1.gui.QMenuFormule import QMenuFormule
 from projects.p1.gui.QSelectionFonction import QSelectionFonction
-from projects.p1.gui.QFonctionTransformartionCanonique import QFonctionTransformationCanonique
 from projects.p1.gui.QBoutonMultipleRealSliderSpinBox import QBoutonMultipleRealSliderSpinBox
 from projects.p1.gui.QSansMethode import QSansMethode
 from projects.p1.gui.QMethodeDerive import QMethodeDerive
 from projects.p1.gui.QMethodeIntegrale import QMethodeIntegrale
 
 class QMethode(QBoutonMultipleRealSliderSpinBox):
-
-    def __init__(self,modele):
-        self.__modele = modele
+    modeleChanger = Signal()
+    def __init__(self,modele:Modele):
+        self.__modele:Modele = modele
 
         boutonSansMethode = QPushButton("Aucune méthode")
         boutonDerive = QPushButton("Dérivé")
@@ -45,23 +43,32 @@ class QMethode(QBoutonMultipleRealSliderSpinBox):
         boutonDerive.pressed.connect(self.__mettreMethodeDerive)
         boutonIntegrale.pressed.connect(self.__mettreMethodeIntegrale)
 
+        self.__methodeDerive.modeleChanger.connect(self.modeleChanger)
+        self.__methodeIntegrale.modeleChanger.connect(self.modeleChanger)
+
 
 
     @property
     def methode(self):
-        return self.__methode
+        return self.__methode.me
 
     def __mettreSansMethode(self):
+        self.__modele.mettre_affichage_aucun()
         self.__methodeDerive.setVisible(False)
         self.__methodeIntegrale.setVisible(False)
         self.__sansMethode.setVisible(True)
+        self.modeleChanger.emit()
 
     def __mettreMethodeDerive(self):
+        self.__modele.mettre_affichage_derive()
         self.__methodeDerive.setVisible(True)
         self.__methodeIntegrale.setVisible(False)
         self.__sansMethode.setVisible(False)
+        self.modeleChanger.emit()
 
     def __mettreMethodeIntegrale(self):
+        self.__modele.mettre_affichage_integrale()
         self.__methodeDerive.setVisible(False)
         self.__methodeIntegrale.setVisible(True)
         self.__sansMethode.setVisible(False)
+        self.modeleChanger.emit()

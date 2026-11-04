@@ -89,7 +89,7 @@ class FonctionMath(ABC):
         return x, self.calculer(x)
 
     @abstractmethod
-    def calculer_exacte_derive(self,x:float,derive:callable) -> float:
+    def calculer_exacte_derive(self,x:float, derive:callable) -> float:
         """Calculer la dérivé exacte de la fonction (analytiquement) en un point x
 
         Args:

@@ -81,12 +81,13 @@ class MethodeIntegrale(MethodeNumerique):
         Returns:
             NDArray: Le tableau
         """
-        pas = self.__avoir_pas_integration
-        premieres_coordonnees = self.__avoir_serie_x_i()
-        secondes_coordonnees = premieres_coordonnees + pas
-        points_interets = self.__avoir_points_interets()
-        autres_coordonnees = self._fonction_math.calculer(points_interets)
-        points = np.stack((premieres_coordonnees,secondes_coordonnees,autres_coordonnees,autres_coordonnees),axis=1)
+        __pas = self.__avoir_pas_integration
+        __axe_x_de_gauche = self.__avoir_serie_x_i()
+        __axe_x_de_droite = __axe_x_de_gauche + __pas
+        __points_interets = self.__avoir_points_interets()
+        __axe_y_haut = self._fonction_math.calculer(__points_interets)
+        __axe_y_bas = np.zeros(__axe_x_de_gauche.shape[0])
+        points = np.stack((__axe_x_de_gauche, __axe_x_de_droite, __axe_y_haut, __axe_y_bas), axis=1)
         return points
 
     def avoir_coordonnees_trapezes(self) -> NDArray:

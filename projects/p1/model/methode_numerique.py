@@ -5,7 +5,7 @@ class MethodeNumerique(ABC):
 
     def __init__(self,fonction_math:FonctionMath):
         self._fonction_math:FonctionMath = fonction_math
-        self._alpha:float = 0.0
+        self._alpha:float = 0.5
         self.__precision:int|float = 5.0
 
     @property

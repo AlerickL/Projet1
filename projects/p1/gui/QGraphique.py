@@ -17,22 +17,30 @@ class QGraphique(pg.PlotWidget):
         self.__modele : Modele = modele
         self.showGrid(x=True, y=True)
         self.setTitle(self.__modele.fonction_math.info.nom)
-        
-        self.plotItem.enableAutoRange()
+        self.setAspectLocked(True)
+
+        #Courbe principale
         __xValeurs, __yValeurs = self.__modele.fonction_math.calculer_np(-10, 10, 500)
-        self.__courbe : pg.PlotDataItem = pg.PlotDataItem(__xValeurs, __yValeurs, pen="yellow", width=4)
+        self.__courbe : pg.PlotDataItem = pg.PlotDataItem(__xValeurs, __yValeurs, pen="white", width=4)
         self.__viewBox : pg.ViewBox = self.getViewBox()
 
         self.addItem(self.__courbe)
-        
 
-        self.__tangente : pg.PlotDataItem = pg.PlotDataItem(pen="red",width=5)
+        # Tangente
+        self.__tangente : pg.PlotDataItem = pg.PlotDataItem((), (), pen="red", width=5)
         self.__tangente.hide()
-        self.__secante : pg.PlotDataItem = pg.PlotDataItem(pen="blue",width=5)
+
+        # Secante
+        self.__secante : pg.PlotDataItem = pg.PlotDataItem((), (), pen="yellow", width=5)
         self.__secante.hide()
 
+        #Point d'intérêt
+        self.__pointInteret : pg.ScatterPlotItem = pg.ScatterPlotItem((), (), pen="Red", size=10)
+        self.__pointInteret.hide()
+
         self.addItem(self.__tangente)
-        self.addItem(self.__secante)   
+        self.addItem(self.__secante)
+        self.addItem(self.__pointInteret)
 
         self.__viewBox.sigRangeChangedManually.connect(self.actualiser)
         
@@ -40,32 +48,56 @@ class QGraphique(pg.PlotWidget):
     @Slot()
     def actualiser(self):
         self.setTitle(self.__modele.fonction_math.info.nom)
-        __x_min, __x_max = self.__viewBox.viewRange()[0]
-        __xValeurs, __yValeurs = self.__modele.fonction_math.calculer_np(__x_min, __x_max, 500)
+        __xMin, __xMax = self.__viewBox.viewRange()[0]
+        __xValeurs, __yValeurs = self.__modele.fonction_math.calculer_np(__xMin, __xMax, 500)
         self.__courbe.setData(__xValeurs, __yValeurs)
 
-    @Slot()
-    def afficher_tangente(self, hide_secante:bool = True):
+        if self.__modele.methode_derive_a_afficher:
+            if self.__modele.tangente_a_afficher:
+                self.__afficherTangente()
+                print("afficher tangente")
+            if self.__modele.secante_a_afficher:
+                self.__afficherSecante()
+                print("afficher secante")
+            if self.__modele.tangente_et_secante_a_afficher:
+                self.__afficherTangenteEtSecante()
+        elif self.__modele.methode_integrale_a_afficher:
+            self.__pointInteret.hide()
+            self.__tangente.hide()
+            self.__secante.hide()
+            pass
+        else: # aucune méthode
+            self.__pointInteret.hide()
+            pass
+
+
+    def __afficherPointInteret(self):
+         self.__pointInteret.show()
+         _x, _y = self.__modele.methode_derive.point_interet, self.__modele.fonction_math.calculer(self.__modele.methode_derive.point_interet)
+         self.__pointInteret.setData([_x], [_y])
+    
+        
+    def __afficherTangente(self, cacherSecante:bool = True):
+        self.__afficherPointInteret()
         __xValeurs, __yValeurs = self.__modele.avoir_deux_points_tangente()
         self.__tangente.setData(__xValeurs, __yValeurs)
 
-        if hide_secante:
+        if cacherSecante:
             self.__secante.hide()
         self.__tangente.show()
-
-    @Slot()
-    def afficher_secante(self, hide_tangente:bool = True):
+    
+    def __afficherSecante(self, cacherTangente:bool = True):
+        self.__afficherPointInteret()
         __xValeurs, __yValeurs = self.__modele.avoir_deux_points_derive_approxime()
         self.__secante.setData(__xValeurs, __yValeurs)
 
-        if hide_tangente:
+        if cacherTangente:
             self.__tangente.hide()
         self.__secante.show()
-
-    @Slot()
-    def afficher_tangente_et_secante(self):
-        self.afficher_tangente(False)
-        self.afficher_secante(False)
+    
+    def __afficherTangenteEtSecante(self):
+        self.__afficherTangente(False)
+        self.__afficherSecante(False)
 
 
 

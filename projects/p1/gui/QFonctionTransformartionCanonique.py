@@ -15,8 +15,7 @@ from projects.p1.gui.QTransformationCanonique import QTransformationCanonique
 class QFonctionTransformationCanonique(QWidget):
     """Widget combinant QSelectionFormule et QTransformationCanonique.
     """
-    modeleCharger = Signal()
-    
+    modeleChanger = Signal()
     def __init__(self,modele:Modele):
         super().__init__()
         self.__selectionFonction = QSelectionFonction(modele)
@@ -31,8 +30,8 @@ class QFonctionTransformationCanonique(QWidget):
 
         self.setLayout(principalLayout)
         
-        self.__selectionFonction.modeleCharger.connect(self.modeleChanger)
-        self.__transformationCanonique.modeleCharger.connect(self.modeleChanger) 
+        self.__selectionFonction.modeleChanger.connect(self.modeleChanger)
+        self.__transformationCanonique.modeleChanger.connect(self.modeleChanger) 
 
 
     def __test(self):

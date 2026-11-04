@@ -55,15 +55,15 @@ class MethodeIntegrale(MethodeNumerique):
     def __calculer_avec_trapeze(self) -> float: 
         pas_intergration = self.__avoir_pas_integration()
         # somme = 0 
-        x_i = self.__intervalle[0]+np.arange(1, self.precision - 1)*pas_intergration # supposément vectorisé
-        liste_somme = self._fonction_math.calculer(x_i) + self._fonction_math.calculer(self.intervalle[1]) 
-        somme = np.sum(liste_somme)
+        x_i = self.__intervalle[0]+np.arange(0, self.precision+1)*pas_intergration # supposément vectorisé
+        f_i = self._fonction_math.calculer(x_i)
+        somme = np.sum(f_i[1:self.precision])
         # for i in range(1, self.precision - 1):      # Non vectorisé
             
         #     x_i = self.__intervalle[0] + i * pas_intergration
         #     somme += self._fonction_math.calculer(x_i) + self._fonction_math.calculer(self.intervalle[1]) 
             
-        return (somme * 2 + self._fonction_math.calculer(self.intervalle[0])) * pas_intergration / 2
+        return (somme * 2 + f_i[0] + f_i[self.precision]) * pas_intergration / 2
     
     def __calculer_avec_rectangle (self) -> float : 
         pas_intergration =self.__avoir_pas_integration()

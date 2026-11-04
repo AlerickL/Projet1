@@ -18,8 +18,10 @@ class QGraphTest(pg.PlotWidget):
         self.plotItem.setTitle(self.__modele.fonction_math.info.nom)
         xValeurs, yValeurs = self.__modele.fonction_math.calculer_np(0.0,1.0,100)
         self.plotItem.plot(xValeurs, yValeurs)
+# fix renitialiser puisque le graphique ne se met pas à jour quand on change de fonction
 
     def actualiser(self):
         self.plotItem.setTitle(self.__modele.fonction_math.info.nom)
         xValeurs, yValeurs = self.__modele.fonction_math.calculer_np(0.0,1.0,100)
         self.plotItem.plot(xValeurs, yValeurs)
+    

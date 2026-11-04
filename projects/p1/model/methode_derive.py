@@ -43,12 +43,12 @@ class MethodeDerive(MethodeNumerique):
     def avoir_premiere_valeur(self):
         """Accéder à p-
         """
-        return self.__point_interet - self.alpha*self.precision
+        return self.__point_interet - self.alpha * self.precision
 
     def avoir_seconde_valeur(self):
         """Accéder à p+
         """
-        return self.__point_interet + (1 - self.alpha )*self.precision
+        return self.__point_interet + (1 - self.alpha ) * self.precision
 
     def avoir_regle_tangente(self):
         pente = self._fonction_math.calculer_exacte_derive(self.point_interet)

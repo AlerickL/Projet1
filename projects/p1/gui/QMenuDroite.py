@@ -13,10 +13,13 @@ from projects.p1.gui.QMethode import QMethode
 from projects.p1.gui.QSelectionFonction import QSelectionFonction
 from projects.p1.gui.QTransformationCanonique import QTransformationCanonique
 
-class QFonctionTransformationCanonique(QWidget):
+class QMenuDroite(QWidget):
     """Widget combinant QSelectionFormule et QTransformationCanonique.
     """
     modeleChanger = Signal()
+    tangente = Signal()
+    secante = Signal()
+    tangenteEtSecante = Signal()
     def __init__(self,modele:Modele):
         self.__modele:Modele = modele
         super().__init__()
@@ -24,7 +27,6 @@ class QFonctionTransformationCanonique(QWidget):
         self.__transformationCanonique = QTransformationCanonique(self.__modele)
         self.__methode = QMethode(self.__modele)
 
-        self.modeleChanger.connect(self.__test)
 
         principalLayout = QVBoxLayout()
 
@@ -38,6 +40,6 @@ class QFonctionTransformationCanonique(QWidget):
         self.__transformationCanonique.modeleChanger.connect(self.modeleChanger) 
         self.__methode.modeleChanger.connect(self.modeleChanger)
 
-
-    def __test(self):
-        print("TTTesTTT")
+        self.__methode.tangente.connect(self.tangente.emit)
+        self.__methode.secante.connect(self.secante.emit)
+        self.__methode.tangenteEtSecante.connect(self.tangenteEtSecante.emit)

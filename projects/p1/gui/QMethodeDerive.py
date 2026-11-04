@@ -14,6 +14,9 @@ from projects.p1.gui.QBoutonMultipleRealSliderSpinBox import QBoutonMultipleReal
 
 class QMethodeDerive(QBoutonMultipleRealSliderSpinBox):
     modeleChanger = Signal()
+    tangente = Signal()
+    secante = Signal()
+    tangenteEtSecante = Signal()
     def __init__(self,modele:Modele):
         self.__modele = modele
 
@@ -61,8 +64,21 @@ class QMethodeDerive(QBoutonMultipleRealSliderSpinBox):
         self.layout().addWidget(self.__penteExacte)
 
         boutonTangente = QPushButton("Tangente")
+        boutonTangente.clicked.connect(self.tangente.emit)
         boutonSecante = QPushButton("Sécante")
+        boutonSecante.clicked.connect(self.secante.emit)
         boutonTotal = QPushButton("Les deux")
+        boutonTotal.clicked.connect(self.tangenteEtSecante.emit)
+
+
+        __layout_boutons = QHBoxLayout()
+        __layout_boutons.addWidget(boutonTangente)
+        __layout_boutons.addWidget(boutonSecante)
+        __layout_boutons.addWidget(boutonTotal)
+
+        self.layout().addLayout(__layout_boutons)
+
+        
 
         boutonTangente.pressed.connect(self.__mettreTangente)
         boutonSecante.pressed.connect(self.__mettreSecante)

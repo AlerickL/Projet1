@@ -18,6 +18,9 @@ from projects.p1.gui.QMethodeIntegrale import QMethodeIntegrale
 
 class QMethode(QBoutonMultipleRealSliderSpinBox):
     modeleChanger = Signal()
+    tangente = Signal()
+    secante = Signal()
+    tangenteEtSecante = Signal()
     def __init__(self,modele:Modele):
         self.__modele:Modele = modele
 
@@ -45,6 +48,10 @@ class QMethode(QBoutonMultipleRealSliderSpinBox):
 
         self.__methodeDerive.modeleChanger.connect(self.modeleChanger)
         self.__methodeIntegrale.modeleChanger.connect(self.modeleChanger)
+
+        self.__methodeDerive.tangente.connect(self.tangente.emit)
+        self.__methodeDerive.secante.connect(self.secante.emit)
+        self.__methodeDerive.tangenteEtSecante.connect(self.tangenteEtSecante.emit)
 
 
 

@@ -12,8 +12,6 @@ class FonctionSinAmortie(FonctionMath):
         info:Information = Information("Fonction sinus amortie",\
                                     "Fonction trigonométrique périodique définie par l'ordonné du cercle trigonométrique", "ce n'est pas une sinusite")
         formule_generale: str = "e^(-px)*sin(x)"
-        if not isinstance(transformations_canoniques,TransformationCanonique):
-            raise TypeError("transformations_canoniques doit être de type TransformationCanonique")
         amplitude: Parametre = Parametre(Information("amplitude","Amplitude de la fonction sinus amortie",""),2,-10,10,0)
         super().__init__(info,formule_generale,[amplitude],transformations_canoniques)
 
@@ -28,8 +26,6 @@ class FonctionSinAmortie(FonctionMath):
         return super().calculer(x, fonction)
         
     def calculer_exacte_derive(self, x:float) -> float:
-        if not isinstance(x, int|float):
-            raise TypeError("x doit être réel")
         derive = lambda x: np.exp(-1*self.parametres[0].valeur * x) * (np.cos(x) - self.parametres[0].valeur * np.sin(x))
         return super().calculer_exacte_derive(x, derive)
     

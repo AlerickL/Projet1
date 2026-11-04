@@ -69,14 +69,20 @@ class QTransformationCanonique(QBoutonMultipleRealSliderSpinBox):
 
     @Slot()
     def __mettreSymetrieX(self) -> None:
+        self.blockSignals(True)
         self.__modele.mettre_symetrie_x()
         self.__appliquerModele()
+        self.blockSignals(False)
+        self.modeleChanger.emit()
         
 
     @Slot()
     def __mettreSymetrieY(self) -> None:
-            self.__modele.mettre_symetrie_y()
-            self.__appliquerModele()
+        self.blockSignals(True)
+        self.__modele.mettre_symetrie_y()
+        self.__appliquerModele()
+        self.blockSignals(False)
+        self.modeleChanger.emit()
 
     def __appliquerModele(self) -> None:
         self.__reelTransX.setValue(self.__modele.transformation_canonique.trans_x.valeur)

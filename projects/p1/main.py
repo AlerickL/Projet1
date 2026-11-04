@@ -21,17 +21,11 @@ def main() -> None:
 
     modele = Modele()
 
-    reel = QRealSliderSpinBox()
-    reel2 = QRealSliderSpinBox()
-    reel.setPrefix("allo")
-    #window = QMultipleRealSliderSpinBox("titre",[reel,reel2])
-    #window = QTransformationCanonique(modele)
-    window = QMethodeIntegrale(modele)
+    window = QApp(modele)
     window.setWindowTitle("420-SF3 Projet 1")
     window.show()
 
     sys.exit(app.exec())
-
 
 if __name__ == "__main__":
     main()

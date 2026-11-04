@@ -20,6 +20,7 @@ class QGraphique(pg.PlotWidget):
         self.plotItem.plot(xValeurs, yValeurs)
 
     def actualiser(self):
+        self.plotItem.clear()
         self.plotItem.setTitle(self.__modele.fonction_math.info.nom)
         xValeurs, yValeurs = self.__modele.fonction_math.calculer_np(0.0,1.0,100)
         self.plotItem.plot(xValeurs, yValeurs)

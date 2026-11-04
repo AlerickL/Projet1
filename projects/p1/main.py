@@ -11,7 +11,7 @@ from projects.p1.gui.QSelectionFonction import QSelectionFonction
 from projects.p1.gui.QParametres import QParametres
 from projects.p1.gui.QFonctionTransformartionCanonique import QFonctionTransformationCanonique
 from projects.p1.model.modele import Modele
-from projects.p1.gui.QGraphique import QGraphTest
+from projects.p1.gui.QGraphique import QGraphique
 from projects.p1.gui.QApp import QApp
 from projects.p1.gui.QMethodeDerive import QMethodeDerive
 from projects.p1.gui.QMethodeIntegrale import QMethodeIntegrale

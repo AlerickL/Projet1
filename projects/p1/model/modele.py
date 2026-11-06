@@ -30,7 +30,7 @@ class Modele:
     @property
     def methode_derive_a_afficher(self) -> bool:
         return self.__methode_affiche == affichageMethode.DERIVE
-
+    
     @property
     def methode_integrale_a_afficher(self) -> bool:
         return self.__methode_affiche == affichageMethode.INTEGRALE
@@ -75,6 +75,18 @@ class Modele:
     @property
     def methode_integrale(self):
         return self.__methode_integrale
+
+    @property
+    def tangente_a_afficher(self) -> bool:
+        return self.__methode_derive.representation == AffichageDerive.TANGENTE
+
+    @property
+    def secante_a_afficher(self) -> bool:
+        return self.__methode_derive.representation == AffichageDerive.SECANTE
+
+    @property
+    def tangente_et_secante_a_afficher(self) -> bool:
+        return self.__methode_derive.representation == AffichageDerive.TOUT
     
     def changer_fonction_sin(self):
         self.__fonction_math = self.__fonction_sin
@@ -129,17 +141,17 @@ class Modele:
     def mettre_integrale_a_droite(self):
         self.methode_integrale._alpha = 1
 
-    def avoir_deux_points_derive_approxime(self) -> list[tuple[float,float],tuple[float,float]]:
+    def avoir_deux_points_derive_approxime(self) -> tuple[tuple[float,float],tuple[float,float]]:
         p_moins = self.methode_derive.avoir_premiere_valeur()
         p_plus = self.methode_derive.avoir_seconde_valeur()
-        return [(p_moins,self.fonction_math.calculer(p_moins)),(p_plus,self.methode_derive.avoir_seconde_valeur())]
+        return ((p_moins, p_plus),(self.fonction_math.calculer(p_moins), self.fonction_math.calculer(p_plus)))
 
-    def avoir_deux_points_tangente(self) -> list[tuple[float,float],tuple[float,float]]:
+    def avoir_deux_points_tangente(self) -> tuple[tuple[float,float],tuple[float,float]]:
         point_interet = self.__methode_derive.point_interet
         droite = self.__methode_derive.avoir_regle_tangente()
         x_moins = point_interet - self.methode_derive.etendue_visible
         x_plus = point_interet + self.methode_derive.etendue_visible
-        return [(x_moins,droite(x_moins)),(x_plus,droite(x_plus))]
+        return ((x_moins, x_plus), (droite(x_moins), droite(x_plus)))
 
     def mettre_mode_rectangle(self):
         self.methode_integrale.forme_integrale = FormeIntegrale.RECTANGLE

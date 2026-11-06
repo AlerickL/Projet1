@@ -61,8 +61,18 @@ class QMethodeDerive(QBoutonMultipleRealSliderSpinBox):
         self.layout().addWidget(self.__penteExacte)
 
         boutonTangente = QPushButton("Tangente")
+        boutonTangente.clicked.connect(self.__mettreTangente)
         boutonSecante = QPushButton("Sécante")
+        boutonSecante.clicked.connect(self.__mettreSecante)
         boutonTotal = QPushButton("Les deux")
+        boutonTotal.clicked.connect(self.__mettreTangenteEtSecante)
+
+        __layout_boutons = QHBoxLayout()
+        __layout_boutons.addWidget(boutonTangente)
+        __layout_boutons.addWidget(boutonSecante)
+        __layout_boutons.addWidget(boutonTotal)
+
+        self.layout().addLayout(__layout_boutons)
 
         boutonTangente.pressed.connect(self.__mettreTangente)
         boutonSecante.pressed.connect(self.__mettreSecante)

@@ -3,7 +3,7 @@ import sys
 from typing import override, cast
 from PySide6.QtCore import Qt, Signal, Slot
 from PySide6.QtGui import QPixmap, QColor, QShowEvent
-from PySide6.QtWidgets import QApplication, QWidget, QLabel, QSlider, QHBoxLayout, QVBoxLayout, QComboBox
+from PySide6.QtWidgets import QApplication, QWidget, QLabel, QSlider, QHBoxLayout, QVBoxLayout, QComboBox, QSizePolicy
 from edustem.pyside6.widgets.q_slider_spin_box import QRealSliderSpinBox
 from projects.p1.model.modele import Modele
 from projects.p1.gui.QMenuDeroulant import QMenuDeroulant
@@ -20,12 +20,16 @@ class QMenuFormule(QWidget):
         self.__modele = modele
         self._menu = QMenuDeroulant(modele)
         self.__vrai_formule = QLabel(self.__modele.avoir_vraie_formule())
+        self.__vrai_formule.setSizePolicy(QSizePolicy.Policy.Maximum,QSizePolicy.Policy.Maximum)
         
       
         principalLayout = QHBoxLayout()
         secondLayout = QVBoxLayout()
 
-        secondLayout.addWidget(QLabel("Sélection de la fonction"))
+        titre = QLabel("Sélection de la fonction")
+        titre.setSizePolicy(QSizePolicy.Policy.Maximum,QSizePolicy.Policy.Maximum)
+
+        secondLayout.addWidget(titre)
         secondLayout.addWidget(self._menu)
         secondLayout.addWidget(self.__vrai_formule)
 

@@ -13,7 +13,7 @@ from projects.p1.gui.QMethode import QMethode
 from projects.p1.gui.QSelectionFonction import QSelectionFonction
 from projects.p1.gui.QTransformationCanonique import QTransformationCanonique
 
-class QFonctionTransformationCanonique(QWidget):
+class QMenuDroite(QWidget):
     """Widget combinant QSelectionFormule et QTransformationCanonique.
     """
     modeleChanger = Signal()
@@ -24,7 +24,6 @@ class QFonctionTransformationCanonique(QWidget):
         self.__transformationCanonique = QTransformationCanonique(self.__modele)
         self.__methode = QMethode(self.__modele)
 
-        self.modeleChanger.connect(self.__test)
 
         principalLayout = QVBoxLayout()
 
@@ -37,7 +36,3 @@ class QFonctionTransformationCanonique(QWidget):
         self.__selectionFonction.modeleChanger.connect(self.modeleChanger)
         self.__transformationCanonique.modeleChanger.connect(self.modeleChanger) 
         self.__methode.modeleChanger.connect(self.modeleChanger)
-
-
-    def __test(self):
-        print("TTTesTTT")

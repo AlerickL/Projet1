@@ -19,7 +19,7 @@ class QMethodeIntegrale(QBoutonMultipleRealSliderSpinBox):
         self.__modele = modele
 
         pas:QSliderSpinBox = QSliderSpinBox()
-        pas.setRange(1,100)
+        pas.setRange(1,self.__modele.methode_integrale.nombre_total_forme)
         pas.setValue(self.__modele.methode_integrale.precision)
         pas.setPrefix("Nombre de formes ")
 

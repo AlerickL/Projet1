@@ -47,6 +47,13 @@ class QMethode(QBoutonMultipleRealSliderSpinBox):
         self.__methodeIntegrale.modeleChanger.connect(self.modeleChanger)
 
     @property
+    def methodeDerive(self) -> QMethodeDerive:
+        return self.__methodeDerive
+    @property
+    def methodeIntegrale(self) -> QMethodeIntegrale:
+        return self.__methodeIntegrale
+
+    @property
     def methode(self):
         return self.__methode.me
 

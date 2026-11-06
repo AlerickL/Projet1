@@ -11,6 +11,7 @@ from typing import override
 from projects.p1.model.forme_integrale import FormeIntegrale
 from projects.p1.model.affichage_derive import AffichageDerive
 from projects.p1.model.affichage_methode import affichageMethode
+from projects.p1.model.forme_integrale import FormeIntegrale
 
 class Modele:
     def __init__(self):
@@ -87,6 +88,13 @@ class Modele:
     @property
     def tangente_et_secante_a_afficher(self) -> bool:
         return self.__methode_derive.representation == AffichageDerive.TOUT
+
+    @property
+    def rectangle_a_afficher(self):
+        return self.methode_integrale.forme_integrale == FormeIntegrale.RECTANGLE
+    @property
+    def trapeze_a_afficher(self) -> bool:
+        return self.methode_integrale.forme_integrale == FormeIntegrale.TRAPEZE
     
     def changer_fonction_sin(self):
         self.__fonction_math = self.__fonction_sin

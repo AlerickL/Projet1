@@ -1,0 +1,114 @@
+@startuml
+title Uml_projet_1_sf3 version 1
+skinparam linetype ortho
+
+abstract FonctionMath {
++<<property>> info:Information {readOnly}
++<<property>> formule_generale:str {readOnly}
++<<property, abstract>> /vrai_formule:str {readOnly}
++<<property>> transformation_canonique:TransformationCanonique {readOnly}
++<<property>> parametres:list[Parametre]|None {readOnly}
++__init__(info:Information,formule_generale:str,transformation_canonique:TransformationCanonique):
++calculer(x:float,fonction:callable):float
++calculer_np(borne_inf:float,borne_sup:float,nombre_div:int):NDArray[1d,float]
++{abstract} calculer_exacte_derive(x:float,derive:callable):float
++{abstract} calculer_exacte_integral(borne_inferieure:float,borne_superieur:float):float
++redemarrer_parametres()
+}
+
+class Information {
++<<property>> nom:str {readOnly}
++<<property>>resume:str="" {readOnly}
++<<property>>details:str="" {readOnly}
++__init__(nom:str,resume:str,details=str)
+}
+
+class TransformationCanonique{
+-precision:int
+-min:float
+-max:float
++<<property>> trans_x:Parametre  
++<<property>> trans_y:Parametre
++<<property>> zoom_x:Parametre
++<<property>> zoom_y:Parametre
++__init__(precision:int,min:float,max:float):
++reinitialiser()
+}
+
+class Parametre {
++<<property>>info:Information {readOnly}
++<<property>>texte_precision:int=2 {readOnly}
++<<property>> min_valeur:float {readOnly}
++<<property>> max_valeur:float {readOnly}
++<<property>> defaut_valeur:float {readOnly}
++<<property>> valeur:float = defaut_valeur
++<<property>> /texte_valeur:str {readOnly}
++__init__(info:Information,texte_precision:int,min_valeur:float,max_valeur:float,defaut_valeur:float)
+-est_valide(valeur:float):bool
++reinitialiser():None
+}   
+
+
+
+note left of TransformationCanonique
+  Les aggrandissements ont comme valeurs par défaut 1 
+  et les translations ont comme valeurs par défaut 0
+endnote
+
+
+abstract MethodeNumerique {
++<<property>> fonction_math:FonctionMath
++<<property>> alpha:float =0
++<<property, abstract>> \ approximation:float {readOnly}
++<<property>> precision:float|int =100
++__init__(fonction_math:FonctionMath)
+}
+
+class MethodeDerive{
++<<property>> point_interet:float
++<<property>> etendue_visible:float=3
++<<property>> representation:AffichageDerive = TANGENTE
++<<property>> \ approximation:float
++__init__(fonction:FonctionMath,point_interet:float)
++avoir_premiere_valeur():float
++avoir_seconde_valeur():float
++avoir_regle_tangente():callable
+}
+
+Enum AffichageDerive {
+  TANGENTE = 0
+  SECANTE = 1
+  TOUT = 2
+}
+
+class MethodeIntegrale{
++<<property>> intervalle:tuple[float,float]
++<<property>> forme_integrale:FormeIntegrale
++<<property>> \ approximation:float
++__init__(fonction:FonctionMath,intervalle:tuple[float,float]):
+-avoir_pas_integration():float
+-avoir_serie_x_i():float
+-avoir_points_interets():float
+-calculer_avec_trapeze():float
+-calculer_avec_rectangle():float
+-avoir_coordonnees_rectangles():NDArray
+-avoir_coordonnees_trapezes():NDArray
+}
+
+Enum FormeIntegrale {
+  RECTANGLE = 1
+  TRAPEZE = 2
+}
+
+
+Parametre --* FonctionMath
+Parametre "4"--* TransformationCanonique
+TransformationCanonique --* FonctionMath
+Information --* Parametre
+Information --* FonctionMath
+MethodeIntegral --^ MethodeNumerique
+MethodeDerive --^ MethodeNumerique
+FonctionMath --* MethodeNumerique
+MethodeDerive --* AffichageDerive
+MethodeIntegrale --* FormeIntegrale
+@enduml

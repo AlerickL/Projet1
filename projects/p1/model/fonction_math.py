@@ -6,11 +6,16 @@ from projects.p1.model.transformation_canonique import TransformationCanonique
 from projects.p1.model.parametre import Parametre
 
 class FonctionMath(ABC):
-    def __init__(self, info:Information, formule_generale:str,parametres:list[Parametre], transformations_canoniques : TransformationCanonique):
+    def __init__(self, info:Information, formule_generale:str,parametres:list[Parametre], transformations_canoniques : TransformationCanonique, fonction: callable, derive: callable, primitive: callable):
         self._info: Information = info
         self._formule_generale: str = formule_generale
         self._parametres: list[Parametre] = parametres
         self._transformations_canoniques: TransformationCanonique = transformations_canoniques
+        
+        self._fonction = fonction
+        self._derive = derive
+        self._primitive = primitive
+        
 
     @property
     def info(self) ->Information:
@@ -61,7 +66,7 @@ class FonctionMath(ABC):
         """
         return self._transformations_canoniques
 
-    def calculer(self,x:float,fonction:callable) -> float:
+    def calculer(self,x:float) -> float:
         """Calculer en un point le y de la fonction
 
         Args:
@@ -71,7 +76,7 @@ class FonctionMath(ABC):
         Returns:
             float: la valeur en y
         """
-        return self._transformations_canoniques.zoom_y.valeur*fonction((x-self._transformations_canoniques.trans_x.valeur)/self._transformations_canoniques.zoom_x.valeur) + self._transformations_canoniques.trans_y.valeur
+        return self._transformations_canoniques.zoom_y.valeur*self._fonction((x-self._transformations_canoniques.trans_x.valeur)/self._transformations_canoniques.zoom_x.valeur) + self._transformations_canoniques.trans_y.valeur
         
     def calculer_np(self,borne_inf:float, borne_sup:float ,nombre_div:int) -> np.ndarray:
         """Calculer avec la fonction les valeurs en y pour une collection de points en x
@@ -89,7 +94,7 @@ class FonctionMath(ABC):
         return x, self.calculer(x)
 
     @abstractmethod
-    def calculer_exacte_derive(self,x:float, derive:callable) -> float:
+    def calculer_exacte_derive(self,x:float) -> float:
         """Calculer la dérivé exacte de la fonction (analytiquement) en un point x
 
         Args:
@@ -99,12 +104,12 @@ class FonctionMath(ABC):
         Returns:
             float: la dérivé au point x de la fonction
         """
-        return self._transformations_canoniques.zoom_y.valeur/self._transformations_canoniques.zoom_x.valeur*derive((x-self._transformations_canoniques.trans_x.valeur)/self._transformations_canoniques.zoom_x.valeur)
+        return self._transformations_canoniques.zoom_y.valeur/self._transformations_canoniques.zoom_x.valeur*self._derive((x-self._transformations_canoniques.trans_x.valeur)/self._transformations_canoniques.zoom_x.valeur)
 
 
 
     @abstractmethod
-    def calculer_exacte_integrale(self,borne_inferieur:float,borne_superieur:float,primitive:callable) -> float:
+    def calculer_exacte_integrale(self,borne_inferieur:float,borne_superieur:float) -> float:
         """Calculer l'intégrale exacte de la fonction (analytiquement) dans un interval.
         L'interval est entre borne_inferieur et borne_superieur.
 
@@ -116,7 +121,7 @@ class FonctionMath(ABC):
         Returns:
             float: La valeur de l'intégrale dans l'interval
         """
-        primitive_canonique:callable = lambda x : self._transformations_canoniques.zoom_y.valeur*self._transformations_canoniques.zoom_x.valeur*primitive((x-self._transformations_canoniques.trans_x.valeur)/self._transformations_canoniques.zoom_x.valeur) + self._transformations_canoniques.trans_y.valeur*x
+        primitive_canonique:callable = lambda x : self._transformations_canoniques.zoom_y.valeur*self._transformations_canoniques.zoom_x.valeur*self._primitive((x-self._transformations_canoniques.trans_x.valeur)/self._transformations_canoniques.zoom_x.valeur) + self._transformations_canoniques.trans_y.valeur*x
         print("primitive inf ", primitive_canonique(borne_inferieur))
         print("primitive inf ", primitive_canonique(borne_superieur))
         return primitive_canonique(borne_superieur) - primitive_canonique(borne_inferieur)

@@ -12,7 +12,12 @@ class FonctionDoubleBosse(FonctionMath):
         p = Parametre(info_p,2,0,2,1)
         formule_general = "1/(1+(x-p)^2) + 1/(1+(x+p)^2)"
         parametres = [p]
-        super().__init__(info,formule_general,parametres,transformation_canonique)
+
+        __fonction: callable = lambda x : 1/(1+(x-self.parametres[0].valeur)**2) + 1/(1+(x+self.parametres[0].valeur)**2)
+        __derive: callable = lambda x : -2*(x-self._parametres[0])/(1+(x-self._parametres[0])**2)**2 + -2*(x+self._parametres[0])/(1+(x+self._parametres[0])**2)**2
+        __primitive: callable = lambda x : np.arctan(x-self._parametres[0]) + np.arctan(x+self._parametres[0])
+        
+        super().__init__(info,formule_general,parametres,transformation_canonique, __fonction, __derive, __primitive)
 
     @override
     @property
@@ -21,15 +26,12 @@ class FonctionDoubleBosse(FonctionMath):
 
     @override
     def calculer(self,x:float):
-        fonction:callable = lambda x : 1/(1+(x-self.parametres[0].valeur)**2) + 1/(1+(x+self.parametres[0].valeur)**2)
-        return super().calculer(x,fonction)
+        return super().calculer(x)
 
     @override
     def calculer_exacte_derive(self,x:float):
-        derive:callable = lambda x : -2*(x-self._parametres[0])/(1+(x-self._parametres[0])**2)**2 + -2*(x+self._parametres[0])/(1+(x+self._parametres[0])**2)**2
-        return super().calculer_exacte_derive(x,derive)
+        return super().calculer_exacte_derive(x)
     
     @override
     def calculer_exacte_integrale(self,borne_inferieure:float,borne_superieur:float):
-        primitive:callable = lambda x : np.arctan(x-self._parametres[0]) + np.arctan(x+self._parametres[0])
-        return super().calculer_exacte_integrale(borne_inferieure,borne_superieur,primitive)
+        return super().calculer_exacte_integrale(borne_inferieure,borne_superieur)

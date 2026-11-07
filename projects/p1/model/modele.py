@@ -98,13 +98,19 @@ class Modele:
     
     def changer_fonction_sin(self):
         self.__fonction_math = self.__fonction_sin
+        self.changer_fonction_methodes()
+        
     def changer_fonction_second_degre(self):
             self.__fonction_math = self.__fonction_second_degre
+            self.changer_fonction_methodes()
     def changer_fonction_sin_amortie(self):
             self.__fonction_math = self.__fonction_sin_amortie
+            self.changer_fonction_methodes()
 
     def changer_fonction_double_bosse(self):
             self.__fonction_math = self.__fonction_double_bosse
+            self.changer_fonction_methodes()
+            
     def changer_valeur_parametre(self,index:int,valeur:float):
         self.__fonction_math.parametres[index].valeur = valeur
 
@@ -175,6 +181,10 @@ class Modele:
 
     def mettre_mode_tangente_et_secante(self):
         self.methode_derive.representation = AffichageDerive.TOUT
+
+    def changer_fonction_methodes(self)->None:
+        self.methode_integrale.fonction_math = self.fonction_math
+        self.methode_derive.fonction_math = self.fonction_math
 
 
 

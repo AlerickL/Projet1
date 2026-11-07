@@ -69,8 +69,6 @@ class QMethodeIntegrale(QBoutonMultipleRealSliderSpinBox):
 
         self.__rangeSliderSpinBox.rangeChanged.connect(self.__modifierModele)
 
-        self.modeleChanger.connect(self.recalculer)
-
     @Slot()
     def __mettre_forme_a_gauche(self):
         self.__modele.mettre_integrale_a_gauche()
@@ -96,18 +94,23 @@ class QMethodeIntegrale(QBoutonMultipleRealSliderSpinBox):
 
     @Slot()
     def recalculer(self):
-        print("recalculer")
         self.__integraleApprox.setText(f"Intégrale approximée : {self.__modele.methode_integrale.approximation} ")
         self.__integraleExacte.setText(f"Intégrale exacte : {self.__modele.methode_integrale.fonction_math.calculer_exacte_integrale(*self.__modele.methode_integrale.intervalle)}")
 
     @Slot()
     def mettreRectangle(self):
         self.__modele.mettre_mode_rectangle()
+        for bouton in self.__boutons:
+            bouton.show()
+        self.__sliders[1].show()
         self.modeleChanger.emit()
 
     @Slot()
     def mettreTrapeze(self):
         self.__modele.mettre_mode_trapeze()
+        for bouton in self.__boutons:
+            bouton.hide()
+        self.__sliders[1].hide()
         self.modeleChanger.emit()
 
 

@@ -14,8 +14,8 @@ class FonctionDoubleBosse(FonctionMath):
         parametres = [p]
 
         __fonction: callable = lambda x : 1/(1+(x-self.parametres[0].valeur)**2) + 1/(1+(x+self.parametres[0].valeur)**2)
-        __derive: callable = lambda x : -2*(x-self._parametres[0])/(1+(x-self._parametres[0])**2)**2 + -2*(x+self._parametres[0])/(1+(x+self._parametres[0])**2)**2
-        __primitive: callable = lambda x : np.arctan(x-self._parametres[0]) + np.arctan(x+self._parametres[0])
+        __derive: callable = lambda x : -2*(x-self._parametres[0].valeur)/(1+(x-self._parametres[0].valeur)**2)**2 + -2*(x+self._parametres[0].valeur)/(1+(x+self._parametres[0].valeur)**2)**2
+        __primitive: callable = lambda x : np.arctan(x-self._parametres[0].valeur) + np.arctan(x+self._parametres[0].valeur)
         
         super().__init__(info,formule_general,parametres,transformation_canonique, __fonction, __derive, __primitive)
 

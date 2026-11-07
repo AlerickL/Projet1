@@ -3,7 +3,7 @@ import sys
 from typing import override, cast
 from PySide6.QtCore import Qt, Signal, Slot, QPointF
 from PySide6.QtGui import QPixmap, QColor, QShowEvent, QPolygonF
-from PySide6.QtWidgets import QApplication, QWidget, QLabel, QSlider, QHBoxLayout, QVBoxLayout, QComboBox, QGraphicsPolygonItem
+from PySide6.QtWidgets import QApplication, QWidget, QLabel, QSlider, QHBoxLayout, QVBoxLayout, QComboBox, QGraphicsPolygonItem, QSizePolicy
 from edustem.pyside6.widgets.q_slider_spin_box import QRealSliderSpinBox
 from projects.p1.model.modele import Modele
 from projects.p1.gui.QMenuDeroulant import QMenuDeroulant
@@ -59,6 +59,8 @@ class QGraphique(pg.PlotWidget):
         self.addItem(self.__pointInteret)
 
         self.__viewBox.sigRangeChangedManually.connect(self.actualiser)
+
+        self.setSizePolicy(QSizePolicy.Policy.Maximum,QSizePolicy.Policy.Maximum)
         
 
     @Slot()

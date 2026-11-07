@@ -77,3 +77,7 @@ class QMethode(QBoutonMultipleRealSliderSpinBox):
         self.__methodeIntegrale.setVisible(True)
         self.__sansMethode.setVisible(False)
         self.modeleChanger.emit()
+
+    def actualiser(self):
+        self.methodeDerive.recalculer()
+        self.methodeIntegrale.recalculer()

@@ -37,7 +37,7 @@ class QParametres(QBoutonMultipleRealSliderSpinBox):
         self.__reels = []
         for parametre in self.__fonction_math.parametres:
             reel:QRealSliderSpinBox = QRealSliderSpinBox()
-            reel.setPrefix(parametre.info.nom)
+            reel.setPrefix(parametre.info.nom + " ")
             reel.setRange(parametre.min_valeur,parametre.max_valeur)
             reel.setValue(parametre.valeur)
             self.__reels.append(reel)

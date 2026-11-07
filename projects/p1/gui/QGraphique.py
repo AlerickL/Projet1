@@ -60,7 +60,7 @@ class QGraphique(pg.PlotWidget):
 
         self.__viewBox.sigRangeChangedManually.connect(self.actualiser)
 
-        self.setSizePolicy(QSizePolicy.Policy.Maximum,QSizePolicy.Policy.Maximum)
+        self.setSizePolicy(QSizePolicy.Policy.Minimum,QSizePolicy.Policy.Minimum)
         
 
     @Slot()

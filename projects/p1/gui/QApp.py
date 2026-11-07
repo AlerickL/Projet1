@@ -36,4 +36,4 @@ class QApp(QWidget):
 
         self.__menuDroite.modeleChanger.connect(self.__graphe.actualiser)
 
-        self.setSizePolicy(QSizePolicy.Policy.Maximum,QSizePolicy.Policy.Maximum)
+

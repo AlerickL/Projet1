@@ -31,7 +31,7 @@ class Modele:
     @property
     def methode_derive_a_afficher(self) -> bool:
         return self.__methode_affiche == affichageMethode.DERIVE
-
+    
     @property
     def methode_integrale_a_afficher(self) -> bool:
         return self.__methode_affiche == affichageMethode.INTEGRALE

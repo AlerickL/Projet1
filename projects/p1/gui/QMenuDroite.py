@@ -39,10 +39,7 @@ class QMenuDroite(QWidget):
         self.__transformationCanonique.modeleChanger.connect(self.__methode.actualiser)
         self.__selectionFonction.modeleChanger.connect(self.__methode.actualiser)
 
-    @property
-    def methode(self) -> QMethode:
-        return self.__methode
+        self.modeleChanger.connect(self.__methode.methodeDerive.recalculer)
+        self.modeleChanger.connect(self.__methode.methodeIntegrale.recalculer)
 
-    @Slot
-    def __actualiserMethode(self):
-        self.__methode.actualiser
+

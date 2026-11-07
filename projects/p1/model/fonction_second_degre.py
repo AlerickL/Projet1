@@ -21,8 +21,8 @@ class FonctionSecondDegre(FonctionMath):
         parametres = [c_0,c_1,c_2]
 
         __fonction: callable = lambda x : self.parametres[2].valeur*x**2 + self.parametres[1].valeur*x**1 + self.parametres[0].valeur
-        __derive: callable = lambda x : 2*self.parametres[2] * x + self.parametres[1]
-        __primitive: callable = lambda x : self.parametres[0] * x ** 3 / 3 + self.parametres[1] * x ** 2 / 2 + self.parametres[0]*x
+        __derive: callable = lambda x : 2*self.parametres[2].valeur * x + self.parametres[1].valeur
+        __primitive: callable = lambda x : self.parametres[0].valeur * x ** 3 / 3 + self.parametres[1].valeur * x ** 2 / 2 + self.parametres[0].valeur*x
 
         super().__init__(info,formule_general,parametres,transformation_canonique, __fonction, __derive, __primitive)
 

@@ -53,10 +53,6 @@ class QMethode(QBoutonMultipleRealSliderSpinBox):
     def methodeIntegrale(self) -> QMethodeIntegrale:
         return self.__methodeIntegrale
 
-    @property
-    def methode(self):
-        return self.__methode.me
-
     def __mettreSansMethode(self):
         self.__modele.mettre_affichage_aucun()
         self.__methodeDerive.setVisible(False)

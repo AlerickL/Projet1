@@ -16,6 +16,11 @@ class MethodeIntegrale(MethodeNumerique):
         super().__init__(fonction)
         self.__intervalle = intervalle
         self.__forme_integrale =  FormeIntegrale.RECTANGLE
+        self.__nombre_total_forme:int = 100
+
+    @property
+    def nombre_total_forme(self) -> int:
+        return self.__nombre_total_forme
     
     @property 
     def forme_integrale(self) -> FormeIntegrale:
@@ -47,23 +52,24 @@ class MethodeIntegrale(MethodeNumerique):
         return (self.__intervalle[1] - self.__intervalle[0]) / self.precision
 
     def __avoir_serie_x_i(self):
-        return self.__intervalle[0] + np.arange(self.precision - 1) * self.__avoir_pas_integration()
+        return np.linspace(self.intervalle[0],self.intervalle[1],int(self.precision)+1)
 
     def __avoir_points_interets(self):
         return self.__avoir_serie_x_i() + self.alpha * self.__avoir_pas_integration()
 
     def __calculer_avec_trapeze(self) -> float: 
         pas_intergration = self.__avoir_pas_integration()
+        precision = int(self.precision)
         # somme = 0 
-        x_i = self.__intervalle[0]+np.arange(0, self.precision+1)*pas_intergration # supposément vectorisé
+        x_i = self.__intervalle[0]+np.arange(0, self.precision+1,dtype=float)*pas_intergration # supposément vectorisé
         f_i = self._fonction_math.calculer(x_i)
-        somme = np.sum(f_i[1:self.precision])
+        somme = np.sum(f_i[1:precision])
         # for i in range(1, self.precision - 1):      # Non vectorisé
             
         #     x_i = self.__intervalle[0] + i * pas_intergration
         #     somme += self._fonction_math.calculer(x_i) + self._fonction_math.calculer(self.intervalle[1]) 
             
-        return (somme * 2 + f_i[0] + f_i[self.precision]) * pas_intergration / 2
+        return (somme * 2 + f_i[0] + f_i[precision]) * pas_intergration / 2
     
     def __calculer_avec_rectangle (self) -> float : 
         pas_intergration =self.__avoir_pas_integration()
@@ -81,13 +87,13 @@ class MethodeIntegrale(MethodeNumerique):
         Returns:
             NDArray: Le tableau
         """
-        __pas = self.__avoir_pas_integration
+        __pas = self.__avoir_pas_integration()
         __axe_x_de_gauche = self.__avoir_serie_x_i()
         __axe_x_de_droite = __axe_x_de_gauche + __pas
         __points_interets = self.__avoir_points_interets()
         __axe_y_haut = self._fonction_math.calculer(__points_interets)
-        __axe_y_bas = np.zeros(__axe_x_de_gauche.shape[0])
-        points = np.stack((__axe_x_de_gauche, __axe_x_de_droite, __axe_y_haut, __axe_y_bas), axis=1)
+        __axe_y_bas = np.zeros(__axe_x_de_gauche.shape)
+        points = np.stack(( __axe_x_de_droite, __axe_x_de_droite,__axe_x_de_gauche,__axe_x_de_gauche, __axe_y_haut,__axe_y_bas,__axe_y_bas,  __axe_y_haut,), axis=1)
         return points
 
     def avoir_coordonnees_trapezes(self) -> NDArray:
@@ -96,12 +102,13 @@ class MethodeIntegrale(MethodeNumerique):
         Returns:
             NDArray: Le tableau
         """
-        pas = self.__avoir_pas_integration
-        premiere_coordonnees = self.__avoir_serie_x_i()
-        seconde_coordonnees = premiere_coordonnees + pas
-        troisieme_coordonnees = self._fonction_math.calculer(seconde_coordonnees)
-        quatrieme_coordonnees = self._fonction_math.calculer(premiere_coordonnees)
-        points = np.stack((premiere_coordonnees,seconde_coordonnees,troisieme_coordonnees,quatrieme_coordonnees),axis=1)
+        pas = self.__avoir_pas_integration()
+        x_gauche = self.__avoir_serie_x_i()
+        x_droite = x_gauche + pas
+        y_droite = self._fonction_math.calculer(x_droite)
+        y_gauche = self._fonction_math.calculer(x_gauche)
+        y_bas =  np.zeros(x_gauche.shape)
+        points = np.stack((x_droite,x_droite,x_gauche,x_gauche,y_droite,y_bas,y_bas,y_gauche,),axis=1)
         return points
 
     

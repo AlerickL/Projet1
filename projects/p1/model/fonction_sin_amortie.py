@@ -13,7 +13,12 @@ class FonctionSinAmortie(FonctionMath):
                                     "Fonction combinant l'exponentiel et la sinus", "Elle est utilisée en physique.")
         formule_generale: str = "e^(-px)*sin(x)"
         amplitude: Parametre = Parametre(Information("amplitude","Amplitude de la fonction sinus amortie",""),2,-0.5,0.5,0)
-        super().__init__(info,formule_generale,[amplitude],transformations_canoniques)
+
+        __fonction: callable = lambda x: np.exp(-1*self.parametres[0].valeur * x) * np.sin(x)
+        __derive: callable = lambda x: np.exp(-1*self.parametres[0].valeur * x) * (np.cos(x) - self.parametres[0].valeur * np.sin(x))
+        __primitive: callable = lambda x : lambda x: ((np.exp(-1*self.parametres[0].valeur * x) * (self.parametres[0].valeur*np.sin(x) + np.cos(x)))) / (self.parametres[0].valeur**2 + 1)
+        
+        super().__init__(info,formule_generale,[amplitude],transformations_canoniques, __fonction, __derive, __primitive)
 
     @property
     def vrai_formule(self):
@@ -22,14 +27,11 @@ class FonctionSinAmortie(FonctionMath):
     # Méthode
 
     def calculer(self,x:float) -> float:
-        fonction = lambda x: np.exp(-1*self.parametres[0].valeur * x) * np.sin(x)
-        return super().calculer(x, fonction)
+        return super().calculer(x)
         
     def calculer_exacte_derive(self, x:float) -> float:
-        derive = lambda x: np.exp(-1*self.parametres[0].valeur * x) * (np.cos(x) - self.parametres[0].valeur * np.sin(x))
-        return super().calculer_exacte_derive(x, derive)
+        return super().calculer_exacte_derive(x)
     
     def calculer_exacte_integrale(self, borne_inferieure:float,borne_superieure:float) -> float:
-        primitive = lambda x: ((np.exp(-1*self.parametres[0].valeur * x) * (self.parametres[0].valeur*np.sin(x) + np.cos(x)))) / (self.parametres[0].valeur**2 + 1)
-        return super().calculer_exacte_integrale(borne_inferieure,borne_superieure,primitive)
+        return super().calculer_exacte_integrale(borne_inferieure,borne_superieure)
 

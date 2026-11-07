@@ -98,7 +98,3 @@ class QGraphique(pg.PlotWidget):
     def __afficherTangenteEtSecante(self):
         self.__afficherTangente(False)
         self.__afficherSecante(False)
-
-
-
-

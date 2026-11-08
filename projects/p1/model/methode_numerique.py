@@ -1,12 +1,18 @@
 from abc import ABC, abstractmethod
 from projects.p1.model.fonction_math import FonctionMath
+from projects.p1.model.fonction_math import Information
 
 class MethodeNumerique(ABC):
 
-    def __init__(self, fonction_math: FonctionMath):
-        self._fonction_math: FonctionMath = fonction_math
-        self._alpha: float = 0.5
-        self.__precision: float = 5.0
+    def __init__(self,fonction_math:FonctionMath,info:Information):
+        self._fonction_math:FonctionMath = fonction_math
+        self._alpha:float = 0.5
+        self.__precision:int|float = 5.0
+        self.__info = info
+
+    @property
+    def info(self):
+        return self.__info
 
     @property
     def fonction_math(self) -> FonctionMath:
@@ -64,3 +70,8 @@ class MethodeNumerique(ABC):
     @precision.setter
     def precision(self, valeur: float) -> None :
         self.__precision = valeur
+
+    def reinitialiser(self):
+        self._alpha:float = 0.5
+        self.__precision:int|float = 5.0
+        

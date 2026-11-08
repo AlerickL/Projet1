@@ -112,3 +112,17 @@ class QMethodeIntegrale(QBoutonMultipleRealSliderSpinBox):
             bouton.hide()
         self.__sliders[1].hide()
         self.modeleChanger.emit()
+
+    def __appliquerModele(self):
+        self.__sliders[0].setValue(self.__modele.methode_integrale.precision)
+        self.__sliders[1].setValue(self.__modele.methode_integrale.alpha)
+        self.__rangeSliderSpinBox.setRange(*self.__modele.methode_integrale.intervalle)
+
+
+    def reinitialiser(self):
+        self.blockSignals(True)
+        self.__modele.methode_integrale.reinitialiser()
+        self.__appliquerModele()
+        self.blockSignals(False)
+        self.modeleChanger.emit()
+        

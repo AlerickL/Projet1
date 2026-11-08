@@ -2,19 +2,20 @@ from typing import override
 from projects.p1.model.fonction_math import FonctionMath
 from projects.p1.model.methode_numerique import MethodeNumerique
 from projects.p1.model.affichage_derive import AffichageDerive
+from projects.p1.model.information import Information
 
 class MethodeDerive(MethodeNumerique):
     """Permet de gérer les dérivé"""
-    def __init__(self, fonction: FonctionMath, point_interet: float):
+    def __init__(self, fonction: FonctionMath):
         """initialise 
         Args:
             fonction (FonctionMath): fonction
             point_interet (float): le point ou on fait le calcul de derive 
         """
         super().__init__(fonction)
-        self.__point_interet: float = point_interet 
-        self.__etendue_visible: float = 3
-        self.__representation: AffichageDerive = AffichageDerive.TANGENTE
+        self.__point_interet = point_interet 
+        self.__etendue_visible:float = 3
+        self.__representation = AffichageDerive.TANGENTE
         
     @property
     def representation(self):
@@ -63,7 +64,7 @@ class MethodeDerive(MethodeNumerique):
         Returns:
             float: la  approximation
         """
-        premiere_valeur: float = self.avoir_premiere_valeur()
-        seconde_valeur: float = self.avoir_seconde_valeur()
-        return (self.fonction_math.calculer(seconde_valeur) - self.fonction_math.calculer(premiere_valeur)) / (self.precision)
- 
+        premiere_valeur = self.avoir_premiere_valeur()
+        seconde_valeur = self.avoir_seconde_valeur()
+        return ( self.fonction_math.calculer(seconde_valeur) - self.fonction_math.calculer(premiere_valeur) )/ (self.precision)
+    

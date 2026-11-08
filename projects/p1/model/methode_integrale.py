@@ -4,19 +4,20 @@ from projects.p1.model.fonction_math import FonctionMath
 from typing import override 
 from projects.p1.model.methode_numerique import MethodeNumerique
 from numpy.typing import NDArray
-
+from projects.p1.model.information import Information
 class MethodeIntegrale(MethodeNumerique):
     @override
-    def __init__(self, fonction: FonctionMath, intervalle: tuple[float, float]):
+    def __init__(self, fonction: FonctionMath):
         """initialise 
         Args:
             fonction (FonctionMath): fonction
             intervalle (tuple[float, float]): l'intervalle sur lequel on calcule l'intégrale
         """
-        super().__init__(fonction)
-        self.__intervalle: tuple[float, float] = intervalle
-        self.__forme_integrale: FormeIntegrale =  FormeIntegrale.RECTANGLE
-        self.__nombre_total_forme: int = 100
+        info = Information("Méthode numérique d'intégration","La méthode numérique d'intégration permet d'estimer l'aire de la fonction par des rectangles ou des trapèzes","Il est possible de changer l'intervalle, le nombre de forme ou le centre des rectangles. L'approximation des trapèzes est meilleure.")
+        super().__init__(fonction,info)
+        self.__intervalle = (0,1)
+        self.__forme_integrale =  FormeIntegrale.RECTANGLE
+        self.__nombre_total_forme:int = 100
 
     @property
     def nombre_total_forme(self) -> int:
@@ -102,4 +103,8 @@ class MethodeIntegrale(MethodeNumerique):
         __points = np.stack((__x_droite, __x_droite, __x_gauche, __x_gauche, __y_droite, __y_bas, __y_bas, __y_gauche), axis=1)
         return __points
 
-    
+    @override
+    def reinitialiser(self):
+        super().reinitialiser()
+        self.__intervalle = (0,1)
+        self.__forme_integrale =  FormeIntegrale.RECTANGLE

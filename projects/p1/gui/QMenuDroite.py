@@ -36,8 +36,6 @@ class QMenuDroite(QWidget):
         self.__selectionFonction.modeleChanger.connect(self.modeleChanger)
         self.__transformationCanonique.modeleChanger.connect(self.modeleChanger) 
         self.__methode.modeleChanger.connect(self.modeleChanger)
-        self.__transformationCanonique.modeleChanger.connect(self.__methode.actualiser)
-        self.__selectionFonction.modeleChanger.connect(self.__methode.actualiser)
 
         self.modeleChanger.connect(self.__methode.methodeDerive.recalculer)
         self.modeleChanger.connect(self.__methode.methodeIntegrale.recalculer)

@@ -97,6 +97,7 @@ class QGraphique(pg.PlotWidget):
             self.__secante.hide()
             for i in range(self.__modele.methode_integrale.nombre_total_forme):
                 self.__rectangles[i].hide()
+                self.__trapezes[i].hide()
 
 
 

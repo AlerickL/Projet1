@@ -112,6 +112,3 @@ class QMethodeIntegrale(QBoutonMultipleRealSliderSpinBox):
             bouton.hide()
         self.__sliders[1].hide()
         self.modeleChanger.emit()
-
-
-        

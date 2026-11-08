@@ -2,7 +2,7 @@ from projects.p1.model.information import Information
 
 class Parametre:
     """C'est la classe qui représente un paramètre"""
-    def __init__(self, info:Information, texte_precision:int, min_valeur:float|int, max_valeur:float|int, defaut_valeur:float|int) -> None:
+    def __init__(self, info: Information, texte_precision: int, min_valeur: float|int, max_valeur: float|int, defaut_valeur: float|int) -> None:
         """Initialise un Paramètre
         Args:
             info (Information): l'information générale de ce que représente un paramètre
@@ -11,17 +11,9 @@ class Parametre:
             min_valeur (float): valeur minimale incluse
             max_valeur (float): valeur maximale incluse
             default_valeur (float): valeur par défaut
-        Raises:
-            TypeError: un des paramètres n'est pas du bon type
         """
-        if not isinstance(info, Information)\
-        or not isinstance(texte_precision, float|int)\
-        or not isinstance(min_valeur, float|int)\
-        or not isinstance(max_valeur, float|int)\
-        or not isinstance(defaut_valeur, float|int):
-            raise TypeError("Un des paramètres n'est pas du bon type.")
         self.__info = info
-        self.__texte_precision: int = 2
+        self.__texte_precision: int = texte_precision
         self.__min_valeur = min_valeur
         self.__max_valeur = max_valeur
         self.__defaut_valeur = defaut_valeur
@@ -54,19 +46,12 @@ class Parametre:
     # Setter
 
     @valeur.setter
-    def valeur(self, nouvelle_valeur:float) -> None:
+    def valeur(self, nouvelle_valeur: float) -> None:
         """Permet de changer la valeur du paramètre tout en
             respectant les contraintes de min et max.
         Args:
             nouvelle_valeur (float): la nouvelle valeur
-        Raises:
-            ValueError: La valeur doit être entre le min_valeur et max_valeur.
-            TypeError: Nouvelle_valeur doit être un float ou un int."""
-        
-        if not isinstance(nouvelle_valeur, float|int):
-            raise TypeError("Nouvelle_valeur doit être un float ou un int.")
-        if nouvelle_valeur < self.__min_valeur or nouvelle_valeur > self.__max_valeur:
-            raise ValueError("La valeur doit être entre le min_valeur et max_valeur.")
+        """
         self.__valeur = nouvelle_valeur
 
     def reinitialiser(self) -> None:

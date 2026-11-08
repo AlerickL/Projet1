@@ -5,16 +5,16 @@ from projects.p1.model.affichage_derive import AffichageDerive
 
 class MethodeDerive(MethodeNumerique):
     """Permet de gérer les dérivé"""
-    def __init__(self, fonction: FonctionMath, point_interet:float):
+    def __init__(self, fonction: FonctionMath, point_interet: float):
         """initialise 
         Args:
             fonction (FonctionMath): fonction
             point_interet (float): le point ou on fait le calcul de derive 
         """
         super().__init__(fonction)
-        self.__point_interet = point_interet 
-        self.__etendue_visible:float = 3
-        self.__representation = AffichageDerive.TANGENTE
+        self.__point_interet: float = point_interet 
+        self.__etendue_visible: float = 3
+        self.__representation: AffichageDerive = AffichageDerive.TANGENTE
         
     @property
     def representation(self):
@@ -37,26 +37,24 @@ class MethodeDerive(MethodeNumerique):
         return self.__etendue_visible
 
     @etendue_visible.setter
-    def etendue_visible(self,valeur):
+    def etendue_visible(self, valeur):
         self.__etendue_visible = valeur
 
-    def avoir_premiere_valeur(self):
+    def avoir_premiere_valeur(self) -> float:
         """Accéder à p-
         """
         return self.__point_interet - self.alpha * self.precision
 
-    def avoir_seconde_valeur(self):
+    def avoir_seconde_valeur(self) -> float:
         """Accéder à p+
         """
-        return self.__point_interet + (1 - self.alpha ) * self.precision
+        return self.__point_interet + (1 - self.alpha) * self.precision
 
-    def avoir_regle_tangente(self):
-        pente = self._fonction_math.calculer_exacte_derive(self.point_interet)
-        print(pente, " pente")
-        hauteur = self._fonction_math.calculer(self.point_interet)-pente * self.point_interet
-        return lambda x : pente*x + hauteur
+    def avoir_regle_tangente(self) -> callable:
+        pente: float = self._fonction_math.calculer_exacte_derive(self.point_interet)
+        hauteur: float = self._fonction_math.calculer(self.point_interet) - pente * self.point_interet
+        return lambda x : pente * x + hauteur
 
-        
     @override 
     @property
     def approximation(self) -> float:
@@ -65,7 +63,7 @@ class MethodeDerive(MethodeNumerique):
         Returns:
             float: la  approximation
         """
-        premiere_valeur = self.avoir_premiere_valeur()
-        seconde_valeur = self.avoir_seconde_valeur()
-        return ( self.fonction_math.calculer(seconde_valeur) - self.fonction_math.calculer(premiere_valeur) )/ (self.precision)
-    
+        premiere_valeur: float = self.avoir_premiere_valeur()
+        seconde_valeur: float = self.avoir_seconde_valeur()
+        return (self.fonction_math.calculer(seconde_valeur) - self.fonction_math.calculer(premiere_valeur)) / (self.precision)
+ 

@@ -9,6 +9,7 @@ from projects.p1.model.modele import Modele
 from projects.p1.gui.QMenuDeroulant import QMenuDeroulant
 from projects.p1.gui.QMenuFormule import QMenuFormule
 from projects.p1.gui.QParametres import QParametres
+from numpy.typing import NDArray
 import pyqtgraph as pg
 
 class QGraphique(pg.PlotWidget):
@@ -39,20 +40,10 @@ class QGraphique(pg.PlotWidget):
         self.__pointInteret.hide()
 
         self.__rectangles:list[QGraphicsPolygonItem] = []
-        for _ in range(self.__modele.methode_integrale.nombre_total_forme):
-            rectangle = QGraphicsPolygonItem(QPolygonF())
-            self.__rectangles.append(rectangle)
-            rectangle.setPen(pg.mkPen("r", width=1))
-            rectangle.setBrush(pg.mkBrush(255,0,0,100))
-            self.addItem(rectangle)
+        self.__initialiserFormes(self.__rectangles)
 
         self.__trapezes:list[QGraphicsPolygonItem] = []
-        for _ in range(self.__modele.methode_integrale.nombre_total_forme):
-            trapeze = QGraphicsPolygonItem(QPolygonF())
-            self.__trapezes.append(trapeze)
-            trapeze.setPen(pg.mkPen("r", width=1))
-            trapeze.setBrush(pg.mkBrush(255,0,0,100))
-            self.addItem(trapeze)
+        self.__initialiserFormes(self.__trapezes)
 
         self.addItem(self.__tangente)
         self.addItem(self.__secante)
@@ -84,20 +75,16 @@ class QGraphique(pg.PlotWidget):
             self.__tangente.hide()
             self.__secante.hide()
             if self.__modele.rectangle_a_afficher:
-                for i in range(self.__modele.methode_integrale.nombre_total_forme):
-                    self.__trapezes[i].hide()
-                self.__afficher_rectangle()
+                self.__cacherFormes(self.__trapezes)
+                self.__afficherRectangles()
             elif self.__modele.trapeze_a_afficher:
-                for i in range(self.__modele.methode_integrale.nombre_total_forme):
-                    self.__rectangles[i].hide()
-                self.__afficher_trapeze()
+                self.__cacherFormes(self.__rectangles)
+                self.__afficherTrapezes()
         else: # aucune méthode
             self.__pointInteret.hide()
             self.__tangente.hide()
             self.__secante.hide()
-            for i in range(self.__modele.methode_integrale.nombre_total_forme):
-                self.__rectangles[i].hide()
-                self.__trapezes[i].hide()
+            self.__cacherToutesFormes()
 
 
 
@@ -129,28 +116,40 @@ class QGraphique(pg.PlotWidget):
         self.__afficherTangente(False)
         self.__afficherSecante(False)
 
-    def __afficher_rectangle(self):
+    def __afficherRectangles(self):
         coordonnees = self.__modele.methode_integrale.avoir_coordonnees_rectangles()
-        for i in range(self.__modele.methode_integrale.nombre_total_forme):
-            if i<= int(self.__modele.methode_integrale.precision)-1:
-                xs, ys = coordonnees[i,0:4], coordonnees[i,4:]
-                points = [QPointF(x, y) for x, y in zip(xs, ys)]
-                self.__rectangles[i].setPolygon(QPolygonF(points))
-                self.__rectangles[i].show()
-            else:
-                self.__rectangles[i].hide()
+        self.__afficherFormes(self.__rectangles,coordonnees)
 
-    def __afficher_trapeze(self):
+    def __afficherTrapezes(self):
         coordonnees = self.__modele.methode_integrale.avoir_coordonnees_trapezes()
+        self.__afficherFormes(self.__trapezes,coordonnees)
+
+    def __afficherFormes(self,formes:list[QGraphicsPolygonItem],coordonnees:NDArray):
         for i in range(self.__modele.methode_integrale.nombre_total_forme):
             if i<= int(self.__modele.methode_integrale.precision)-1:
                 xs, ys = coordonnees[i,0:4], coordonnees[i,4:]
                 points = [QPointF(x, y) for x, y in zip(xs, ys)]
-                self.__trapezes[i].setPolygon(QPolygonF(points))
-                self.__trapezes[i].show()
+                formes[i].setPolygon(QPolygonF(points))
+                formes[i].show()
             else:
-                self.__trapezes[i].hide()
+                formes[i].hide()
 
+    def __cacherFormes(self,formes:list[QGraphicsPolygonItem]):
+        for i in range(self.__modele.methode_integrale.nombre_total_forme):
+            formes[i].hide()
+
+    def __cacherToutesFormes(self):
+        for i in range(self.__modele.methode_integrale.nombre_total_forme):
+            self.__trapezes[i].hide()
+            self.__rectangles[i].hide()
+
+    def __initialiserFormes(self,listeForme:list):
+        for _ in range(self.__modele.methode_integrale.nombre_total_forme):
+            forme = QGraphicsPolygonItem(QPolygonF())
+            listeForme.append(forme)
+            forme.setPen(pg.mkPen("g", width=1))
+            forme.setBrush(pg.mkBrush(255,0,0,100))
+            self.addItem(forme)
 
 
 

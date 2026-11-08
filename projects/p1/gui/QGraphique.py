@@ -60,7 +60,12 @@ class QGraphique(pg.PlotWidget):
 
         self.__viewBox.sigRangeChangedManually.connect(self.actualiser)
 
-        self.setSizePolicy(QSizePolicy.Policy.Minimum,QSizePolicy.Policy.Minimum)
+        # Besoin de set Range sinon ça fait drole au début si on change sliders.
+        self.__viewBox.setXRange(-5, 5)
+        self.__viewBox.setYRange(-5, 5)
+
+        # Expanding, car graphique doit être + gros possible
+        self.setSizePolicy(QSizePolicy.Policy.Expanding,QSizePolicy.Policy.Minimum)
         
 
     @Slot()

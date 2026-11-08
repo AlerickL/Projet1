@@ -2,7 +2,7 @@ from __future__ import annotations
 import sys
 from typing import override, cast
 from PySide6.QtCore import Qt, Signal, Slot
-from PySide6.QtGui import QPixmap, QColor, QShowEvent
+from PySide6.QtGui import QPixmap, QColor, QShowEvent, QFont  
 from PySide6.QtWidgets import QApplication, QWidget, QLabel, QSlider, QHBoxLayout, QVBoxLayout, QComboBox, QPushButton
 from edustem.pyside6.widgets.q_slider_spin_box import QRealSliderSpinBox
 from projects.p1.gui.QParametres import QParametres
@@ -21,11 +21,12 @@ class QMethode(QBoutonMultipleRealSliderSpinBox):
     def __init__(self,modele:Modele):
         self.__modele:Modele = modele
 
-        boutonSansMethode = QPushButton("Aucune méthode")
-        boutonDerive = QPushButton("Dérivé")
-        boutonIntegrale = QPushButton("Intégrale")
+        __boutonSansMethode = QPushButton("Aucune méthode")
+        __boutonDerive = QPushButton("Dérivé")
+        __boutonIntegrale = QPushButton("Intégrale")
 
-        super().__init__("Méthodes numériques",[],[boutonSansMethode,boutonDerive,boutonIntegrale])
+
+        super().__init__("Méthodes numériques",[],[__boutonSansMethode,__boutonDerive,__boutonIntegrale])
 
         self.__sansMethode = QSansMethode()
         self.__methodeDerive = QMethodeDerive(self.__modele)
@@ -39,9 +40,10 @@ class QMethode(QBoutonMultipleRealSliderSpinBox):
         self.__methodeDerive.setVisible(False)
         self.__methodeIntegrale.setVisible(False)
 
-        boutonSansMethode.pressed.connect(self.__mettreSansMethode)
-        boutonDerive.pressed.connect(self.__mettreMethodeDerive)
-        boutonIntegrale.pressed.connect(self.__mettreMethodeIntegrale)
+        
+        __boutonSansMethode.pressed.connect(self.__mettreSansMethode)
+        __boutonDerive.pressed.connect(self.__mettreMethodeDerive)
+        __boutonIntegrale.pressed.connect(self.__mettreMethodeIntegrale)
 
         self.__methodeDerive.modeleChanger.connect(self.modeleChanger)
         self.__methodeIntegrale.modeleChanger.connect(self.modeleChanger)

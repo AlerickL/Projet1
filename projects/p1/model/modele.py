@@ -24,8 +24,8 @@ class Modele:
         self.__fonction_second_degre = FonctionSecondDegre(self.__transformation_canonique)
         self.__fonction_sin_amortie = FonctionSinAmortie(self.__transformation_canonique)
         self.__fonction_double_bosse = FonctionDoubleBosse(self.__transformation_canonique)
-        self.__methode_derive = MethodeDerive(self.__fonction_math,0)
-        self.__methode_integrale = MethodeIntegrale(self.__fonction_math,(0,1))
+        self.__methode_derive = MethodeDerive(self.__fonction_math)
+        self.__methode_integrale = MethodeIntegrale(self.__fonction_math)
         self.__methode_affiche = affichageMethode.AUCUNE
 
     @property

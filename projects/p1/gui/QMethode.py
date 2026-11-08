@@ -3,11 +3,12 @@ import sys
 from typing import override, cast
 from PySide6.QtCore import Qt, Signal, Slot
 from PySide6.QtGui import QPixmap, QColor, QShowEvent, QFont  
-from PySide6.QtWidgets import QApplication, QWidget, QLabel, QSlider, QHBoxLayout, QVBoxLayout, QComboBox, QPushButton
+from PySide6.QtWidgets import QApplication, QWidget, QLabel, QSlider, QHBoxLayout, QVBoxLayout, QComboBox, QPushButton, QMessageBox
 from edustem.pyside6.widgets.q_slider_spin_box import QRealSliderSpinBox
 from projects.p1.gui.QParametres import QParametres
 from projects.p1.gui.QTransformationCanonique import QTransformationCanonique
 from projects.p1.model.modele import Modele
+from projects.p1.model.information import Information
 from projects.p1.gui.QMenuDeroulant import QMenuDeroulant
 from projects.p1.gui.QMenuFormule import QMenuFormule
 from projects.p1.gui.QSelectionFonction import QSelectionFonction
@@ -28,11 +29,18 @@ class QMethode(QBoutonMultipleRealSliderSpinBox):
 
         super().__init__("Méthodes numériques",[],[__boutonSansMethode,__boutonDerive,__boutonIntegrale])
 
+        self.__boutonInfo = QPushButton("Information")
+        self.__boutonReinitialiser = QPushButton("Réinitialiser")
+
+        self.__boutonInfo.pressed.connect(self.__mettreInfo)
+        self.__boutonReinitialiser.pressed.connect(self.__reinitialiser)
+
         self.__sansMethode = QSansMethode()
         self.__methodeDerive = QMethodeDerive(self.__modele)
         self.__methodeIntegrale = QMethodeIntegrale(self.__modele)
 
-
+        self.layout().addWidget(self.__boutonInfo)
+        self.layout().addWidget(self.__boutonReinitialiser)
         self.layout().addWidget(self.__sansMethode)
         self.layout().addWidget(self.__methodeDerive)
         self.layout().addWidget(self.__methodeIntegrale)
@@ -75,3 +83,21 @@ class QMethode(QBoutonMultipleRealSliderSpinBox):
         self.__methodeIntegrale.setVisible(True)
         self.__sansMethode.setVisible(False)
         self.modeleChanger.emit()
+
+    def __mettreInfo(self):
+        if self.__modele.methode_derive_a_afficher or self.__modele.methode_integrale_a_afficher:
+            if self.__modele.methode_derive_a_afficher:
+                methodeInfo = self.__modele.methode_derive.info
+            else:
+                methodeInfo = self.__modele.methode_integrale.info
+            texte = "Résumé :\n" + methodeInfo.resume+"\n\nDétails :\n"+methodeInfo.details
+        else:
+            texte = "C'est des blagues vraiment super cool"
+
+        QMessageBox.information(self,"La méthode numérique actuellement appliquée",texte)
+
+    def __reinitialiser(self):
+        if self.__modele.methode_derive_a_afficher:
+            self.methodeDerive.reinitialiser()
+        elif self.__modele.methode_integrale_a_afficher:
+            self.methodeIntegrale.reinitialiser()

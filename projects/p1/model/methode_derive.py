@@ -2,17 +2,19 @@ from typing import override
 from projects.p1.model.fonction_math import FonctionMath
 from projects.p1.model.methode_numerique import MethodeNumerique
 from projects.p1.model.affichage_derive import AffichageDerive
+from projects.p1.model.information import Information
 
 class MethodeDerive(MethodeNumerique):
     """Permet de gérer les dérivé"""
-    def __init__(self, fonction: FonctionMath, point_interet:float):
+    def __init__(self, fonction: FonctionMath):
         """initialise 
         Args:
             fonction (FonctionMath): fonction
             point_interet (float): le point ou on fait le calcul de derive 
         """
-        super().__init__(fonction)
-        self.__point_interet = point_interet 
+        info = Information("Méthode numérique de dérivé","La méthode numérique de dérivé permet de calculer et de visualiser la tangente et la sécante d'une fonction en un point","La sécante est l'approximation numérique de la tangente par la définition usuelle de la dérivé.")
+        super().__init__(fonction,info)
+        self.__point_interet = 0
         self.__etendue_visible:float = 3
         self.__representation = AffichageDerive.TANGENTE
         
@@ -68,4 +70,11 @@ class MethodeDerive(MethodeNumerique):
         premiere_valeur = self.avoir_premiere_valeur()
         seconde_valeur = self.avoir_seconde_valeur()
         return ( self.fonction_math.calculer(seconde_valeur) - self.fonction_math.calculer(premiere_valeur) )/ (self.precision)
+
+    @override
+    def reinitialiser(self):
+        super().reinitialiser()
+        self.__point_interet = 0
+        self.__etendue_visible:float = 3
+        self.__representation = AffichageDerive.TANGENTE
     

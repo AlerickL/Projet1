@@ -12,8 +12,12 @@ class MethodeDerive(MethodeNumerique):
             fonction (FonctionMath): fonction
             point_interet (float): le point ou on fait le calcul de derive 
         """
-        super().__init__(fonction)
-        self.__point_interet = point_interet 
+        __info = Information("Méthode numérique de dérivation",
+                             "La méthode numérique de dérivation permet d'estimer la pente de la fonction à un certain point",
+                             "Il est possible de changer le pas, et le positionement de la sécante.")
+        
+        super().__init__(fonction, __info)
+        self.__point_interet = 0 
         self.__etendue_visible:float = 3
         self.__representation = AffichageDerive.TANGENTE
         

@@ -13,8 +13,10 @@ class MethodeIntegrale(MethodeNumerique):
             fonction (FonctionMath): fonction
             intervalle (tuple[float, float]): l'intervalle sur lequel on calcule l'intégrale
         """
-        info = Information("Méthode numérique d'intégration","La méthode numérique d'intégration permet d'estimer l'aire de la fonction par des rectangles ou des trapèzes","Il est possible de changer l'intervalle, le nombre de forme ou le centre des rectangles. L'approximation des trapèzes est meilleure.")
-        super().__init__(fonction,info)
+        __info = Information("Méthode numérique d'intégration", 
+                           "La méthode numérique d'intégration permet d'estimer l'aire de la fonction par des rectangles ou des trapèzes",
+                           "Il est possible de changer l'intervalle, le nombre de forme ou le centre des rectangles. L'approximation des trapèzes est meilleure.")
+        super().__init__(fonction, __info)
         self.__intervalle = (0,1)
         self.__forme_integrale =  FormeIntegrale.RECTANGLE
         self.__nombre_total_forme:int = 100

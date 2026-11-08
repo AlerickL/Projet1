@@ -67,4 +67,11 @@ class MethodeDerive(MethodeNumerique):
         premiere_valeur = self.avoir_premiere_valeur()
         seconde_valeur = self.avoir_seconde_valeur()
         return ( self.fonction_math.calculer(seconde_valeur) - self.fonction_math.calculer(premiere_valeur) )/ (self.precision)
+
+    @override
+    def reinitialiser(self):
+        super().reinitialiser()
+        self.__point_interet = 0
+        self.__etendue_visible:float = 3
+        self.__representation = AffichageDerive.TANGENTE
     

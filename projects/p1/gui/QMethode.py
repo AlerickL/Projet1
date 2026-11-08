@@ -2,7 +2,7 @@ from __future__ import annotations
 import sys
 from typing import override, cast
 from PySide6.QtCore import Qt, Signal, Slot
-from PySide6.QtGui import QPixmap, QColor, QShowEvent
+from PySide6.QtGui import QPixmap, QColor, QShowEvent, QFont  
 from PySide6.QtWidgets import QApplication, QWidget, QLabel, QSlider, QHBoxLayout, QVBoxLayout, QComboBox, QPushButton
 from edustem.pyside6.widgets.q_slider_spin_box import QRealSliderSpinBox
 from projects.p1.gui.QParametres import QParametres
@@ -24,6 +24,7 @@ class QMethode(QBoutonMultipleRealSliderSpinBox):
         __boutonSansMethode = QPushButton("Aucune méthode")
         __boutonDerive = QPushButton("Dérivé")
         __boutonIntegrale = QPushButton("Intégrale")
+
 
         super().__init__("Méthodes numériques",[],[__boutonSansMethode,__boutonDerive,__boutonIntegrale])
 

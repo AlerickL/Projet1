@@ -16,7 +16,7 @@ class FonctionSinAmortie(FonctionMath):
 
         __fonction: callable = lambda x: np.exp(-1*self.parametres[0].valeur * x) * np.sin(x)
         __derive: callable = lambda x: np.exp(-1*self.parametres[0].valeur * x) * (np.cos(x) - self.parametres[0].valeur * np.sin(x))
-        __primitive: callable = lambda x : lambda x: ((np.exp(-1*self.parametres[0].valeur * x) * (self.parametres[0].valeur*np.sin(x) + np.cos(x)))) / (self.parametres[0].valeur**2 + 1)
+        __primitive: callable = lambda x: ((np.exp(-1*self.parametres[0].valeur * x) * (self.parametres[0].valeur*np.sin(x) + np.cos(x)))) / (self.parametres[0].valeur**2 + 1)
         
         super().__init__(info,formule_generale,[amplitude],transformations_canoniques, __fonction, __derive, __primitive)
 

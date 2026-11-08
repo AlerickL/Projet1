@@ -17,7 +17,7 @@ from projects.p1.gui.QGraphique import QGraphique
 class QSansMethode(QWidget):
     def __init__(self):
         super().__init__()
-        self.__label = QLabel("Joke de math : plante racine")
+        self.__label = QLabel("Joke de math : C'est le Logarithme qui tente de motiver l'Exponentielle. Elle répond : « Que je m'intègre ou non, c'est pareil ».")
 
         principalLayout = QHBoxLayout()
 

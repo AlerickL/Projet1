@@ -21,11 +21,11 @@ class QMethode(QBoutonMultipleRealSliderSpinBox):
     def __init__(self,modele:Modele):
         self.__modele:Modele = modele
 
-        boutonSansMethode = QPushButton("Aucune méthode")
-        boutonDerive = QPushButton("Dérivé")
-        boutonIntegrale = QPushButton("Intégrale")
+        __boutonSansMethode = QPushButton("Aucune méthode")
+        __boutonDerive = QPushButton("Dérivé")
+        __boutonIntegrale = QPushButton("Intégrale")
 
-        super().__init__("Méthodes numériques",[],[boutonSansMethode,boutonDerive,boutonIntegrale])
+        super().__init__("Méthodes numériques",[],[__boutonSansMethode,__boutonDerive,__boutonIntegrale])
 
         self.__sansMethode = QSansMethode()
         self.__methodeDerive = QMethodeDerive(self.__modele)
@@ -39,9 +39,10 @@ class QMethode(QBoutonMultipleRealSliderSpinBox):
         self.__methodeDerive.setVisible(False)
         self.__methodeIntegrale.setVisible(False)
 
-        boutonSansMethode.pressed.connect(self.__mettreSansMethode)
-        boutonDerive.pressed.connect(self.__mettreMethodeDerive)
-        boutonIntegrale.pressed.connect(self.__mettreMethodeIntegrale)
+        
+        __boutonSansMethode.pressed.connect(self.__mettreSansMethode)
+        __boutonDerive.pressed.connect(self.__mettreMethodeDerive)
+        __boutonIntegrale.pressed.connect(self.__mettreMethodeIntegrale)
 
         self.__methodeDerive.modeleChanger.connect(self.modeleChanger)
         self.__methodeIntegrale.modeleChanger.connect(self.modeleChanger)

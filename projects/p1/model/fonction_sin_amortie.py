@@ -34,4 +34,3 @@ class FonctionSinAmortie(FonctionMath):
     
     def calculer_exacte_integrale(self, borne_inferieure:float,borne_superieure:float) -> float:
         return super().calculer_exacte_integrale(borne_inferieure,borne_superieure)
-

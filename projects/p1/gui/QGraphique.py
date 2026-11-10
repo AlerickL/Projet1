@@ -65,7 +65,10 @@ class QGraphique(pg.PlotWidget):
         __xMin, __xMax = self.__viewBox.viewRange()[0]
         __xValeurs, __yValeurs = self.__modele.fonction_math.calculer_np(__xMin, __xMax, 500)
         self.__courbe.setData(__xValeurs, __yValeurs)
+        self.__actualiserMethodeNumerique()
 
+    
+    def __actualiserMethodeNumerique(self) -> None:
         if self.__modele.methode_derive_a_afficher:
             for i in range(self.__modele.methode_integrale.nombre_total_forme):
                 self.__rectangles[i].hide()

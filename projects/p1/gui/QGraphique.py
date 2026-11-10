@@ -1,14 +1,8 @@
 from __future__ import annotations
-import sys
-from typing import override, cast
-from PySide6.QtCore import Qt, Signal, Slot, QPointF
-from PySide6.QtGui import QPixmap, QColor, QShowEvent, QPolygonF
-from PySide6.QtWidgets import QApplication, QWidget, QLabel, QSlider, QHBoxLayout, QVBoxLayout, QComboBox, QGraphicsPolygonItem, QSizePolicy
-from edustem.pyside6.widgets.q_slider_spin_box import QRealSliderSpinBox
+from PySide6.QtCore import Slot, QPointF
+from PySide6.QtGui import QPolygonF
+from PySide6.QtWidgets import QGraphicsPolygonItem, QSizePolicy
 from projects.p1.model.modele import Modele
-from projects.p1.gui.QMenuDeroulant import QMenuDeroulant
-from projects.p1.gui.QMenuFormule import QMenuFormule
-from projects.p1.gui.QParametres import QParametres
 from numpy.typing import NDArray
 import pyqtgraph as pg
 
@@ -22,13 +16,16 @@ class QGraphique(pg.PlotWidget):
 
         #Courbe principale
         __xValeurs, __yValeurs = self.__modele.fonction_math.calculer_np(-10, 10, 500)
-        self.__courbe : pg.PlotDataItem = pg.PlotDataItem(__xValeurs, __yValeurs, pen="white", width=4)
+        self.__courbe : pg.PlotDataItem = pg.PlotDataItem(__xValeurs, __yValeurs, pen="white", width=4, name = "Tangente")
+        self.__courbe.set
         self.__viewBox : pg.ViewBox = self.getViewBox()
 
         self.addItem(self.__courbe)
 
+        
+
         # Tangente
-        self.__tangente : pg.PlotDataItem = pg.PlotDataItem((), (), pen="red", width=5)
+        self.__tangente : pg.PlotDataItem = pg.PlotDataItem((), (), pen="red", width=5, name = "Tangente")
         self.__tangente.hide()
 
         # Secante
@@ -39,6 +36,14 @@ class QGraphique(pg.PlotWidget):
         self.__pointInteret : pg.ScatterPlotItem = pg.ScatterPlotItem((), (), pen="Red", size=10)
         self.__pointInteret.hide()
 
+        #Point d'intérêt
+        self.__pointMoins : pg.ScatterPlotItem = pg.ScatterPlotItem((), (), pen="Yellow", size=10)
+        self.__pointMoins.hide()
+
+        #Point d'intérêt
+        self.__pointPlus : pg.ScatterPlotItem = pg.ScatterPlotItem((), (), pen="Yellow", size=10)
+        self.__pointPlus.hide()
+
         self.__rectangles:list[QGraphicsPolygonItem] = []
         self.__initialiserFormes(self.__rectangles)
 
@@ -48,6 +53,8 @@ class QGraphique(pg.PlotWidget):
         self.addItem(self.__tangente)
         self.addItem(self.__secante)
         self.addItem(self.__pointInteret)
+        self.addItem(self.__pointMoins)
+        self.addItem(self.__pointPlus)
 
         self.__viewBox.sigRangeChangedManually.connect(self.actualiser)
 
@@ -65,7 +72,10 @@ class QGraphique(pg.PlotWidget):
         __xMin, __xMax = self.__viewBox.viewRange()[0]
         __xValeurs, __yValeurs = self.__modele.fonction_math.calculer_np(__xMin, __xMax, 500)
         self.__courbe.setData(__xValeurs, __yValeurs)
+        self.__actualiserMethodeNumerique()
 
+    
+    def __actualiserMethodeNumerique(self) -> None:
         if self.__modele.methode_derive_a_afficher:
             for i in range(self.__modele.methode_integrale.nombre_total_forme):
                 self.__rectangles[i].hide()
@@ -76,6 +86,8 @@ class QGraphique(pg.PlotWidget):
             if self.__modele.tangente_et_secante_a_afficher:
                 self.__afficherTangenteEtSecante()
         elif self.__modele.methode_integrale_a_afficher:
+            self.__pointMoins.hide()
+            self.__pointPlus.hide()
             self.__pointInteret.hide()
             self.__tangente.hide()
             self.__secante.hide()
@@ -87,6 +99,8 @@ class QGraphique(pg.PlotWidget):
                 self.__afficherTrapezes()
         else: # aucune méthode
             self.__pointInteret.hide()
+            self.__pointMoins.hide()
+            self.__pointPlus.hide()
             self.__tangente.hide()
             self.__secante.hide()
             self.__cacherToutesFormes()
@@ -97,6 +111,18 @@ class QGraphique(pg.PlotWidget):
         self.__pointInteret.show()
         _x, _y = self.__modele.methode_derive.point_interet, self.__modele.fonction_math.calculer(self.__modele.methode_derive.point_interet)
         self.__pointInteret.setData([_x], [_y])
+
+    def __afficherPointAvantSecante(self):
+        self.__pointMoins.show()
+        pointMoins = self.__modele.methode_derive.avoir_premiere_valeur()
+        _x, _y = pointMoins, self.__modele.fonction_math.calculer(pointMoins)
+        self.__pointMoins.setData([_x], [_y])
+
+    def __afficherPointApresSecante(self):
+        self.__pointPlus.show()
+        pointPlus = self.__modele.methode_derive.avoir_seconde_valeur()
+        _x, _y = pointPlus, self.__modele.fonction_math.calculer(pointPlus)
+        self.__pointPlus.setData([_x], [_y])
     
         
     def __afficherTangente(self, cacherSecante:bool = True):
@@ -106,10 +132,14 @@ class QGraphique(pg.PlotWidget):
 
         if cacherSecante:
             self.__secante.hide()
+            self.__pointMoins.hide()
+            self.__pointPlus.hide()
         self.__tangente.show()
     
     def __afficherSecante(self, cacherTangente:bool = True):
         self.__afficherPointInteret()
+        self.__afficherPointAvantSecante()
+        self.__afficherPointApresSecante()
         __xValeurs, __yValeurs = self.__modele.avoir_deux_points_derive_approxime()
         self.__secante.setData(__xValeurs, __yValeurs)
 
@@ -123,13 +153,13 @@ class QGraphique(pg.PlotWidget):
 
     def __afficherRectangles(self):
         coordonnees = self.__modele.methode_integrale.avoir_coordonnees_rectangles()
-        self.__afficherFormes(self.__rectangles,coordonnees)
+        self.__afficherFormes(self.__rectangles, coordonnees)
 
     def __afficherTrapezes(self):
         coordonnees = self.__modele.methode_integrale.avoir_coordonnees_trapezes()
-        self.__afficherFormes(self.__trapezes,coordonnees)
+        self.__afficherFormes(self.__trapezes, coordonnees)
 
-    def __afficherFormes(self,formes:list[QGraphicsPolygonItem],coordonnees:NDArray):
+    def __afficherFormes(self, formes: list[QGraphicsPolygonItem], coordonnees: NDArray):
         for i in range(self.__modele.methode_integrale.nombre_total_forme):
             if i<= int(self.__modele.methode_integrale.precision)-1:
                 xs, ys = coordonnees[i,0:4], coordonnees[i,4:]
@@ -139,7 +169,7 @@ class QGraphique(pg.PlotWidget):
             else:
                 formes[i].hide()
 
-    def __cacherFormes(self,formes:list[QGraphicsPolygonItem]):
+    def __cacherFormes(self, formes: list[QGraphicsPolygonItem]):
         for i in range(self.__modele.methode_integrale.nombre_total_forme):
             formes[i].hide()
 
@@ -148,12 +178,12 @@ class QGraphique(pg.PlotWidget):
             self.__trapezes[i].hide()
             self.__rectangles[i].hide()
 
-    def __initialiserFormes(self,listeForme:list):
+    def __initialiserFormes(self, listeForme: list):
         for _ in range(self.__modele.methode_integrale.nombre_total_forme):
             forme = QGraphicsPolygonItem(QPolygonF())
             listeForme.append(forme)
             forme.setPen(pg.mkPen("g", width=1))
-            forme.setBrush(pg.mkBrush(255,0,0,100))
+            forme.setBrush(pg.mkBrush(255, 0, 0, 100))
             self.addItem(forme)
 
 

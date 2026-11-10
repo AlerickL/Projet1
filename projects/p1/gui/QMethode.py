@@ -1,17 +1,7 @@
 from __future__ import annotations
-import sys
-from typing import override, cast
-from PySide6.QtCore import Qt, Signal, Slot
-from PySide6.QtGui import QPixmap, QColor, QShowEvent, QFont  
-from PySide6.QtWidgets import QApplication, QWidget, QLabel, QSlider, QHBoxLayout, QVBoxLayout, QComboBox, QPushButton, QMessageBox
-from edustem.pyside6.widgets.q_slider_spin_box import QRealSliderSpinBox
-from projects.p1.gui.QParametres import QParametres
-from projects.p1.gui.QTransformationCanonique import QTransformationCanonique
+from PySide6.QtCore import Signal
+from PySide6.QtWidgets import QPushButton, QMessageBox
 from projects.p1.model.modele import Modele
-from projects.p1.model.information import Information
-from projects.p1.gui.QMenuDeroulant import QMenuDeroulant
-from projects.p1.gui.QMenuFormule import QMenuFormule
-from projects.p1.gui.QSelectionFonction import QSelectionFonction
 from projects.p1.gui.QBoutonMultipleRealSliderSpinBox import QBoutonMultipleRealSliderSpinBox
 from projects.p1.gui.QSansMethode import QSansMethode
 from projects.p1.gui.QMethodeDerive import QMethodeDerive
@@ -80,8 +70,8 @@ class QMethode(QBoutonMultipleRealSliderSpinBox):
     def __mettreMethodeIntegrale(self):
         self.__modele.mettre_affichage_integrale()
         self.__methodeDerive.setVisible(False)
-        self.__methodeIntegrale.setVisible(True)
         self.__sansMethode.setVisible(False)
+        self.__methodeIntegrale.setVisible(True)
         self.modeleChanger.emit()
 
     def __mettreInfo(self):

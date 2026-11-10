@@ -171,13 +171,18 @@ Cette section décrit une contribution individuelle au projet par chaque membre 
 
 Évaluation individuelle par étudiant :
 - Hiba El ghardegue 
-    1. moi personnelemnt ,j’ai surtout contribué au modèle en programmant deux fonctions mathématiques à paramètres ajustables, ainsi que le calcul de leur dérivée et de leur intégrale.
+    1. moi personnelemnt ,j’ai surtout contribué au modèle en programmant des fonctions mathématiques à paramètres ajustables, ainsi que le calcul de leur dérivée et de leur intégrale.
     1. le defi le plus important c’était d’intégrer au modèle les fonctions que j’ai codées. pour le surmonte on a éfini la primitive de chaque fonction en se basant sur ses paramètres. Ensuite, on a utilisé la méthode de la classe FonctionMath pour calculer l’intégrale entre deux bornes.
     1. Selon moi, le plus difficile, c’était de relier l’interface graphique au modèle. Quand on a commencé à coder l’interface, il manquait la classe Modele.C’était plus simple de transmettre les paramètres au modèle et de récupérer les résultats à afficher.
     1. En effet , le travail en group a globalement  bien passer , peut-etre trouver des dispos communes a etait la seule complication .
 - Prénom et nom de l'étudiant 2
     1. ...
     1. ...
+    1. ...
+    1. ...
+- Alérick Langlois
+    1. La tâche à laquelle j'ai contribué le plus est le respect de la POO.
+    1. 
     1. ...
     1. ...
 - Arthur Delcourt

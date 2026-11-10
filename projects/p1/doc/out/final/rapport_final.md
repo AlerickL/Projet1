@@ -47,11 +47,10 @@ Voici les directives importantes pour la rédaction de votre rapport :
 
 <div class="reponse-etudiant">
 
-- Nom, Prénom [matricule] de l'étudiant 1
-- Nom, Prénom [matricule] de l'étudiant 2
-- Pignon, François [12345678]
-- ...
-- mettre le nom de tous les étudiants et retirer cette ligne
+- Langlois, Alérick [2546596]
+- El ghardegue, Hiba [2582853] 
+- Quinn Zachary [2561652]
+- Delcourt, Arthur [2541195]
 
 </div>
 
@@ -69,14 +68,7 @@ Si toutes les exigences sont fonctionnelles, indiquez simplement : `Toutes les e
 
 <div class="reponse-etudiant">
 
-Liste des exigences partiellement fonctionnelles ou non fonctionnelles :
-- Titre 1 :
-    - Description :
-    - Raison principale :
-- Titre 2 :
-    - Description :
-    - Raison principale :
-- ...
+Toutes les exigences sont fonctionnelles.
 
 </div>
 
@@ -95,12 +87,16 @@ La réalisation du projet repose sur une première étape consistant à faire un
 <div class="reponse-etudiant">
 
 Réponse aux questions sur la conception :
-1. ...
-1. ...
+1. Le diagramme nous a permis d'accélérer la programmation, car nous avons pu nous séparer les taches. Ensuite, Il a facilité le développement, car nous avons prédit certains enjeux que nous allions rencontrer, et nous a permis d'avoir une vision plus globale du projet et de comprendre les enjeux de modularité.
+1. La réalisation de la maquette de l'interface nous a servis d'aide mémoire pendant la conception du Gui. La maquette nous a permis de mieux se diviser le travail, en travaillant sur des widgets différents et en établissant les liens (signaux/slots) nécéssaires. Elle nous a aussi permis de compartimenter l'interface et de comprendre quels widgets était nécéssaire.
 1. Écarts entre la conception initiale et le logiciel remis :
-    - Écart 1 : ... Raison : ...
-    - Écart 2 : ... Raison : ...
-    - ...
+    - Écart 1 : La classe Modèle n'existait pas sur la première version.  
+    Raison : Pour avoir un accès unique au modèle, et séparer le GUI du modèle, nous avons créé la classe modèle pour faire la gestion des intéractions GUI-modèle. De cette manière, toute intéraction avec le modèle ce fait à travers la classe modèle.
+    - Écart 2 : Les méthodes privées utilisées 
+    Raison : Nos méthodes privées nous ont permis de simplifier les calculs, d'éviter la répétion du code, et d'expliciter la logique. 
+    - Écart 3 : La façon de transmettre de l'information  
+    Raison: Nous avons ajoutés des Enums, car il était nécéssaire de sauvegarder la façon d'afficher ce qui devait l'être.
+
 
 </div>
 
@@ -114,9 +110,9 @@ Outre l'utilisation de `NumPy` pour les calculs numériques, identifiez une stru
 <div class="reponse-etudiant">
 
 Réponse aux questions sur les structures de données :
-1. ...
-1. ...
-1. ...
+1. La liste
+1. Dans QBoutonMultipleRealSlider, nous l'avons utilisé pour les sliders et les boutons. Plusieurs autres classes du GUI héritent de celle-ci.
+1. Cette structure de données permet d'implementer le polymorphisme en permettant de changer la quantité de sliders et de boutons dépendament du besoin.
 
 </div>
 
@@ -134,9 +130,9 @@ Dans le but de consolider vos compétences en programmation orientée objet (POO
 
 Réponse aux questions sur la POO :
 1. Utilisation des concepts de la POO dans le code produit :
-    - Encapsulation : ...
-    - Héritage : ...
-    - Polymorphisme : ...
+    - Encapsulation : Dans QGraphique, nous avons encapsulé la méthode privée __actualiserMethodeNumerique et la slot actualiser l'appelle. Celle-ci appelle également plusieurs autres méthodes encapsulées.
+    - Héritage : methode_integrale et methode_derive qui héritent de methode_numerique
+    - Polymorphisme : la méthode calculer dans fonction_math applique les transformation canoniques à la méthode calculer de ses enfants.
 1. Modélisation de la classe abstraite `MathFunction` :
     1. Avantage 1 : ...
     1. Avantage 2 : ...
@@ -184,7 +180,11 @@ Cette section décrit une contribution individuelle au projet par chaque membre 
     1. ...
     1. ...
     1. ...
-- ...
+- Alérick
+    1. 
+    1. ...
+    1. ...
+    1. ...
 - Arthur Delcourt
     1. La tâche à laquelle j'ai contribué de la manière la plus significative est la création et l'organisations des premiers widgets du menu, comme les QParametre, QTransformationCanonique et autres.
     1. Le défis le plus important a été celui de la réutilisation du code. Il me fallait trouver une façon de ne pas me répéter dans mon code. Je l'ai surmonté en créant les classes QMultipleRealSliderSpinBox et QBooutonMultipleRealSilderSpinBox avec lesquels j'ai construit de nombreuses classes enfants.

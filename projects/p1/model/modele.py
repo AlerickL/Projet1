@@ -7,7 +7,6 @@ from projects.p1.model.fonction_sin_amortie import FonctionSinAmortie
 from projects.p1.model.fonction_double_bosse import FonctionDoubleBosse
 from projects.p1.model.methode_derive import MethodeDerive
 from projects.p1.model.methode_integrale import MethodeIntegrale
-from typing import override
 from projects.p1.model.forme_integrale import FormeIntegrale
 from projects.p1.model.affichage_derive import AffichageDerive
 from projects.p1.model.affichage_methode import affichageMethode
@@ -15,10 +14,10 @@ from projects.p1.model.forme_integrale import FormeIntegrale
 
 class Modele:
     def __init__(self):
-        precision = 2
-        minimum = -5
-        maximum = 5
-        self.__transformation_canonique:TransformationCanonique = TransformationCanonique(precision,minimum,maximum)
+        __precision = 2
+        __minimum = -5
+        __maximum = 5
+        self.__transformation_canonique:TransformationCanonique = TransformationCanonique(__precision,__minimum,__maximum)
         self.__fonction_math = FonctionSin(self.__transformation_canonique)
         self.__fonction_sin = FonctionSin(self.__transformation_canonique)
         self.__fonction_second_degre = FonctionSecondDegre(self.__transformation_canonique)
@@ -103,6 +102,7 @@ class Modele:
     def changer_fonction_second_degre(self):
             self.__fonction_math = self.__fonction_second_degre
             self.changer_fonction_methodes()
+
     def changer_fonction_sin_amortie(self):
             self.__fonction_math = self.__fonction_sin_amortie
             self.changer_fonction_methodes()
@@ -111,10 +111,10 @@ class Modele:
             self.__fonction_math = self.__fonction_double_bosse
             self.changer_fonction_methodes()
             
-    def changer_valeur_parametre(self,index:int,valeur:float):
+    def changer_valeur_parametre(self, index: int, valeur: float):
         self.__fonction_math.parametres[index].valeur = valeur
 
-    def avoir_info_parametre(self,index:int):
+    def avoir_info_parametre(self, index: int):
         return self.__fonction_math.parametres[index].info
 
     def avoir_info_fonction(self):
@@ -130,12 +130,12 @@ class Modele:
         self.transformation_canonique.reinitialiser()
 
     def mettre_symetrie_y(self):
-        self.__transformation_canonique.trans_x.valeur = -1 * self.__transformation_canonique.trans_x.valeur
-        self.__transformation_canonique.zoom_x.valeur = -1 * self.__transformation_canonique.zoom_x.valeur
+        self.__transformation_canonique.trans_x.valeur = -self.__transformation_canonique.trans_x.valeur
+        self.__transformation_canonique.zoom_x.valeur = -self.__transformation_canonique.zoom_x.valeur
         
     def mettre_symetrie_x(self):
-        self.__transformation_canonique.trans_y.valeur = -1 * self.__transformation_canonique.trans_y.valeur
-        self.__transformation_canonique.zoom_y.valeur = -1* self.__transformation_canonique.zoom_y.valeur
+        self.__transformation_canonique.trans_y.valeur = -self.__transformation_canonique.trans_y.valeur
+        self.__transformation_canonique.zoom_y.valeur = -self.__transformation_canonique.zoom_y.valeur
 
     def mettre_derive_a_gauche(self):
         self.methode_derive._alpha = 0.0
@@ -155,12 +155,12 @@ class Modele:
     def mettre_integrale_a_droite(self):
         self.methode_integrale._alpha = 1
 
-    def avoir_deux_points_derive_approxime(self) -> tuple[tuple[float,float],tuple[float,float]]:
+    def avoir_deux_points_derive_approxime(self) -> tuple[tuple[float, float], tuple[float, float]]:
         p_moins = self.methode_derive.avoir_premiere_valeur()
         p_plus = self.methode_derive.avoir_seconde_valeur()
         return ((p_moins, p_plus),(self.fonction_math.calculer(p_moins), self.fonction_math.calculer(p_plus)))
 
-    def avoir_deux_points_tangente(self) -> tuple[tuple[float,float],tuple[float,float]]:
+    def avoir_deux_points_tangente(self) -> tuple[tuple[float, float], tuple[float, float]]:
         point_interet = self.__methode_derive.point_interet
         droite = self.__methode_derive.avoir_regle_tangente()
         x_moins = point_interet - self.methode_derive.etendue_visible
@@ -185,8 +185,3 @@ class Modele:
     def changer_fonction_methodes(self)->None:
         self.methode_integrale.fonction_math = self.fonction_math
         self.methode_derive.fonction_math = self.fonction_math
-
-
-
-    
-    

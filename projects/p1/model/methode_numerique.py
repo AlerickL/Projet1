@@ -24,7 +24,7 @@ class MethodeNumerique(ABC):
         return self._fonction_math
 
     @fonction_math.setter
-    def fonction_math(self, fonction:FonctionMath) -> None:
+    def fonction_math(self, fonction: FonctionMath) -> None:
         self._fonction_math = fonction
 
     @property
@@ -37,20 +37,13 @@ class MethodeNumerique(ABC):
         return self._alpha
 
     @alpha.setter
-    def alpha(self, valeur:float) -> None:
+    def alpha(self, valeur: float) -> None:
         """Permet de modifier alpha
 
         Args:
             valeur (float): La nouvelle valeur de alpha
 
-        Raises:
-            TypeError: alpha doit être un float
-            ValueError: alpha doit être compris entre 0 et 1 inclus
         """
-        if not isinstance(valeur,float):
-            raise TypeError("alpha doit être un float")
-        if valeur<0 or valeur>1:
-            raise ValueError("alpha doit être compris entre 0 et 1 inclus")
         self._alpha = valeur
 
     @property
@@ -64,20 +57,18 @@ class MethodeNumerique(ABC):
         pass
 
     @property
-    def precision(self) -> int|float:
+    def precision(self) -> float:
         """Donne la précision de la méthode numérique ; dépend de la méthode précisément.
         Pour la dérivé, c'est le pas de comparaison (h)
         Pour l'intégral, c'est le nombre de division 
 
         Returns:
-            int|float: La précision
+            float: La précision
         """
         return self.__precision
 
     @precision.setter
-    def precision(self,valeur:int|float) -> None :
-        if self.precision<0:
-            raise ValueError("Precision doit être positif")
+    def precision(self, valeur: float) -> None :
         self.__precision = valeur
 
     def reinitialiser(self):

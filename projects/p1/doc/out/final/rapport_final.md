@@ -126,7 +126,7 @@ Dans le but de consolider vos compétences en programmation orientée objet (POO
 1. Nommez 2 avantages et 1 inconvénient de la modélisation proposée pour la classe abstraite `MathFunction`.
 1. Pourquoi le polymorphisme est-il particulièrement utile dans ce projet ?
 
-<div class="reponse-etudiant">
+<div class="-etudiant">
 
 Réponse aux questions sur la POO :
 1. Utilisation des concepts de la POO dans le code produit :
@@ -170,7 +170,7 @@ Cette section décrit une contribution individuelle au projet par chaque membre 
 <div class="reponse-etudiant">
 
 Évaluation individuelle par étudiant :
-- Prénom et nom de l'étudiant 1
+- Hiba El ghardegue 
     1. ...
     1. ...
     1. ...

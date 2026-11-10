@@ -43,7 +43,7 @@ python p1_main.py
 
 *Inscrivez le nom de chaque membre de l'équipe.*
 
-- Prénom Nom
-- El Ghardegue Hiba 
-- Prénom Nom
-- Prénom Nom
+- El Ghardegue Hiba
+- Arthur
+- Alérick
+- Zachary

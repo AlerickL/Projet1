@@ -109,7 +109,7 @@ Parametre "4"--* TransformationCanonique
 TransformationCanonique --* FonctionMath
 Information --* Parametre
 Information --* FonctionMath
-MethodeIntegral --^ MethodeNumerique
+MethodeIntegrale --^ MethodeNumerique
 MethodeDerive --^ MethodeNumerique
 FonctionMath --* MethodeNumerique
 AffichageDerive --* MethodeDerive

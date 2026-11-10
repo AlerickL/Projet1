@@ -1,19 +1,19 @@
 @startuml
 class Modele {
-+<<property>> transformation_canonique:TransformationCanonique
-+<<property>> fonction_math:FonctionSin
-+<<property>> fonction_sin:FonctionSin
-+<<property>> fonction_second_degre:FonctionSecondDegre
-+<<property>> fonction_sin_amortie:FonctionSinAmortie
-+<<property>> fonction_double_bosse:FonctionDoubleBosse
-+<<property>> methode_derive:MethodeDerive
-+<<property>> methode_integrale:MethodeIntegrale
-+<<property>> methode_affiche:affichageMethode = AUCUNE
-+<<property>> \ methode_derive_a_afficher:affichageMethode
-+<<property>> \ methode_integrale_a_afficher:affichageMethode
-+<<property>> \ tangente_a_afficher:AffichageDerive
-+<<property>> \ secante_a_afficher:AffichageDerive
-+<<property>> \ tangente_et_secante_a_afficher:AffichageDerive
++<<property>> transformation_canonique:TransformationCanonique {readOnly}
++<<property>> fonction_math:FonctionSin {readOnly}
++<<property>> fonction_sin:FonctionSin {readOnly}
++<<property>> fonction_second_degre:FonctionSecondDegre {readOnly}
++<<property>> fonction_sin_amortie:FonctionSinAmortie {readOnly}
++<<property>> fonction_double_bosse:FonctionDoubleBosse {readOnly}
++<<property>> methode_derive:MethodeDerive {readOnly}
++<<property>> methode_integrale:MethodeIntegrale {readOnly}
++<<property>> methode_affiche:affichageMethode = AUCUNE {readOnly}
++<<property>> \ methode_derive_a_afficher:affichageMethode {readOnly}
++<<property>> \ methode_integrale_a_afficher:affichageMethode {readOnly}
++<<property>> \ tangente_a_afficher:AffichageDerive {readOnly}
++<<property>> \ secante_a_afficher:AffichageDerive {readOnly}
++<<property>> \ tangente_et_secante_a_afficher:AffichageDerive {readOnly}
 +__init__()
 +mettre_affichage_derive():
 +mettre_affichage_integrale():

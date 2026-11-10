@@ -70,8 +70,8 @@ class QMethode(QBoutonMultipleRealSliderSpinBox):
     def __mettreMethodeIntegrale(self):
         self.__modele.mettre_affichage_integrale()
         self.__methodeDerive.setVisible(False)
-        self.__methodeIntegrale.setVisible(True)
         self.__sansMethode.setVisible(False)
+        self.__methodeIntegrale.setVisible(True)
         self.modeleChanger.emit()
 
     def __mettreInfo(self):

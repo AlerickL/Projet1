@@ -124,8 +124,6 @@ class FonctionMath(ABC):
         primitive_canonique: callable = lambda x : (self._transformations_canoniques.zoom_y.valeur * self._transformations_canoniques.zoom_x.valeur
                                                     * self._primitive((x-self._transformations_canoniques.trans_x.valeur) / self._transformations_canoniques.zoom_x.valeur) 
                                                     + self._transformations_canoniques.trans_y.valeur * x)
-        print("primitive inf ", primitive_canonique(borne_inferieur))
-        print("primitive inf ", primitive_canonique(borne_superieur))
         return primitive_canonique(borne_superieur) - primitive_canonique(borne_inferieur)
 
     def redemarrer_parametres(self) -> None:

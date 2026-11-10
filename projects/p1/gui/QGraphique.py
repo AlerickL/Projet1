@@ -17,7 +17,6 @@ class QGraphique(pg.PlotWidget):
         #Courbe principale
         __xValeurs, __yValeurs = self.__modele.fonction_math.calculer_np(-10, 10, 500)
         self.__courbe : pg.PlotDataItem = pg.PlotDataItem(__xValeurs, __yValeurs, pen="white", width=4, name = "Tangente")
-        self.__courbe.set
         self.__viewBox : pg.ViewBox = self.getViewBox()
 
         self.addItem(self.__courbe)

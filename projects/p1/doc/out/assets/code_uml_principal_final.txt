@@ -1,5 +1,5 @@
 @startuml
-title Uml_projet_1_sf3 version 1
+title Uml_projet_1_sf3 version finale
 skinparam linetype ortho
 
 abstract FonctionMath {
@@ -8,10 +8,13 @@ abstract FonctionMath {
 +<<property, abstract>> /vrai_formule:str {readOnly}
 +<<property>> transformation_canonique:TransformationCanonique {readOnly}
 +<<property>> parametres:list[Parametre]|None {readOnly}
+#fonction:callable
+#derive:callable
+#primitive:callable
 +__init__(info:Information,formule_generale:str,transformation_canonique:TransformationCanonique):
-+calculer(x:float,fonction:callable):float
++calculer(x:float):float
 +calculer_np(borne_inf:float,borne_sup:float,nombre_div:int):NDArray[1d,float]
-+{abstract} calculer_exacte_derive(x:float,derive:callable):float
++{abstract} calculer_exacte_derive(x:float):float
 +{abstract} calculer_exacte_integral(borne_inferieure:float,borne_superieur:float):float
 +redemarrer_parametres()
 }
@@ -109,6 +112,6 @@ Information --* FonctionMath
 MethodeIntegral --^ MethodeNumerique
 MethodeDerive --^ MethodeNumerique
 FonctionMath --* MethodeNumerique
-MethodeDerive --* AffichageDerive
-MethodeIntegrale --* FormeIntegrale
+AffichageDerive --* MethodeDerive
+FormeIntegrale --* MethodeIntegrale
 @enduml

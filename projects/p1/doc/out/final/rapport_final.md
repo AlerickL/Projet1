@@ -162,26 +162,21 @@ Réponse aux questions sur l'interprétation du mandat :
 ## Évaluation individuelle
 
 Cette section décrit une contribution individuelle au projet par chaque membre de l'équipe selon son point de vue. Les sujets à couvrir sont :
-1. nommez **la** tâche à laquelle vous avez contribué de manière la plus significative
+`1. nommez **la** tâche à laquelle vous avez contribué de manière la plus significative
 1. décrivez brièvement le défi le plus important de cette tâche et comment vous l'avez surmonté
-1. selon vous, quelle est la partie la plus difficile de tout le projet en considérant uniquement les aspects techniques
+1. selon vous, quelle est la partie la plus difficile de tout le projet en considérant uniquement les aspects techniques`
 1. selon vous, quelle est la partie la plus difficile de tout le projet en considérant exclusivement l'organisation du travail en équipe
 
 <div class="reponse-etudiant">
 
 Évaluation individuelle par étudiant :
-- Zachary
-    1. La modélisation (les umls et le diagramme de qt)
-    1. Optimiser les shéma pour ne pas faire de futur code dupliquer. Penser de manière polymorphique 
-    1. Le début du développement du GUI, car notre modèle était imparfait et nous avions du revenir en arrière pour changer faire une classe Modele qui a été pratique pour faire en sorte que le GUI interagisse uniquement avec celle-ci.
-    1. On a eu de la difficulté à se voir en présentielle. On aurait préféré avoir plus de temps commun pour se réunir en équipe.
+- Hiba El ghardegue 
+    1. moi personnelemnt ,j’ai surtout contribué au modèle en programmant deux fonctions mathématiques à paramètres ajustables, ainsi que le calcul de leur dérivée et de leur intégrale.
+    1. le defi le plus important c’était d’intégrer au modèle les fonctions que j’ai codées. pour le surmonte on a éfini la primitive de chaque fonction en se basant sur ses paramètres. Ensuite, on a utilisé la méthode de la classe FonctionMath pour calculer l’intégrale entre deux bornes.
+    1. Selon moi, le plus difficile, c’était de relier l’interface graphique au modèle. Quand on a commencé à coder l’interface, il manquait la classe Modele.C’était plus simple de transmettre les paramètres au modèle et de récupérer les résultats à afficher.
+    1. En effet , le travail en group a globalement  bien passer , peut-etre trouver des dispos communes a etait la seule complication .
 - Prénom et nom de l'étudiant 2
     1. ...
-    1. ...
-    1. ...
-    1. ...
-- Alérick
-    1. 
     1. ...
     1. ...
     1. ...

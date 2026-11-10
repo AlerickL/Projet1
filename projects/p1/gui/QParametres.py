@@ -60,7 +60,6 @@ class QParametres(QBoutonMultipleRealSliderSpinBox):
 
     def __appliquerModele(self):
         for i in range(len(self.__reels)):
-            print(self.__reels[i].value())
             self.__reels[i].setValue(self.__fonction_math.parametres[i].valeur)
 
     @Slot()

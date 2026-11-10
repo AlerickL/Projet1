@@ -34,8 +34,6 @@ class QMultipleRealSliderSpinBox(QWidget):
 
         self.setLayout(mainLayout)
 
-        self.valeurChanger.connect(self.__print)
-
         for reel in self.__reels:
             reel.valueChanged.connect(self.valeurChanger)
 
@@ -43,8 +41,6 @@ class QMultipleRealSliderSpinBox(QWidget):
     def valeurs(self) -> list[float]:
         return [reel.value() for reel in self.__reels]
 
-    def __print(self): # À enlever un jour !
-        print(self.valeurs())
         
     
 

@@ -8,6 +8,7 @@ L'énoncé du projet commence ici : [420-SF3 Projet 1](doc/in/420-SF3%20Projet%2
 
 *Décrivez le projet en quelques phrases : ce que fait le logiciel et à qui il s'adresse.*
 
+Le projet 1 est un logiciel de méthodes numériques sur des fonctions. Il permet aux usagers d'explorer les méthodes numériques à l'aide d'outils interactifs. Il s'addresse a ceux voulant comprendre à l'aide d'exemple concret et visuel les dérivés et les intégrales. Le projet
 ## Technologies utilisées
 
 *Listez les technologies utilisées, avec leur version.*

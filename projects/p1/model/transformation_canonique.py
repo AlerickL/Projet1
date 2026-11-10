@@ -29,9 +29,6 @@ class TransformationCanonique:
         info_zoom_y: Information = Information("Aggrandissement en y",  "Aggrandir verticalement la fonction")
         self.__zoom_y: Parametre = Parametre(info_zoom_y, precision, min, max, self.__defaut_zoom)
 
-
-    # Getter
-
     @property
     def trans_x(self) -> Parametre:
         return self.__trans_x
@@ -47,11 +44,6 @@ class TransformationCanonique:
     @property
     def zoom_x(self) -> Parametre:
         return self.__zoom_x
-
-
-
-
-    # Setter
 
     @trans_x.setter
     def trans_x(self, valeur: float|int) -> None:

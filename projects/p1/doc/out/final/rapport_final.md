@@ -27,7 +27,7 @@ Voici les directives importantes pour la rédaction de votre rapport :
 
     <div class="reponse-etudiant">
 
-    Contenu de votre réponse. 
+    Contenu de votre réponse.
 
     Si votre réponse nécessite des instructions `markdown`, vous devez laisser un espace après la balise `<div>` et avant la balise `</div>`. C'est le cas ici à cause des caractères *apostrophe inversée* `` ` `` (ou *backtick* en anglais).
 
@@ -185,6 +185,12 @@ Cette section décrit une contribution individuelle au projet par chaque membre 
     1. ...
     1. ...
 - ...
+- Arthur Delcourt
+    1. La tâche à laquelle j'ai contribué de la manière la plus significative est la création et l'organisations des premiers widgets du menu, comme les QParametre, QTransformationCanonique et autres.
+    1. Le défis le plus important a été celui de la réutilisation du code. Il me fallait trouver une façon de ne pas me répéter dans mon code. Je l'ai surmonté en créant les classes QMultipleRealSliderSpinBox et QBooutonMultipleRealSilderSpinBox avec lesquels j'ai construit de nombreuses classes enfants.
+    1. Pour moi, la partie la plus difficile en gardant en tête uniquement les aspects techniques a été de gérer certains signaux pour les classes du gui. Plusieurs bugs relié à la priorité des signaux sont apparus au cours du projet et ça m'a prit du temps pour comprendre la nécessité de la commande blocksignal pour solutionner le problème.
+    1. Ce qui a été selon moi le plus difficile pour ce qui était du travail en équipe était de trouver des périodes de disponibilités communes pour travailler tous ensemble sur le projet. Nous avons trouver de tel moment, mais avons eu a faire des compromis.
+
 
 </div>
 

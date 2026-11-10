@@ -6,37 +6,32 @@ from projects.p1.model.transformation_canonique import TransformationCanonique
 
 class FonctionSin(FonctionMath):
     """Représente une fonction sinus"""
-    def __init__(self,transformations_canoniques:TransformationCanonique):
-        if not isinstance(transformations_canoniques,TransformationCanonique):
-                    raise TypeError("transformations_canoniques doit être de type TransformationCanonique")
-        info:Information = Information("Fonction sinus",\
-                                    "Fonction trigonométrique périodique définie par l'ordonné du cercle trigonométrique", "ce n'est pas une sinusite")
-        formule_generale: str = "sin(x)"
+    def __init__(self, transformations_canoniques: TransformationCanonique):
+        __info:Information = Information("Fonction sinus",
+                                    "Fonction trigonométrique périodique définie par l'ordonné du cercle trigonométrique", 
+                                    "ce n'est pas une sinusite")
+        __formule_generale: str = "sin(x)"
+
+        __fonction: callable = lambda x : np.sin(x)
+        __derive: callable = lambda x : np.cos(x)
+        __primitive: callable = lambda x : -np.cos(x)
         
-        super().__init__(info,formule_generale,[],transformations_canoniques)
+        super().__init__(__info, __formule_generale, [], transformations_canoniques, __fonction, __derive, __primitive)
 
     @override
     @property
     def vrai_formule(self):
         return "sin(x)"
 
-    # Méthode
 
     @override
-    def calculer(self,x:float) -> float:
-        return super().calculer(x,np.sin)
+    def calculer(self, x: float) -> float:
+        return super().calculer(x)
     
     @override
-    def calculer_exacte_derive(self,x:float) -> float:
-        return super().calculer_exacte_derive(x,np.cos)                               
+    def calculer_exacte_derive(self, x: float) -> float:
+        return super().calculer_exacte_derive(x)                               
 
     @override
-    def calculer_exacte_integrale(self, borne_inferieur:float,borne_superieur:float) -> float:
-        
-        primitive : callable = lambda x : -np.cos(x)
-        return super().calculer_exacte_integrale(borne_inferieur,borne_superieur,primitive)
-
-
-
-    
-    
+    def calculer_exacte_integrale(self, borne_inferieur: float, borne_superieur: float) -> float:
+        return super().calculer_exacte_integrale(borne_inferieur, borne_superieur)

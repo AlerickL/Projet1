@@ -1,0 +1,80 @@
+@startuml
+class Modele {
++<<property>> transformation_canonique:TransformationCanonique
++<<property>> fonction_math:FonctionSin
++<<property>> fonction_sin:FonctionSin
++<<property>> fonction_second_degre:FonctionSecondDegre
++<<property>> fonction_sin_amortie:FonctionSinAmortie
++<<property>> fonction_double_bosse:FonctionDoubleBosse
++<<property>> methode_derive:MethodeDerive
++<<property>> methode_integrale:MethodeIntegrale
++<<property>> methode_affiche:affichageMethode = AUCUNE
++<<property>> \ methode_derive_a_afficher:affichageMethode
++<<property>> \ methode_integrale_a_afficher:affichageMethode
++<<property>> \ tangente_a_afficher:AffichageDerive
++<<property>> \ secante_a_afficher:AffichageDerive
++<<property>> \ tangente_et_secante_a_afficher:AffichageDerive
++__init__()
++mettre_affichage_derive():
++mettre_affichage_integrale():
++mettre_affichage_aucun():
++changer_fonction_sin():
++changer_fonction_second_degre():
++changer_fonction_sin_amortie():
++changer_fonction_double_bosse():
++changer_valeur_parametre():
++avoir_info_parametre(index:int):int
++avoir_info_fonction():
++avoir_vrai_formule():
++reinitialiser_parametres_fonction():
++mettre_identite():
++mettre_symetrie_y():
++mettre_symetrie_x():
++mettre_derive_a_gauche():
++mettre_derive_au_milieu():
++mettre_derive_a_droite():
++mettre_integrale_a_gauche():
++mettre_integrale_au_milieu():
++mettre_integrale_a_droite():
++avoir_deux_points_derive_approxime():tuple[tuple[float,float],tuple[float,float]]
++avoir_deux_points_tangente():tuple[tuple[float,float],tuple[float,float]]
++mettre_mode_rectangle():
++mettre_mode_trapeze():
++mettre_mode_tangente():
++mettre_mode_secante():
++mettre_mode_tangente_et_secante():
+}
+
+class FonctionSin {
+}
+FonctionSin --* Modele
+class FonctionSecondDegre{
+}
+FonctionSecondDegre --* Modele
+class FonctionSinAmortie{
+}
+FonctionSinAmortie --* Modele
+class FonctionDoubleBosse{
+}
+FonctionDoubleBosse --* Modele
+class Parametre{
+}
+Parametre --* Modele
+class MethodeDerive{
+}
+MethodeDerive --* Modele
+class MethodeIntegrale{
+}
+MethodeIntegrale --* Modele
+Enum affichageMethode{
+DERIVE = 0
+INTEGRALE = 1
+AUCUNE = 2
+}
+affichageMethode --* Modele
+
+
+
+
+
+@enduml

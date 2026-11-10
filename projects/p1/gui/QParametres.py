@@ -1,10 +1,6 @@
 from __future__ import annotations
-import sys
-#from QMultipleRealSliderSpinBox import QMultipleRealSliderSpinBox
-from typing import override, cast
-from PySide6.QtCore import Qt, Signal, Slot
-from PySide6.QtGui import QPixmap, QColor, QShowEvent
-from PySide6.QtWidgets import QApplication, QWidget, QLabel, QSlider, QHBoxLayout, QVBoxLayout, QPushButton, QMessageBox
+from PySide6.QtCore import Signal, Slot
+from PySide6.QtWidgets import  QWidget, QPushButton, QMessageBox
 from edustem.pyside6.widgets.q_slider_spin_box import QRealSliderSpinBox
 from projects.p1.model.modele import Modele
 from projects.p1.model.fonction_math import FonctionMath

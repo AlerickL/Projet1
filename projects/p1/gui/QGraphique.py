@@ -22,13 +22,16 @@ class QGraphique(pg.PlotWidget):
 
         #Courbe principale
         __xValeurs, __yValeurs = self.__modele.fonction_math.calculer_np(-10, 10, 500)
-        self.__courbe : pg.PlotDataItem = pg.PlotDataItem(__xValeurs, __yValeurs, pen="white", width=4)
+        self.__courbe : pg.PlotDataItem = pg.PlotDataItem(__xValeurs, __yValeurs, pen="white", width=4, name = "Tangente")
+        self.__courbe.set
         self.__viewBox : pg.ViewBox = self.getViewBox()
 
         self.addItem(self.__courbe)
 
+        
+
         # Tangente
-        self.__tangente : pg.PlotDataItem = pg.PlotDataItem((), (), pen="red", width=5)
+        self.__tangente : pg.PlotDataItem = pg.PlotDataItem((), (), pen="red", width=5, name = "Tangente")
         self.__tangente.hide()
 
         # Secante
@@ -39,6 +42,14 @@ class QGraphique(pg.PlotWidget):
         self.__pointInteret : pg.ScatterPlotItem = pg.ScatterPlotItem((), (), pen="Red", size=10)
         self.__pointInteret.hide()
 
+        #Point d'intérêt
+        self.__pointMoins : pg.ScatterPlotItem = pg.ScatterPlotItem((), (), pen="Yellow", size=10)
+        self.__pointMoins.hide()
+
+        #Point d'intérêt
+        self.__pointPlus : pg.ScatterPlotItem = pg.ScatterPlotItem((), (), pen="Yellow", size=10)
+        self.__pointPlus.hide()
+
         self.__rectangles:list[QGraphicsPolygonItem] = []
         self.__initialiserFormes(self.__rectangles)
 
@@ -48,6 +59,8 @@ class QGraphique(pg.PlotWidget):
         self.addItem(self.__tangente)
         self.addItem(self.__secante)
         self.addItem(self.__pointInteret)
+        self.addItem(self.__pointMoins)
+        self.addItem(self.__pointPlus)
 
         self.__viewBox.sigRangeChangedManually.connect(self.actualiser)
 
@@ -76,6 +89,8 @@ class QGraphique(pg.PlotWidget):
             if self.__modele.tangente_et_secante_a_afficher:
                 self.__afficherTangenteEtSecante()
         elif self.__modele.methode_integrale_a_afficher:
+            self.__pointMoins.hide()
+            self.__pointPlus.hide()
             self.__pointInteret.hide()
             self.__tangente.hide()
             self.__secante.hide()
@@ -87,6 +102,8 @@ class QGraphique(pg.PlotWidget):
                 self.__afficherTrapezes()
         else: # aucune méthode
             self.__pointInteret.hide()
+            self.__pointMoins.hide()
+            self.__pointPlus.hide()
             self.__tangente.hide()
             self.__secante.hide()
             self.__cacherToutesFormes()
@@ -97,6 +114,18 @@ class QGraphique(pg.PlotWidget):
         self.__pointInteret.show()
         _x, _y = self.__modele.methode_derive.point_interet, self.__modele.fonction_math.calculer(self.__modele.methode_derive.point_interet)
         self.__pointInteret.setData([_x], [_y])
+
+    def __afficherPointAvantSecante(self):
+        self.__pointMoins.show()
+        pointMoins = self.__modele.methode_derive.avoir_premiere_valeur()
+        _x, _y = pointMoins, self.__modele.fonction_math.calculer(pointMoins)
+        self.__pointMoins.setData([_x], [_y])
+
+    def __afficherPointApresSecante(self):
+        self.__pointPlus.show()
+        pointPlus = self.__modele.methode_derive.avoir_seconde_valeur()
+        _x, _y = pointPlus, self.__modele.fonction_math.calculer(pointPlus)
+        self.__pointPlus.setData([_x], [_y])
     
         
     def __afficherTangente(self, cacherSecante:bool = True):
@@ -106,10 +135,14 @@ class QGraphique(pg.PlotWidget):
 
         if cacherSecante:
             self.__secante.hide()
+            self.__pointMoins.hide()
+            self.__pointPlus.hide()
         self.__tangente.show()
     
     def __afficherSecante(self, cacherTangente:bool = True):
         self.__afficherPointInteret()
+        self.__afficherPointAvantSecante()
+        self.__afficherPointApresSecante()
         __xValeurs, __yValeurs = self.__modele.avoir_deux_points_derive_approxime()
         self.__secante.setData(__xValeurs, __yValeurs)
 

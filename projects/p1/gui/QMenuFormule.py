@@ -1,10 +1,7 @@
 from __future__ import annotations
-import sys
-from typing import override, cast
-from PySide6.QtCore import Qt, Signal, Slot
-from PySide6.QtGui import QPixmap, QColor, QShowEvent, QFont
-from PySide6.QtWidgets import QApplication, QWidget, QLabel, QSlider, QHBoxLayout, QVBoxLayout, QComboBox, QSizePolicy
-from edustem.pyside6.widgets.q_slider_spin_box import QRealSliderSpinBox
+from PySide6.QtCore import Signal, Slot
+from PySide6.QtGui import QFont
+from PySide6.QtWidgets import QWidget, QLabel,QHBoxLayout, QVBoxLayout, QSizePolicy
 from projects.p1.model.modele import Modele
 from projects.p1.gui.QMenuDeroulant import QMenuDeroulant
 

@@ -92,7 +92,6 @@ class QTransformationCanonique(QBoutonMultipleRealSliderSpinBox):
         self.modeleChanger.emit()
 
     def __modifierModele(self) -> None:
-        print("HHHHHHHHHHHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
         self.__modele.transformation_canonique.trans_x.valeur = self.valeurs()[0]
         self.__modele.transformation_canonique.trans_y.valeur = self.valeurs()[1]
         self.__modele.transformation_canonique.zoom_x.valeur = self.valeurs()[2]

@@ -46,7 +46,6 @@ class QSelectionFonction(QMenuFormule):
             self.__parametres_second_degre.setVisible(False)
             self.__parametres_double_bosse.setVisible(True)
             self.__parametres_sin.setVisible(False)
-            
             self.__modele.changer_fonction_double_bosse()
         elif self.menu().currentText() == "Fonction polynomial du second degré":
             self.__parametres_sin_amortie.setVisible(False)

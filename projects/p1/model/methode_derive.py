@@ -5,7 +5,7 @@ from projects.p1.model.affichage_derive import AffichageDerive
 from projects.p1.model.information import Information
 
 class MethodeDerive(MethodeNumerique):
-    """Permet de gérer les dérivé"""
+    """Permet de gérer les dérivés"""
     def __init__(self, fonction: FonctionMath):
         """initialise 
         Args:

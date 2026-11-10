@@ -35,3 +35,5 @@ class QApp(QWidget):
         self.setLayout(principalLayout)
 
         self.__menuDroite.modeleChanger.connect(self.__graphe.actualiser)
+
+

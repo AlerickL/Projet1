@@ -52,6 +52,7 @@ class MethodeDerive(MethodeNumerique):
 
     def avoir_regle_tangente(self):
         pente = self._fonction_math.calculer_exacte_derive(self.point_interet)
+        print(pente, " pente")
         hauteur = self._fonction_math.calculer(self.point_interet)-pente * self.point_interet
         return lambda x : pente*x + hauteur
 

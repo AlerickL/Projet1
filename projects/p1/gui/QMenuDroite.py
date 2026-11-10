@@ -36,3 +36,7 @@ class QMenuDroite(QWidget):
         self.__selectionFonction.modeleChanger.connect(self.modeleChanger)
         self.__transformationCanonique.modeleChanger.connect(self.modeleChanger) 
         self.__methode.modeleChanger.connect(self.modeleChanger)
+
+    @property
+    def methode(self) -> QMethode:
+        return self.__methode

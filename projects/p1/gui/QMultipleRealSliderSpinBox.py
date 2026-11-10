@@ -1,9 +1,7 @@
 from __future__ import annotations
-import sys
-from typing import override
-from PySide6.QtCore import Qt, Signal, Slot
-from PySide6.QtGui import QPixmap, QColor, QShowEvent, QFont
-from PySide6.QtWidgets import QApplication, QWidget, QLabel, QSlider, QHBoxLayout, QVBoxLayout, QSizePolicy
+from PySide6.QtCore import Signal
+from PySide6.QtGui import QFont
+from PySide6.QtWidgets import QWidget, QLabel, QVBoxLayout, QSizePolicy
 from edustem.pyside6.widgets.q_slider_spin_box import QRealSliderSpinBox
 
 class QMultipleRealSliderSpinBox(QWidget):

@@ -13,10 +13,11 @@ class QGraphique(pg.PlotWidget):
         self.showGrid(x=True, y=True)
         self.setTitle(self.__modele.fonction_math.info.nom)
         self.setAspectLocked(True)
+        self.addLegend()
 
         #Courbe principale
         __xValeurs, __yValeurs = self.__modele.fonction_math.calculer_np(-10, 10, 500)
-        self.__courbe : pg.PlotDataItem = pg.PlotDataItem(__xValeurs, __yValeurs, pen="white", width=4, name = "Tangente")
+        self.__courbe : pg.PlotDataItem = pg.PlotDataItem(__xValeurs, __yValeurs, pen="white", width=4, name = "Fonction")
         self.__viewBox : pg.ViewBox = self.getViewBox()
 
         self.addItem(self.__courbe)

@@ -134,10 +134,10 @@ Réponse aux questions sur la POO :
     - Héritage : methode_integrale et methode_derive qui héritent de methode_numerique
     - Polymorphisme : la méthode calculer dans fonction_math applique les transformation canoniques à la méthode calculer de ses enfants.
 1. Modélisation de la classe abstraite `MathFunction` :
-    1. Avantage 1 : ...
-    1. Avantage 2 : ...
-    1. Inconvénient : ... 
-1. Utilité du polymorphisme : ...
+    1. Avantage 1 : Par héritage, la classe FonctionMath réduit la répétition de code dans ses classes enfants.
+    1. Avantage 2 : 
+    1. Inconvénient : L'inconvénient de FonctionMath, c'est qu'elle ne permet de changer le type de fonction au sein d'elle même. Ce qui veut dire que nous devons instancier chaque fonction indépendamment. FonctionMath ne sert donc pas d'interface de gestion des fonctions, ce qui aurait été utile si nous avions un beaucoup plus gros projet avec, par exemple, 100 fonctions.
+1. Utilité du polymorphisme : Nous avons beaucoup de classes différentes, avec des patrons similaires et les mêmes entrées, mais des fonctionnements très différents. Par exemple, toutes les classes qui héritent de QMultipleRealSlider ont les mêmes intrants, mais vont modifier des sections complétement différentes du modèle/gui. D'autres exemples sont les méthodes numériques et les fonctions.
 
 </div>
 
@@ -150,8 +150,8 @@ Le mandat du projet présente volontairement quelques zones d'ombre que votre é
 <div class="reponse-etudiant">
 
 Réponse aux questions sur l'interprétation du mandat :
-1. Zone d'ombre identifiée : ...
-1. Décision prise et raison : ...
+1. Zone d'ombre identifiée : Dans le mandat, On ne sait pas si les transformations canoniques devraient être sauvegardées lorsqu'on change de fonction ou non. Cette zone d'ombre est significative, car cela change la conception du projet. Si nous n'avions pas eu besoin de sauvegarder les transformations canoniques, nous aurions pu simplement créer un objet de transformation pour chaque fonction.
+1. Décision prise et raison : On a décidé de sauvegardées les transformations canoniques. Cela facilite la comparaison des fonctions soumises aux mêmes conditions. 
 
 </div>
 

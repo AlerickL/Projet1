@@ -1,6 +1,6 @@
 from __future__ import annotations
 from PySide6.QtCore import Signal, Slot
-from PySide6.QtWidgets import QLabel, QHBoxLayout, QPushButton
+from PySide6.QtWidgets import QLabel, QHBoxLayout, QPushButton, QVBoxLayout, QWidget
 from edustem.pyside6.widgets.q_slider_spin_box import QRealSliderSpinBox
 from projects.p1.model.modele import Modele
 from projects.p1.gui.QBoutonMultipleRealSliderSpinBox import QBoutonMultipleRealSliderSpinBox
@@ -46,13 +46,29 @@ class QMethodeDerive(QBoutonMultipleRealSliderSpinBox):
 
         self.valeurChanger.connect(self.__modifierModele)
 
+        __layoutPente = QVBoxLayout()
         self.__penteApprox = QLabel("Pente approximée : ")
         self.__penteExacte = QLabel("Pente exacte : ")
+        __layoutPente.addWidget(self.__penteApprox)
+        __layoutPente.addWidget(self.__penteExacte)
+
+        __layoutEcart = QVBoxLayout()
+        self.__ecartRelatif = QLabel("Écart Relatif : ")
+        self.__ecartAbsolu = QLabel("Écart Absolu : ")
+        __layoutEcart.addWidget(self.__ecartAbsolu)
+        __layoutEcart.addWidget(self.__ecartRelatif)
+
+        __layoutPenteEcart = QHBoxLayout()
+        __layoutPenteEcart.addLayout(__layoutPente)
+        __layoutPenteEcart.addLayout(__layoutEcart)
+
+        __widgetPenteEcart = QWidget()
+        __widgetPenteEcart.setLayout(__layoutPenteEcart)
+
         self.recalculer()
 
-        self.layout().addWidget(self.__penteApprox)
-        self.layout().addWidget(self.__penteExacte)
-
+        self.layout().addWidget(__widgetPenteEcart)
+     
         boutonTangente = QPushButton("Tangente")
         boutonTangente.clicked.connect(self.__mettreTangente)
         boutonSecante = QPushButton("Sécante")
@@ -98,7 +114,9 @@ class QMethodeDerive(QBoutonMultipleRealSliderSpinBox):
     @Slot()
     def recalculer(self):
         self.__penteApprox.setText(f"Pente approximée : {self.__modele.methode_derive.approximation}")
-        self.__penteExacte.setText(f"Pente exacte : {self.__modele.methode_derive.fonction_math.calculer_exacte_derive(self.__reels[0].value())}")
+        self.__penteExacte.setText(f"Pente exacte : {self.__modele.methode_derive.valeur_exacte}")
+        self.__ecartAbsolu.setText(f"Écart Absolu : {self.__modele.methode_derive.ecart_absolu()}")
+        self.__ecartRelatif.setText(f"Écart Relatif :  {self.__modele.methode_derive.ecart_relatif():.2f}%")
 
     @Slot()
     def __mettreTangente(self):

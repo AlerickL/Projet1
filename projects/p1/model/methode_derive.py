@@ -73,6 +73,11 @@ class MethodeDerive(MethodeNumerique):
         return ( self.fonction_math.calculer(seconde_valeur) - self.fonction_math.calculer(premiere_valeur) )/ (self.precision)
 
     @override
+    @property
+    def valeur_exacte(self) -> float:
+        return self.fonction_math.calculer_exacte_derive(self.point_interet)
+
+    @override
     def reinitialiser(self):
         super().reinitialiser()
         self.__point_interet = 0

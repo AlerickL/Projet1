@@ -5,6 +5,7 @@ from PySide6.QtWidgets import QGraphicsPolygonItem, QSizePolicy
 from projects.p1.model.modele import Modele
 from numpy.typing import NDArray
 import pyqtgraph as pg
+from pyqtgraph import LegendItem
 
 class QGraphique(pg.PlotWidget):
     def __init__(self : pg.PlotWidget, modele:Modele):
@@ -13,7 +14,8 @@ class QGraphique(pg.PlotWidget):
         self.showGrid(x=True, y=True)
         self.setTitle(self.__modele.fonction_math.info.nom)
         self.setAspectLocked(True)
-        self.addLegend()
+        self.__legend : LegendItem = self.addLegend()
+    
 
         #Courbe principale
         __xValeurs, __yValeurs = self.__modele.fonction_math.calculer_np(-10, 10, 500)
@@ -25,7 +27,7 @@ class QGraphique(pg.PlotWidget):
         
 
         # Tangente
-        self.__tangente : pg.PlotDataItem = pg.PlotDataItem((), (), pen="red", width=5, name = "Tangente")
+        self.__tangente : pg.PlotDataItem = pg.PlotDataItem((), (), pen="red", width=5)
         self.__tangente.hide()
 
         # Secante
@@ -68,17 +70,24 @@ class QGraphique(pg.PlotWidget):
         self.__courbe.setData(__xValeurs, __yValeurs)
         self.__actualiserMethodeNumerique()
 
+
     
     def __actualiserMethodeNumerique(self) -> None:
+        self.__legend.clear()
+        self.__legend.addItem(self.__courbe, "Fonction")
         if self.__modele.methode_derive_a_afficher:
             for i in range(self.__modele.methode_integrale.nombre_total_forme):
                 self.__rectangles[i].hide()
             if self.__modele.tangente_a_afficher:
-                self.__afficherTangente()
+                self.__afficherTangente() 
+                self.__legend.addItem(self.__tangente, "Tangente")
             if self.__modele.secante_a_afficher:
                 self.__afficherSecante()
+                self.__legend.addItem(self.__secante, "Sécante")
             if self.__modele.tangente_et_secante_a_afficher:
                 self.__afficherTangenteEtSecante()
+                self.__legend.addItem(self.__tangente, "Tangente")
+                self.__legend.addItem(self.__secante, "Sécante")
         elif self.__modele.methode_integrale_a_afficher:
             self.__pointsSecante.hide()
             self.__pointInteret.hide()

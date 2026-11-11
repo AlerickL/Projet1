@@ -57,6 +57,11 @@ class MethodeNumerique(ABC):
         pass
 
     @property
+    @abstractmethod
+    def valeur_exacte(self) -> float:
+        pass
+
+    @property
     def precision(self) -> float:
         """Donne la précision de la méthode numérique ; dépend de la méthode précisément.
         Pour la dérivé, c'est le pas de comparaison (h)
@@ -70,6 +75,15 @@ class MethodeNumerique(ABC):
     @precision.setter
     def precision(self, valeur: float) -> None :
         self.__precision = valeur
+
+    def ecart_absolu(self) -> float:
+        return abs(self.approximation - self.valeur_exacte)
+
+    def ecart_relatif(self) -> float:
+        try:
+            return abs(self.ecart_absolu() / self.valeur_exacte * 100)
+        except ZeroDivisionError:
+            return 0
 
     def reinitialiser(self):
         self._alpha:float = 0.5

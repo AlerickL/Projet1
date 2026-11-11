@@ -1,6 +1,6 @@
 from __future__ import annotations
 from PySide6.QtCore import Signal, Slot
-from PySide6.QtWidgets import QLabel, QHBoxLayout, QPushButton
+from PySide6.QtWidgets import QLabel, QHBoxLayout, QPushButton, QVBoxLayout, QWidget
 from edustem.pyside6.widgets.q_slider_spin_box import QRealSliderSpinBox, QSliderSpinBox, QAbstractSliderSpinBox
 from edustem.pyside6.widgets.q_range_slider_spin_box import QRealRangeSliderSpinBox
 from projects.p1.gui.QBoutonMultipleRealSliderSpinBox import QBoutonMultipleRealSliderSpinBox
@@ -40,8 +40,25 @@ class QMethodeIntegrale(QBoutonMultipleRealSliderSpinBox):
         self.__rangeSliderSpinBox.setLimits(-10,10)
         self.__rangeSliderSpinBox.setPrefix("Bornes ")
 
+        __layoutIntegrale = QVBoxLayout()
         self.__integraleApprox = QLabel("Intégrale approximée : ")
         self.__integraleExacte = QLabel("Intégrale exacte : ")
+        __layoutIntegrale.addWidget(self.__integraleApprox)
+        __layoutIntegrale.addWidget(self.__integraleExacte)
+
+        __layoutEcart = QVBoxLayout()
+        self.__ecartRelatif = QLabel("Écart Relatif : ")
+        self.__ecartAbsolu = QLabel("Écart Absolu : ")
+        __layoutEcart.addWidget(self.__ecartAbsolu)
+        __layoutEcart.addWidget(self.__ecartRelatif)
+
+        __layoutIntegraleEcart = QHBoxLayout()
+        __layoutIntegraleEcart.addLayout(__layoutIntegrale)
+        __layoutIntegraleEcart.addLayout(__layoutEcart)
+
+        __widgetIntegraleEcart = QWidget()
+        __widgetIntegraleEcart.setLayout(__layoutIntegraleEcart)
+
         self.recalculer()
 
         self.__boutonRectangle = QPushButton("Rectangle")
@@ -55,8 +72,7 @@ class QMethodeIntegrale(QBoutonMultipleRealSliderSpinBox):
         self.__boutonTrapeze.pressed.connect(self.mettreTrapeze)
 
         self.layout().addWidget(self.__rangeSliderSpinBox)
-        self.layout().addWidget(self.__integraleApprox)
-        self.layout().addWidget(self.__integraleExacte)
+        self.layout().addWidget(__widgetIntegraleEcart)
         self.layout().addWidget(self.__boutonRectangle)
         self.layout().addWidget(self.__boutonTrapeze)
 
@@ -89,6 +105,8 @@ class QMethodeIntegrale(QBoutonMultipleRealSliderSpinBox):
     def recalculer(self):
         self.__integraleApprox.setText(f"Intégrale approximée : {self.__modele.methode_integrale.approximation} ")
         self.__integraleExacte.setText(f"Intégrale exacte : {self.__modele.methode_integrale.fonction_math.calculer_exacte_integrale(*self.__modele.methode_integrale.intervalle)}")
+        self.__ecartAbsolu.setText(f"Écart Absolu : {self.__modele.methode_integrale.ecart_absolu()}")
+        self.__ecartRelatif.setText(f"Écart Relatif :  {self.__modele.methode_integrale.ecart_relatif():.2f}%")
 
     @Slot()
     def mettreRectangle(self):

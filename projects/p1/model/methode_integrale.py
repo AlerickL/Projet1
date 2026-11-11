@@ -51,6 +51,11 @@ class MethodeIntegrale(MethodeNumerique):
         elif self.__forme_integrale == FormeIntegrale.RECTANGLE:
             return self.__calculer_avec_rectangle()
 
+    @override
+    @property
+    def valeur_exacte(self) -> float:
+        return self.fonction_math.calculer_exacte_integrale(self.intervalle[0], self.intervalle[1])
+
     def __avoir_pas_integration(self) -> float:
         return (self.__intervalle[1] - self.__intervalle[0]) / self.precision
 

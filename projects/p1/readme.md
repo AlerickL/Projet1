@@ -6,17 +6,13 @@ L'énoncé du projet commence ici : [420-SF3 Projet 1](doc/in/420-SF3%20Projet%2
 
 ## Présentation
 
-*Décrivez le projet en quelques phrases : ce que fait le logiciel et à qui il s'adresse.*
-
-Le projet 1 est un logiciel de méthodes numériques sur des fonctions. Il permet aux usagers d'explorer les méthodes numériques à l'aide d'outils interactifs. Il s'addresse a ceux voulant comprendre à l'aide d'exemple concret et visuel les dérivés et les intégrales. Le projet
+Le projet 1 est un logiciel de méthodes numériques sur des fonctions. Il permet aux usagers d'explorer les méthodes numériques à l'aide d'outils interactifs. Il s'addresse a ceux voulant comprendre à l'aide d'exemple concret et visuel les dérivés et les intégrales.
 ## Technologies utilisées
 
-*Listez les technologies utilisées, avec leur version.*
-
-- `Python`
-- `PySide6`
-- `PyQtGraph`
-- `NumPy`
+- `Python 3.15`
+- `PySide6 6.12.0`
+- `PyQtGraph 0.14.0`
+- `NumPy 2.5.4`
 
 ## Lancement
 
@@ -41,9 +37,7 @@ python p1_main.py
 
 ## Auteurs
 
-*Inscrivez le nom de chaque membre de l'équipe.*
-
 - El Ghardegue Hiba
-- Arthur
-- Alérick
-- Zachary
+- Arthur Delcourt
+- Alérick Langlois
+- Zachary Quinn

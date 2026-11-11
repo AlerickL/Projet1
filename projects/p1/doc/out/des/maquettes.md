@@ -14,16 +14,16 @@ Remplacez le contenu des sections par le vôtre, puis retirez les consignes en i
 
 ## Version initiale
 
-*Insérez ici les maquettes produites avant le début de la programmation. Elles ne doivent pas être parfaites. Une fois la programmation commencée, ne les modifiez plus : le rapport final demande d'expliquer les écarts entre cette version et le logiciel remis.*
+![Vue d'ensemble, version initiale](../assets/maquette.jpeg)
 
 ### Vue d'ensemble
 
-*Présentez la fenêtre principale et la disposition de ses quatre sections : sélection de la fonction, transformation canonique, exploration de la méthode numérique et graphique.*
+À gauche, nous avons le graphique. À droite, en partant du haut, nous avons la sélection de la fonction, les transformations canoniques et les méthode numériques (I, II et III)
 
 ### Panneaux
 
-*Ajoutez une maquette par panneau lorsque la vue d'ensemble ne suffit pas à en montrer le détail.*
+Ceux-ci sont intégrés dans la version initiale sous "Zone plaisir".
 
 ## Version finale
 
-*Insérez ici les maquettes mises à jour à la fin du projet, si l'interface a changé en cours de route. Si elle n'a pas changé, indiquez-le simplement.*
+La maquette initiale est assez fidèle, mais en pratique nous avons ajoutés quelques boutons et labels. C'est pour cela que nous n'avons pas fait de maquette finale

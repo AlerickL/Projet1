@@ -16,16 +16,18 @@ Remplacez le contenu des sections par le vôtre, puis retirez les consignes en i
 
 ## Version initiale
 
-*Insérez ici les diagrammes produits avant le début de la programmation. Ils ne doivent pas être parfaits. Une fois la programmation commencée, ne les modifiez plus : le rapport final demande d'expliquer les écarts entre cette version et le logiciel remis.*
+![Vue d'ensemble, version initiale](../assets/image_uml_version_1.png)
 
 ### Fonctions mathématiques
 
-*Présentez les classes des fonctions, de leurs paramètres et de la transformation canonique.*
+Nous avons les classes FonctionSin, FonctionSinAmortie, FonctionDoubleBosse, FonctionSecondDegree, qui sont tous enfants de FonctionMath. Cette dernière contient jusqu'à n instance de la classe Parametre, et 1 instance de TransformationCanonique, qui contient 4 instance de Parametre
+
 
 ### Méthodes d'analyse numérique
 
-*Présentez les classes de la dérivation et de l'intégration d'aire.*
+Nous avons les classes MethodeDerive et MethodeIntegrale, qui sont des enfants de MethodeNumerique
 
 ## Version finale
 
-*Insérez ici les diagrammes mis à jour à la fin du projet. Ils doivent correspondre au code remis.*
+![Vue d'ensemble, version finale](../assets/image_uml_fin.png)
+![Modèle, version finale](../assets/image_uml_class_modele.png)
